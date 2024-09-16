@@ -1,4 +1,3 @@
-// src/entities/asistencia/asistencia.controller.js
 const Asistencia = require('./asistencia.model');
 
 // Crear una nueva Asistencia

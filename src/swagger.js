@@ -22,7 +22,7 @@ const swaggerOptions = {
         './src/entities/profile/profile.routes.js', // Agregado para la entidad Profile
         './src/entities/guest/guest.routes.js', // Agregado para la entidad Guest
         './src/entities/summary/summary.routes.js', // Agregado para la entidad Summary
-        './src/entities/asistencia/asistencia.routes.js',
+        './src/entities/asistencia/asistencia.routes.test.js',
         './src/entities/notification/notification.routes.js',
         './src/entities/template/template.routes.js',
         './src/entities/webpage/webpage.routes.js',

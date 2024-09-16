@@ -1,24 +1,13 @@
-// src/entities/asistencia/asistencia.middleware.js
 const { body, validationResult } = require('express-validator');
 
 // Validaciones para crear una nueva asistencia
 const validateCreateAsistencia = [
-  body('GuestID')
-    .isString().withMessage('GuestID debe ser un identificador válido')
-    .notEmpty().withMessage('GuestID es obligatorio'),
+  body('GuestID').not().isEmpty().withMessage('GuestID is required'),
+  body('EventID').not().isEmpty().withMessage('EventID is required'),
+  body('Confirmacion').isBoolean().withMessage('Confirmacion must be a boolean'),
+  body('Cant_Invitado').isInt({ min: 1 }).withMessage('Cant_Invitado must be a positive integer'),
 
-  body('EventID')
-    .isString().withMessage('EventID debe ser un identificador válido')
-    .notEmpty().withMessage('EventID es obligatorio'),
-
-  body('Confirmacion')
-    .isBoolean().withMessage('Confirmacion debe ser un valor booleano (true o false)')
-    .notEmpty().withMessage('Confirmacion es obligatoria'),
-
-  body('Cant_Invitado')
-    .isInt({ min: 0 }).withMessage('Cant_Invitado debe ser un número entero no negativo')
-    .notEmpty().withMessage('Cant_Invitado es obligatorio'),
-  
+  // Manejo de errores
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -30,22 +19,12 @@ const validateCreateAsistencia = [
 
 // Validaciones para actualizar asistencia
 const validateUpdateAsistencia = [
-  body('GuestID')
-    .optional()
-    .isString().withMessage('GuestID debe ser un identificador válido'),
-  
-  body('EventID')
-    .optional()
-    .isString().withMessage('EventID debe ser un identificador válido'),
+  body('GuestID').optional().isString().withMessage('GuestID must be a valid ID'),
+  body('EventID').optional().isString().withMessage('EventID must be a valid ID'),
+  body('Confirmacion').optional().isBoolean().withMessage('Confirmacion must be a boolean'),
+  body('Cant_Invitado').optional().isInt({ min: 1 }).withMessage('Cant_Invitado must be a positive integer'),
 
-  body('Confirmacion')
-    .optional()
-    .isBoolean().withMessage('Confirmacion debe ser un valor booleano (true o false)'),
-
-  body('Cant_Invitado')
-    .optional()
-    .isInt({ min: 0 }).withMessage('Cant_Invitado debe ser un número entero no negativo'),
-  
+  // Manejo de errores
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

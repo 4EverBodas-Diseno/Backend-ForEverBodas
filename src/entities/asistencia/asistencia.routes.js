@@ -1,4 +1,3 @@
-// src/entities/asistencia/asistencia.routes.js
 const express = require('express');
 const {
   createAsistencia,
@@ -6,24 +5,13 @@ const {
   getAsistenciaById,
   updateAsistencia,
   deleteAsistencia
-} = require('./asistencia.controller');
-
+} = require('./asistencia.controller'); // Importamos los controladores de asistencia
 const {
   validateCreateAsistencia,
   validateUpdateAsistencia
-} = require('./asistencia.middleware');
+} = require('./asistencia.middleware'); // Importamos los middlewares de validación
 
-
-const router = express.Router();
-
-
-router.post('/', createAsistencia);
-router.get('/', getAllAsistencias);
-router.get('/:id', getAsistenciaById);
-router.put('/:id', updateAsistencia);
-router.delete('/:id', deleteAsistencia);
-
-
+const router = express.Router(); // Creamos un nuevo router de Express
 
 /**
  * @openapi
@@ -66,9 +54,7 @@ router.delete('/:id', deleteAsistencia);
  *       400:
  *         description: Error en la solicitud
  */
-
 router.post('/', validateCreateAsistencia, createAsistencia);
-
 
 /**
  * @openapi
@@ -98,6 +84,7 @@ router.post('/', validateCreateAsistencia, createAsistencia);
  *       500:
  *         description: Error del servidor
  */
+router.get('/', getAllAsistencias);
 
 /**
  * @openapi
@@ -134,6 +121,7 @@ router.post('/', validateCreateAsistencia, createAsistencia);
  *       500:
  *         description: Error del servidor
  */
+router.get('/:id', getAsistenciaById);
 
 /**
  * @openapi
@@ -187,7 +175,6 @@ router.post('/', validateCreateAsistencia, createAsistencia);
  *       500:
  *         description: Error del servidor
  */
-
 router.put('/:id', validateUpdateAsistencia, updateAsistencia);
 
 /**
@@ -212,5 +199,6 @@ router.put('/:id', validateUpdateAsistencia, updateAsistencia);
  *       500:
  *         description: Error del servidor
  */
+router.delete('/:id', deleteAsistencia);
 
 module.exports = router;

@@ -1,4 +1,3 @@
-// src/entities/asistencia/asistencia.model.js
 const mongoose = require('mongoose');
 
 const asistenciaSchema = new mongoose.Schema({
