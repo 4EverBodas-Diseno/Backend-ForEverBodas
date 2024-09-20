@@ -13,7 +13,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'http://localhost:5000/api',  // Asegúrate de que esta URL sea correcta
+        url: 'mongodb+srv://cap69nemo:UPC1234@backend-foreverbodas.uos9m.mongodb.net/?retryWrites=true&w=majority&appName=Backend-Foreverbodas',  
         description: 'Servidor local'
       }
     ]
