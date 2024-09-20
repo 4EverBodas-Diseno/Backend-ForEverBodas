@@ -13,15 +13,15 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'mongodb+srv://cap69nemo:UPC1234@backend-foreverbodas.uos9m.mongodb.net/?retryWrites=true&w=majority&appName=Backend-Foreverbodas',  
-        description: 'Servidor local'
+        url: 'https://backend-foreverbodas.onrender.com',  
+        description: 'Servidor en producción'
       }
     ]
   },
   apis: ['./src/entities/user/user.routes.js',
-        './src/entities/profile/profile.routes.js', // Agregado para la entidad Profile
-        './src/entities/guest/guest.routes.js', // Agregado para la entidad Guest
-        './src/entities/summary/summary.routes.js', // Agregado para la entidad Summary
+        './src/entities/profile/profile.routes.js', 
+        './src/entities/guest/guest.routes.js', 
+        './src/entities/summary/summary.routes.js', 
         './src/entities/asistencia/asistencia.routes.js',
         './src/entities/notification/notification.routes.js',
         './src/entities/template/template.routes.js',
