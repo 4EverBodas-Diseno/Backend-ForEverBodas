@@ -13,7 +13,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'https://backend-foreverbodas.onrender.com',  
+        url: 'https://backend-foreverbodas.onrender.com/api',  
         description: 'Servidor en producción'
       }
     ]
