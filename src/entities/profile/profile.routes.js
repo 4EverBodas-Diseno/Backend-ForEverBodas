@@ -1,4 +1,4 @@
-// src/entities/profile/profile.routes.js
+// src/entities/profile/profile.routes.test.js
 const express = require('express');
 const {
   createProfile,

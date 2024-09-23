@@ -1,4 +1,4 @@
-// src/entities/template/template.routes.js
+// src/entities/template/template.routes.test.js
 const express = require('express');
 const {
   createTemplate,

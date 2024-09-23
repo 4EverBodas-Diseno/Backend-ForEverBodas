@@ -1,4 +1,4 @@
-// src/entities/profile/profile.controller.js
+// src/entities/profile/profile.controller.test.js
 const Profile = require('./profile.model');
 
 // Crear un nuevo perfil

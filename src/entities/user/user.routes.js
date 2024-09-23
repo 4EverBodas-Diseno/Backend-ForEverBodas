@@ -1,4 +1,4 @@
-// src/entities/user/user.routes.js
+// src/entities/user/user.routes.test.js
 const express = require('express');
 const {
   createUser,

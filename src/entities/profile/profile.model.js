@@ -1,4 +1,4 @@
-// src/entities/profile/profile.model.js
+// src/entities/profile/profile.model.test.js
 const mongoose = require('mongoose');
 
 const profileSchema = new mongoose.Schema({

@@ -1,4 +1,4 @@
-// src/entities/webpage/webpage.controller.js
+// src/entities/webpage/webpage.controller.test.js
 const WebPage = require('./webpage.model');
 
 // Crear una nueva WebPage

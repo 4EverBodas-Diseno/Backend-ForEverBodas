@@ -1,4 +1,4 @@
-// src/entities/summary/summary.routes.js
+// src/entities/summary/summary.routes.test.js
 const express = require('express');
 const {
   createSummary,

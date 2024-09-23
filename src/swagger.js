@@ -18,16 +18,16 @@ const swaggerOptions = {
       }
     ]
   },
-  apis: ['./src/entities/user/user.routes.js',
-        './src/entities/profile/profile.routes.js', // Agregado para la entidad Profile
-        './src/entities/guest/guest.routes.js', // Agregado para la entidad Guest
-        './src/entities/summary/summary.routes.js', // Agregado para la entidad Summary
+  apis: ['./src/entities/user/user.routes.test.js',
+        './src/entities/profile/profile.routes.test.js', // Agregado para la entidad Profile
+        './src/entities/guest/guest.routes.test.js', // Agregado para la entidad Guest
+        './src/entities/summary/summary.routes.test.js', // Agregado para la entidad Summary
         './src/entities/asistencia/asistencia.routes.test.js',
-        './src/entities/notification/notification.routes.js',
-        './src/entities/template/template.routes.js',
-        './src/entities/webpage/webpage.routes.js',
-        './src/entities/wedding/wedding.routes.js',
-        './src/entities/wellwish/wellwish.routes.js'
+        './src/entities/notification/notification.routes.test.js',
+        './src/entities/template/template.routes.test.js',
+        './src/entities/webpage/webpage.routes.test.js',
+        './src/entities/wedding/wedding.routes.test.js',
+        './src/entities/wellwish/wellwish.routes.test.js'
 
   ] // Apunta al archivo correcto de las rutas
 };

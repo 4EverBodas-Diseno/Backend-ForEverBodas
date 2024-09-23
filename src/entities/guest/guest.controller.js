@@ -1,4 +1,4 @@
-// src/entities/guest/guest.controller.js
+// src/entities/guest/guest.controller.test.js
 const Guest = require('./guest.model');
 
 // Crear un nuevo Guest

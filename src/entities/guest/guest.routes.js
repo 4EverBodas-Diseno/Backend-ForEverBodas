@@ -1,4 +1,4 @@
-// src/entities/guest/guest.routes.js
+// src/entities/guest/guest.routes.test.js
 const express = require('express');
 const {
   createGuest,

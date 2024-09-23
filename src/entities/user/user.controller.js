@@ -1,4 +1,4 @@
-// src/entities/user/user.controller.js
+// src/entities/user/user.controller.test.js
 const User = require('./user.model');
 
 // Crear un nuevo usuario

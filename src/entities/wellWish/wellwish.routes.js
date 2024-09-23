@@ -1,4 +1,4 @@
-// src/entities/wellwish/wellwish.routes.js
+// src/entities/wellwish/wellwish.routes.test.js
 const express = require('express');
 const {
   createWellWish,

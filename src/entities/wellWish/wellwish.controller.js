@@ -1,4 +1,4 @@
-// src/entities/wellwish/wellwish.controller.js
+// src/entities/wellwish/wellwish.controller.test.js
 const WellWish = require('./wellwish.model');
 
 // Crear un nuevo WellWish

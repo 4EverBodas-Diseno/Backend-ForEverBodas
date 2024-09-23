@@ -1,4 +1,4 @@
-// src/entities/guest/guest.model.js
+// src/entities/guest/guest.model.test.js
 const mongoose = require('mongoose');
 
 const guestSchema = new mongoose.Schema({

@@ -1,4 +1,4 @@
-// src/entities/template/template.model.js
+// src/entities/template/template.model.test.js
 const mongoose = require('mongoose');
 
 const templateSchema = new mongoose.Schema({

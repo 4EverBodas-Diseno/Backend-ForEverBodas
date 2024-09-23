@@ -1,4 +1,4 @@
-// src/entities/wedding/wedding.routes.js
+// src/entities/wedding/wedding.routes.test.js
 const express = require('express');
 const {
   createWedding,

@@ -1,4 +1,4 @@
-// src/entities/template/template.controller.js
+// src/entities/template/template.controller.test.js
 const Template = require('./template.model');
 
 // Crear un nuevo Template

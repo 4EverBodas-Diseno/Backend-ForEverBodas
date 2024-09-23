@@ -1,4 +1,4 @@
-// src/entities/wedding/wedding.controller.js
+// src/entities/wedding/wedding.controller.test.js
 const Wedding = require('./wedding.model');
 
 // Crear un nuevo Wedding

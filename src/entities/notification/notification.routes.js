@@ -1,4 +1,4 @@
-// src/entities/notification/notification.routes.js
+// src/entities/notification/notification.routes.test.js
 const express = require('express');
 const {
   createNotification,

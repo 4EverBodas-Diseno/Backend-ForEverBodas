@@ -1,4 +1,4 @@
-// src/entities/notification/notification.controller.js
+// src/entities/notification/notification.controller.test.js
 const Notification = require('./notification.model');
 
 // Crear una nueva Notification

@@ -1,4 +1,4 @@
-// src/entities/summary/summary.model.js
+// src/entities/summary/summary.model.test.js
 const mongoose = require('mongoose');
 
 const summarySchema = new mongoose.Schema({

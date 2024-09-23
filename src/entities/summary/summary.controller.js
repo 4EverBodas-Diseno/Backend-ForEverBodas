@@ -1,4 +1,4 @@
-// src/entities/summary/summary.controller.js
+// src/entities/summary/summary.controller.test.js
 const Summary = require('./summary.model');
 
 // Crear un nuevo Summary
