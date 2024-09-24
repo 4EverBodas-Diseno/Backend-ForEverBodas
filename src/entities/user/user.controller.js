@@ -44,6 +44,21 @@ const updateUser = async (req, res) => {
   }
 };
 
+// Actualizar el estado de completado de un usuario a true
+const updateUserCompletedStatus = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    user.Completado = true; // Actualiza el campo de completado a true
+    await user.save();
+
+    res.status(200).json({ message: 'User completed status updated', user });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // Eliminar un usuario
 const deleteUser = async (req, res) => {
   try {
@@ -60,5 +75,6 @@ module.exports = {
   getAllUsers,
   getUserById,
   updateUser,
-  deleteUser
+  deleteUser,
+  updateUserCompletedStatus // Exporta la nueva función
 };
