@@ -23,10 +23,11 @@ const swaggerOptions = {
         './src/entities/guest/guest.routes.js', 
         './src/entities/asistencia/asistencia.routes.js',
         './src/entities/notification/notification.routes.js',
+        './src/entities/color/color.routes.js',
+        './src/entities/typography/typography.routes.js',
         './src/entities/webpage/webpage.routes.js',
         './src/entities/wedding/wedding.routes.js',
-        './src/entities/wellwish/wellwish.routes.js',
-        './src/entities/login/login.routes.js'
+        './src/entities/wellwish/wellwish.routes.js'
         
 
   ] // Apunta al archivo correcto de las rutas
