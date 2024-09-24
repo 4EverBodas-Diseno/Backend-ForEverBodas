@@ -35,7 +35,7 @@ router.delete('/:id', deleteWedding);
  *                 type: string
  *               EventID:
  *                 type: string
- *               ProfileID:
+ *               UserID:
  *                 type: string
  *               NombrePareja:
  *                 type: string
@@ -58,7 +58,7 @@ router.delete('/:id', deleteWedding);
  *                   type: string
  *                 EventID:
  *                   type: string
- *                 ProfileID:
+ *                 UserID:
  *                   type: string
  *                 NombrePareja:
  *                   type: string
@@ -94,7 +94,7 @@ router.delete('/:id', deleteWedding);
  *                     type: string
  *                   EventID:
  *                     type: string
- *                   ProfileID:
+ *                   UserID:
  *                     type: string
  *                   NombrePareja:
  *                     type: string
@@ -135,7 +135,7 @@ router.delete('/:id', deleteWedding);
  *                   type: string
  *                 EventID:
  *                   type: string
- *                 ProfileID:
+ *                 UserID:
  *                   type: string
  *                 NombrePareja:
  *                   type: string
@@ -175,7 +175,7 @@ router.delete('/:id', deleteWedding);
  *             properties:
  *               EventID:
  *                 type: string
- *               ProfileID:
+ *               UserID:
  *                 type: string
  *               NombrePareja:
  *                 type: string
@@ -198,7 +198,7 @@ router.delete('/:id', deleteWedding);
  *                   type: string
  *                 EventID:
  *                   type: string
- *                 ProfileID:
+ *                 UserID:
  *                   type: string
  *                 NombrePareja:
  *                   type: string
