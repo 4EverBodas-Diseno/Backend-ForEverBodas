@@ -12,8 +12,7 @@ const {
 
 const {
   validateCreateUser,
-  validateUpdateUser,
-  validateLogin // Importa el middleware de validación para login
+  validateUpdateUser
 } = require('./user.middleware');
 
 const router = express.Router();
@@ -101,7 +100,7 @@ router.post('/', validateCreateUser, createUser);
  *       401:
  *         description: Credenciales inválidas
  */
-router.post('/login', validateLogin, loginUser); // Añade el endpoint de login
+router.post('/login', loginUser); // Añade el endpoint de login
 
 // Actualizar un usuario
 /**
