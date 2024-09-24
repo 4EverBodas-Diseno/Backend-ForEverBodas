@@ -10,13 +10,11 @@ const {
 
 const router = express.Router();
 
-
 router.post('/', createWebPage);
 router.get('/', getAllWebPages);
 router.get('/:id', getWebPageById);
 router.put('/:id', updateWebPage);
 router.delete('/:id', deleteWebPage);
-
 
 /**
  * @openapi
@@ -40,6 +38,14 @@ router.delete('/:id', deleteWebPage);
  *                 type: string
  *               URLPage:
  *                 type: string
+ *               colorPrimario:
+ *                 type: string
+ *               colorSecundario:
+ *                 type: string
+ *               colorLetra:
+ *                 type: string
+ *               tipografia:
+ *                 type: string
  *               FechaCreacion:
  *                 type: string
  *                 format: date-time
@@ -61,6 +67,14 @@ router.delete('/:id', deleteWebPage);
  *                 EventID:
  *                   type: string
  *                 URLPage:
+ *                   type: string
+ *                 colorPrimario:
+ *                   type: string
+ *                 colorSecundario:
+ *                   type: string
+ *                 colorLetra:
+ *                   type: string
+ *                 tipografia:
  *                   type: string
  *                 FechaCreacion:
  *                   type: string
@@ -96,6 +110,14 @@ router.delete('/:id', deleteWebPage);
  *                   EventID:
  *                     type: string
  *                   URLPage:
+ *                     type: string
+ *                   colorPrimario:
+ *                     type: string
+ *                   colorSecundario:
+ *                     type: string
+ *                   colorLetra:
+ *                     type: string
+ *                   tipografia:
  *                     type: string
  *                   FechaCreacion:
  *                     type: string
@@ -137,6 +159,14 @@ router.delete('/:id', deleteWebPage);
  *                   type: string
  *                 URLPage:
  *                   type: string
+ *                 colorPrimario:
+ *                   type: string
+ *                 colorSecundario:
+ *                   type: string
+ *                 colorLetra:
+ *                   type: string
+ *                 tipografia:
+ *                   type: string
  *                 FechaCreacion:
  *                   type: string
  *                   format: date-time
@@ -176,6 +206,14 @@ router.delete('/:id', deleteWebPage);
  *                 type: string
  *               URLPage:
  *                 type: string
+ *               colorPrimario:
+ *                 type: string
+ *               colorSecundario:
+ *                 type: string
+ *               colorLetra:
+ *                 type: string
+ *               tipografia:
+ *                 type: string
  *               FechaCreacion:
  *                 type: string
  *                 format: date-time
@@ -197,6 +235,14 @@ router.delete('/:id', deleteWebPage);
  *                 EventID:
  *                   type: string
  *                 URLPage:
+ *                   type: string
+ *                 colorPrimario:
+ *                   type: string
+ *                 colorSecundario:
+ *                   type: string
+ *                 colorLetra:
+ *                   type: string
+ *                 tipografia:
  *                   type: string
  *                 FechaCreacion:
  *                   type: string
