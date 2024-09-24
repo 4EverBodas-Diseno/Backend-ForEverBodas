@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 // Definir el esquema de invitado
 const guestSchema = new mongoose.Schema({
   GuestID: { type: String, required: true, unique: true },
-  WebPageID: { type: mongoose.Schema.Types.ObjectId, ref: 'WebPage', required: true },
-  UserID: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  WebPageID: { type: String, ref: 'WebPage', required: true },
+  UserID: { type: String, ref: 'User', required: true },
   Nombre: { type: String, required: true },
   Correo: { type: String, required: true },
   EstadoInvitacion: { type: String, enum: ['I', 'C', 'R'], default: 'Invitado' },
