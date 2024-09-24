@@ -29,6 +29,16 @@ const loginUser = async (req, res) => {
   }
 };
 
+// Obtener todos los logins
+const getAllLogins = async (req, res) => {
+  try {
+    const logins = await Login.find();
+    res.status(200).json(logins);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // Cerrar sesión (Logout)
 const logoutUser = (req, res) => {
   // Manejo de cierre de sesión, como invalidar token o sesión
@@ -73,9 +83,9 @@ const forgotPassword = async (req, res) => {
 module.exports = {
   register,
   loginUser,
+  getAllLogins, 
   logoutUser,
   changePassword,
   forgotPassword
 };
-
 
