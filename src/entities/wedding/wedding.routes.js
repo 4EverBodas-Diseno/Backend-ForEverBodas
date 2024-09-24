@@ -1,19 +1,20 @@
-// src/entities/wedding/wedding.routes.js
 const express = require('express');
 const {
   createWedding,
   getAllWeddings,
   getWeddingById,
   updateWedding,
-  deleteWedding
+  deleteWedding,
+  getWeddingByUserId, // Agregada nueva función
 } = require('./wedding.controller');
 
 const router = express.Router();
 
-
+// Rutas
 router.post('/', createWedding);
 router.get('/', getAllWeddings);
 router.get('/:id', getWeddingById);
+router.get('/user/:id', getWeddingByUserId); // Nueva ruta para obtener una boda por UserID
 router.put('/:id', updateWedding);
 router.delete('/:id', deleteWedding);
 
@@ -121,6 +122,49 @@ router.delete('/:id', deleteWedding);
  *         in: path
  *         required: true
  *         description: ID de la boda
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Boda encontrada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 WeddingID:
+ *                   type: string
+ *                 EventID:
+ *                   type: string
+ *                 UserID:
+ *                   type: string
+ *                 NombrePareja:
+ *                   type: string
+ *                 FechaEvento:
+ *                   type: string
+ *                   format: date-time
+ *                 Lugar:
+ *                   type: string
+ *                 Historia:
+ *                   type: string
+ *       404:
+ *         description: Boda no encontrada
+ *       500:
+ *         description: Error del servidor
+ */
+
+/**
+ * @openapi
+ * /weddings/user/{id}:
+ *   get:
+ *     summary: Obtiene una boda por el ID del usuario
+ *     tags:
+ *       - Weddings
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID del usuario
  *         schema:
  *           type: string
  *     responses:
