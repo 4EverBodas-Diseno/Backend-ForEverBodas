@@ -1,5 +1,5 @@
 // src/controllers/color.controller.js
-const Color = require('../entities/color/color.model');
+const Color = require('../color/color.model');
 
 // Crear un nuevo color
 exports.createColor = async (req, res) => {
