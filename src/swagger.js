@@ -27,7 +27,9 @@ const swaggerOptions = {
         './src/entities/template/template.routes.js',
         './src/entities/webpage/webpage.routes.js',
         './src/entities/wedding/wedding.routes.js',
-        './src/entities/wellwish/wellwish.routes.js'
+        './src/entities/wellwish/wellwish.routes.js',
+        './src/entities/login/login.routes.js'
+        
 
   ] // Apunta al archivo correcto de las rutas
 };
