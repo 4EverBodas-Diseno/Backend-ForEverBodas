@@ -7,9 +7,7 @@ const profileRoutes = require('./entities/profile/profile.routes'); // Agregado
 const wellwishRoutes = require('./entities/wellWish/wellwish.routes'); // Agregado
 const guestRoutes = require('./entities/guest/guest.routes'); // Agregado
 const weddingRoutes = require('./entities/wedding/wedding.routes'); // Agregado
-const templateRoutes = require('./entities/template/template.routes'); // Agregado
 const webpageRoutes = require('./entities/webpage/webpage.routes'); // Agregado
-const summaryRoutes = require('./entities/summary/summary.routes'); // Agregado
 const notificationRoutes = require('./entities/notification/notification.routes'); // Agregado
 
 
@@ -27,9 +25,7 @@ app.use('/api/profiles', profileRoutes); // Agregado
 app.use('/api/wellwishes', wellwishRoutes); // Agregado
 app.use('/api/guests', guestRoutes); // Agregado
 app.use('/api/weddings', weddingRoutes); // Agregado
-app.use('/api/templates', templateRoutes); // Agregado
 app.use('/api/webpages', webpageRoutes); // Agregado
-app.use('/api/summaries', summaryRoutes); // Agregado
 app.use('/api/notifications', notificationRoutes); // Agregado
 app.use('/api/login', loginRoutes); // Agregado
 
