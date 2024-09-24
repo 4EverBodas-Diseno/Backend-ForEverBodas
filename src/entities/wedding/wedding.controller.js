@@ -33,7 +33,7 @@ const getWeddingById = async (req, res) => {
   }
 };
 
-//obtener un wedding por el id del usuario
+// Obtener un Wedding por el ID del usuario
 const getWeddingByUserId = async (req, res) => {
   try {
     const wedding = await Wedding.findOne({ UserID: req.params.id }).populate('UserID');
@@ -44,10 +44,21 @@ const getWeddingByUserId = async (req, res) => {
   }
 };
 
-// Actualizar un Wedding
+// Actualizar un Wedding (PUT - actualización completa)
 const updateWedding = async (req, res) => {
   try {
     const wedding = await Wedding.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!wedding) return res.status(404).json({ message: 'Wedding not found' });
+    res.status(200).json(wedding);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+// Actualizar parcialmente un Wedding (PATCH - actualización parcial)
+const updateWeddingPartial = async (req, res) => {
+  try {
+    const wedding = await Wedding.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
     if (!wedding) return res.status(404).json({ message: 'Wedding not found' });
     res.status(200).json(wedding);
   } catch (error) {
@@ -71,6 +82,7 @@ module.exports = {
   getAllWeddings,
   getWeddingById,
   updateWedding,
+  updateWeddingPartial, 
   deleteWedding,
   getWeddingByUserId
 };

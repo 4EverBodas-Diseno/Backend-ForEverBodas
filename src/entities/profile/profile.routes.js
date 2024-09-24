@@ -5,7 +5,8 @@ const {
   getAllProfiles,
   getProfileById,
   updateProfile,
-  deleteProfile
+  deleteProfile,
+  updateProfilePartial
 } = require('./profile.controller');
 
 const router = express.Router();
@@ -15,6 +16,7 @@ router.post('/', createProfile);
 router.get('/', getAllProfiles);
 router.get('/:id', getProfileById);
 router.put('/:id', updateProfile);
+router.patch('/:id', updateProfilePartial);
 router.delete('/:id', deleteProfile);
 
 
@@ -191,6 +193,64 @@ router.delete('/:id', deleteProfile);
  *       500:
  *         description: Error del servidor
  */
+
+/**
+ * @openapi
+ * /profiles/{id}:
+ *   patch:
+ *     summary: Actualiza parcialmente un perfil
+ *     tags:
+ *       - Profiles
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID del perfil
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               UserID:
+ *                 type: string
+ *               Telefono:
+ *                 type: string
+ *               Direccion:
+ *                 type: string
+ *               FechaNacimiento:
+ *                 type: string
+ *                 format: date
+ *     responses:
+ *       200:
+ *         description: Perfil actualizado parcialmente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 profileID:
+ *                   type: string
+ *                 UserID:
+ *                   type: string
+ *                 Telefono:
+ *                   type: string
+ *                 Direccion:
+ *                   type: string
+ *                 FechaNacimiento:
+ *                   type: string
+ *                   format: date
+ *       400:
+ *         description: Error en la solicitud
+ *       404:
+ *         description: Perfil no encontrado
+ *       500:
+ *         description: Error del servidor
+ */
+
 
 /**
  * @openapi

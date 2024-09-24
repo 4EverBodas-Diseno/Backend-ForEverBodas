@@ -5,7 +5,8 @@ const {
   getAllWebPages,
   getWebPageById,
   updateWebPage,
-  deleteWebPage
+  deleteWebPage,
+  getWebPageByWeddingID // Importar el nuevo controlador
 } = require('./webpage.controller');
 
 const router = express.Router();
@@ -13,6 +14,7 @@ const router = express.Router();
 router.post('/', createWebPage);
 router.get('/', getAllWebPages);
 router.get('/:id', getWebPageById);
+router.get('/wedding/:id', getWebPageByWeddingID); // Ruta para obtener la página web por WeddingID
 router.put('/:id', updateWebPage);
 router.delete('/:id', deleteWebPage);
 
@@ -34,7 +36,7 @@ router.delete('/:id', deleteWebPage);
  *                 type: string
  *               TemplateID:
  *                 type: string
- *               EventID:
+ *               WeddingID:
  *                 type: string
  *               URLPage:
  *                 type: string
@@ -64,7 +66,7 @@ router.delete('/:id', deleteWebPage);
  *                   type: string
  *                 TemplateID:
  *                   type: string
- *                 EventID:
+ *                 WeddingID:
  *                   type: string
  *                 URLPage:
  *                   type: string
@@ -107,7 +109,7 @@ router.delete('/:id', deleteWebPage);
  *                     type: string
  *                   TemplateID:
  *                     type: string
- *                   EventID:
+ *                   WeddingID:
  *                     type: string
  *                   URLPage:
  *                     type: string
@@ -155,7 +157,57 @@ router.delete('/:id', deleteWebPage);
  *                   type: string
  *                 TemplateID:
  *                   type: string
- *                 EventID:
+ *                 WeddingID:
+ *                   type: string
+ *                 URLPage:
+ *                   type: string
+ *                 colorPrimario:
+ *                   type: string
+ *                 colorSecundario:
+ *                   type: string
+ *                 colorLetra:
+ *                   type: string
+ *                 tipografia:
+ *                   type: string
+ *                 FechaCreacion:
+ *                   type: string
+ *                   format: date-time
+ *                 FechaActualizacion:
+ *                   type: string
+ *                   format: date-time
+ *       404:
+ *         description: Página web no encontrada
+ *       500:
+ *         description: Error del servidor
+ */
+
+/**
+ * @openapi
+ * /webpages/wedding/{id}:
+ *   get:
+ *     summary: Obtiene una página web por WeddingID
+ *     tags:
+ *       - WebPages
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID de la boda (WeddingID)
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Página web encontrada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 WebPageID:
+ *                   type: string
+ *                 TemplateID:
+ *                   type: string
+ *                 WeddingID:
  *                   type: string
  *                 URLPage:
  *                   type: string
@@ -202,7 +254,7 @@ router.delete('/:id', deleteWebPage);
  *             properties:
  *               TemplateID:
  *                 type: string
- *               EventID:
+ *               WeddingID:
  *                 type: string
  *               URLPage:
  *                 type: string
@@ -232,7 +284,7 @@ router.delete('/:id', deleteWebPage);
  *                   type: string
  *                 TemplateID:
  *                   type: string
- *                 EventID:
+ *                 WeddingID:
  *                   type: string
  *                 URLPage:
  *                   type: string

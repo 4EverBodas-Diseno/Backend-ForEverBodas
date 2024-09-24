@@ -15,7 +15,7 @@ const createWebPage = async (req, res) => {
 // Obtener todas las WebPages
 const getAllWebPages = async (req, res) => {
   try {
-    const webpages = await WebPage.find().populate('TemplateID').populate('EventID');
+    const webpages = await WebPage.find().populate('TemplateID').populate('WeddingID');
     res.status(200).json(webpages);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -25,7 +25,17 @@ const getAllWebPages = async (req, res) => {
 // Obtener una WebPage por ID
 const getWebPageById = async (req, res) => {
   try {
-    const webpage = await WebPage.findById(req.params.id).populate('TemplateID').populate('EventID');
+    const webpage = await WebPage.findById(req.params.id).populate('TemplateID').populate('WeddingID');
+    if (!webpage) return res.status(404).json({ message: 'WebPage not found' });
+    res.status(200).json(webpage);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+// Obtener una webpage por el ID de la boda
+const getWebPageByWeddingID = async (req, res) => {
+  try {
+    const webpage = await WebPage.findOne({ WeddingID: req.params.id }).populate('TemplateID').populate('WeddingID');
     if (!webpage) return res.status(404).json({ message: 'WebPage not found' });
     res.status(200).json(webpage);
   } catch (error) {
@@ -60,5 +70,6 @@ module.exports = {
   getAllWebPages,
   getWebPageById,
   updateWebPage,
-  deleteWebPage
+  deleteWebPage,
+  getWebPageByWeddingID
 };

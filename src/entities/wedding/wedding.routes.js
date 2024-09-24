@@ -6,6 +6,7 @@ const {
   updateWedding,
   deleteWedding,
   getWeddingByUserId, // Agregada nueva función
+  updateWeddingPartial
 } = require('./wedding.controller');
 
 const router = express.Router();
@@ -14,8 +15,9 @@ const router = express.Router();
 router.post('/', createWedding);
 router.get('/', getAllWeddings);
 router.get('/:id', getWeddingById);
-router.get('/user/:id', getWeddingByUserId); // Nueva ruta para obtener una boda por UserID
+router.get('/user/:id', getWeddingByUserId); 
 router.put('/:id', updateWedding);
+router.patch('/:id', updateWeddingPartial);
 router.delete('/:id', deleteWedding);
 
 /**
@@ -260,6 +262,72 @@ router.delete('/:id', deleteWedding);
  *       500:
  *         description: Error del servidor
  */
+
+/**
+ * @openapi
+ * /weddings/{id}:
+ *   patch:
+ *     summary: Actualiza parcialmente una boda
+ *     tags:
+ *       - Weddings
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID de la boda
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               EventID:
+ *                 type: string
+ *               UserID:
+ *                 type: string
+ *               NombrePareja:
+ *                 type: string
+ *               FechaEvento:
+ *                 type: string
+ *                 format: date-time
+ *               Lugar:
+ *                 type: string
+ *               Historia:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Boda actualizada parcialmente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 WeddingID:
+ *                   type: string
+ *                 EventID:
+ *                   type: string
+ *                 UserID:
+ *                   type: string
+ *                 NombrePareja:
+ *                   type: string
+ *                 FechaEvento:
+ *                   type: string
+ *                   format: date-time
+ *                 Lugar:
+ *                   type: string
+ *                 Historia:
+ *                   type: string
+ *       400:
+ *         description: Error en la solicitud
+ *       404:
+ *         description: Boda no encontrada
+ *       500:
+ *         description: Error del servidor
+ */
+
 
 /**
  * @openapi
