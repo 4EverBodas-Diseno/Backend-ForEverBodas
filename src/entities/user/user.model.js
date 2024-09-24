@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   Correo: { type: String, required: true, unique: true },
   Contraseña: { type: String, required: true },
   FechaRegistro: { type: Date, default: Date.now },
+  Completado: { type: Boolean, default: false }
 });
 
 const User = mongoose.model('User', userSchema);
