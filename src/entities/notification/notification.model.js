@@ -6,7 +6,7 @@ const notificationSchema = new mongoose.Schema({
   Tipo: { type: String, required: true },
   Mensaje: { type: String, required: true },
   FechaEnvio: { type: Date, default: Date.now },
-  EventID: { type: mongoose.Schema.Types.ObjectId, ref: 'Wedding', required: true }
+  WeddingID: { type: String, ref: 'Wedding', required: true },
 });
 
 const Notification = mongoose.model('Notification', notificationSchema);
