@@ -5,21 +5,20 @@ const {
   getAllUsers,
   getUserById,
   updateUser,
-  deleteUser
+  deleteUser,
+  updateUserCompletedStatus // Importa la función controladora para actualizar el estado de completado
 } = require('./user.controller');
 
 const {
-    validateCreateUser,
-    validateUpdateUser
-  } = require('./user.middleware');
+  validateCreateUser,
+  validateUpdateUser
+} = require('./user.middleware');
 
 const router = express.Router();
 
 router.get('/', getAllUsers);
 router.get('/:id', getUserById);
 router.delete('/:id', deleteUser);
-
-
 
 /**
  * @openapi
@@ -187,5 +186,44 @@ router.put('/:id', validateUpdateUser, updateUser);
  *       500:
  *         description: Error del servidor
  */
+router.delete('/:id', deleteUser);
+
+/**
+ * @openapi
+ * /users/{id}/completed:
+ *   patch:
+ *     summary: Actualiza el estado de completado de un usuario
+ *     tags:
+ *       - Users
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID del usuario
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Estado de completado actualizado a true
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 UserID:
+ *                   type: string
+ *                 Nombre:
+ *                   type: string
+ *                 Correo:
+ *                   type: string
+ *                 Completado:
+ *                   type: boolean
+ *                   example: true
+ *       404:
+ *         description: Usuario no encontrado
+ *       500:
+ *         description: Error del servidor
+ */
+router.patch('/:id/completed', updateUserCompletedStatus); // Añade el nuevo endpoint PATCH
 
 module.exports = router;
