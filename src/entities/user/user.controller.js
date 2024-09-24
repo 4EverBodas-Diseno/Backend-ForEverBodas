@@ -1,13 +1,10 @@
 const User = require('./user.model');
-const bcrypt = require('bcrypt'); // Si estás usando bcrypt para hashear contraseñas
-const jwt = require('jsonwebtoken'); // Si estás usando JWT para autenticar usuarios
 
 // Crear un nuevo usuario
 const createUser = async (req, res) => {
   try {
     const user = new User(req.body);
-    // Hashea la contraseña antes de guardarla (asegurando que estás usando bcrypt)
-    user.Password = await bcrypt.hash(req.body.Password, 10);
+    user.Password = req.body.Password;
     await user.save();
     res.status(201).json(user);
   } catch (error) {
@@ -84,9 +81,8 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ message: 'Credenciales inválidas' });
     }
 
-    // Verifica la contraseña usando bcrypt
-    const isMatch = await bcrypt.compare(Password, user.Password);
-    if (!isMatch) {
+    // Verificar la contraseña "sin hasheo"
+    if (Password !== user.Password) {
       return res.status(401).json({ message: 'Credenciales inválidas' });
     }
 
