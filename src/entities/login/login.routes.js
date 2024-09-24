@@ -3,12 +3,44 @@ const express = require('express');
 const {
   register,
   loginUser,
+  getAllLogins, 
   logoutUser,
   changePassword,
   forgotPassword,
 } = require('./login.controller');
 
 const router = express.Router();
+
+// Obtener todos los logins
+/**
+ * @openapi
+ * /login:
+ *   get:
+ *     summary: Obtiene todos los logins
+ *     tags:
+ *       - Login
+ *     responses:
+ *       200:
+ *         description: Lista de logins
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   LoginID:
+ *                     type: string
+ *                   Nombre:
+ *                     type: string
+ *                   Correo:
+ *                     type: string
+ *                   Contraseña:
+ *                     type: string
+ *       500:
+ *         description: Error del servidor
+ */
+router.get('/', getAllLogins); // Agregado
 
 // Registro de usuario
 /**
@@ -45,7 +77,7 @@ router.post('/register', register);
 // Iniciar sesión
 /**
  * @openapi
- * /login:
+ * /login/login:
  *   post:
  *     summary: Inicia sesión
  *     tags:
@@ -147,3 +179,4 @@ router.put('/change-password/:id', changePassword);
 router.post('/forgot-password', forgotPassword);
 
 module.exports = router;
+
