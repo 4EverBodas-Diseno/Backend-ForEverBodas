@@ -1,10 +1,13 @@
-// src/entities/user/user.controller.js
 const User = require('./user.model');
+const bcrypt = require('bcrypt'); // Si estás usando bcrypt para hashear contraseñas
+const jwt = require('jsonwebtoken'); // Si estás usando JWT para autenticar usuarios
 
 // Crear un nuevo usuario
 const createUser = async (req, res) => {
   try {
     const user = new User(req.body);
+    // Hashea la contraseña antes de guardarla (asegurando que estás usando bcrypt)
+    user.Password = await bcrypt.hash(req.body.Password, 10);
     await user.save();
     res.status(201).json(user);
   } catch (error) {
@@ -70,11 +73,37 @@ const deleteUser = async (req, res) => {
   }
 };
 
+// Login de usuario
+const loginUser = async (req, res) => {
+  try {
+    const { Correo, Password } = req.body;
+
+    // Busca al usuario por correo
+    const user = await User.findOne({ Correo });
+    if (!user) {
+      return res.status(401).json({ message: 'Credenciales inválidas' });
+    }
+
+    // Verifica la contraseña usando bcrypt
+    const isMatch = await bcrypt.compare(Password, user.Password);
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Credenciales inválidas' });
+    }
+
+    res.status(200).json({
+      message: 'Login exitoso',
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   createUser,
   getAllUsers,
   getUserById,
   updateUser,
   deleteUser,
-  updateUserCompletedStatus // Exporta la nueva función
+  updateUserCompletedStatus,
+  loginUser,
 };

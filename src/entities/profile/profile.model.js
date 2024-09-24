@@ -7,7 +7,6 @@ const profileSchema = new mongoose.Schema({
   Telefono: { type: String },
   Direccion: { type: String },
   FechaNacimiento: { type: Date },
-  NombrePareja: { type: String }
 });
 
 const Profile = mongoose.model('Profile', profileSchema);

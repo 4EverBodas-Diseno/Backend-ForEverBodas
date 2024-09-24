@@ -43,8 +43,6 @@ router.delete('/:id', deleteProfile);
  *               FechaNacimiento:
  *                 type: string
  *                 format: date
- *               NombrePareja:
- *                 type: string
  *     responses:
  *       201:
  *         description: Perfil creado exitosamente
@@ -64,8 +62,6 @@ router.delete('/:id', deleteProfile);
  *                 FechaNacimiento:
  *                   type: string
  *                   format: date
- *                 NombrePareja:
- *                   type: string
  *       400:
  *         description: Error en la solicitud
  */
@@ -98,8 +94,6 @@ router.delete('/:id', deleteProfile);
  *                   FechaNacimiento:
  *                     type: string
  *                     format: date
- *                   NombrePareja:
- *                     type: string
  *       500:
  *         description: Error del servidor
  */
@@ -137,8 +131,6 @@ router.delete('/:id', deleteProfile);
  *                 FechaNacimiento:
  *                   type: string
  *                   format: date
- *                 NombrePareja:
- *                   type: string
  *       404:
  *         description: Perfil no encontrado
  *       500:
@@ -173,8 +165,6 @@ router.delete('/:id', deleteProfile);
  *               FechaNacimiento:
  *                 type: string
  *                 format: date
- *               NombrePareja:
- *                 type: string
  *     responses:
  *       200:
  *         description: Perfil actualizado
@@ -194,8 +184,6 @@ router.delete('/:id', deleteProfile);
  *                 FechaNacimiento:
  *                   type: string
  *                   format: date
- *                 NombrePareja:
- *                   type: string
  *       400:
  *         description: Error en la solicitud
  *       404:

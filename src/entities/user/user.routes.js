@@ -77,8 +77,6 @@ router.post('/', validateCreateUser, createUser);
  *           schema:
  *             type: object
  *             properties:
- *               Nombre:
- *                 type: string
  *               Correo:
  *                 type: string
  *                 format: email
