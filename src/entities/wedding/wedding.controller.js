@@ -16,14 +16,15 @@ const createWedding = async (req, res) => {
 // Obtener todos los Weddings
 const getAllWeddings = async (req, res) => {
   try {
+    console.log('Fetching all weddings');
     const weddings = await Wedding.find().populate('userID'); // Verifica que 'userID' sea correcto
+    console.log('Weddings fetched:', weddings);
     res.status(200).json(weddings);
   } catch (error) {
-    console.error(error);
+    console.error('Error fetching weddings:', error);
     res.status(500).json({ message: 'An error occurred while fetching weddings' });
   }
 };
-
 // Obtener un Wedding por ID
 const getWeddingById = async (req, res) => {
   try {
@@ -35,6 +36,7 @@ const getWeddingById = async (req, res) => {
     res.status(500).json({ message: 'An error occurred while fetching the wedding' });
   }
 };
+
 
 // Obtener un Wedding por el ID del usuario
 const getWeddingByUserID = async (req, res) => {
