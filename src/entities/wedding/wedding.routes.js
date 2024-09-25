@@ -5,20 +5,20 @@ const {
   getWeddingById,
   updateWedding,
   deleteWedding,
-  getWeddingByUserId, // Agregada nueva función
+  getWeddingByUserID, // Agregada nueva función
   updateWeddingPartial
 } = require('./wedding.controller');
 
 const router = express.Router();
 
 // Rutas
-router.post('/', createWedding);
 router.get('/', getAllWeddings);
 router.get('/:id', getWeddingById);
-router.get('/user/:id', getWeddingByUserId); 
+router.post('/', createWedding);
 router.put('/:id', updateWedding);
 router.patch('/:id', updateWeddingPartial);
 router.delete('/:id', deleteWedding);
+router.get('/user/:id', getWeddingByUserID);
 
 /**
  * @openapi
