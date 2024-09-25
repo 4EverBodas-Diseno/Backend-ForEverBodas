@@ -18,13 +18,79 @@ const {
 const router = express.Router();
 
 // Obtener todos los usuarios
+/**
+ * @openapi
+ * /users:
+ *   get:
+ *     summary: Obtiene todos los usuarios
+ *     tags:
+ *       - Users
+ *     responses:
+ *       200:
+ *         description: Lista de usuarios obtenida exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   UserID:
+ *                     type: string
+ *                   Nombre:
+ *                     type: string
+ *                   Apellido:
+ *                     type: string
+ *                   Correo:
+ *                     type: string
+ *                   FechaRegistro:
+ *                     type: string
+ *                     format: date-time
+ *                   Completado:
+ *                     type: boolean
+ */
 router.get('/', getAllUsers);
 
 // Obtener un usuario por ID
+/**
+ * @openapi
+ * /users/{id}:
+ *   get:
+ *     summary: Obtiene un usuario por ID
+ *     tags:
+ *       - Users
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID del usuario
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Usuario encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 UserID:
+ *                   type: string
+ *                 Nombre:
+ *                   type: string
+ *                 Apellido:
+ *                   type: string
+ *                 Correo:
+ *                   type: string
+ *                 FechaRegistro:
+ *                   type: string
+ *                   format: date-time
+ *                 Completado:
+ *                   type: boolean
+ *       404:
+ *         description: Usuario no encontrado
+ */
 router.get('/:id', getUserById);
-
-// Eliminar un usuario
-router.delete('/:id', deleteUser);
 
 // Crear un nuevo usuario
 /**
@@ -41,6 +107,8 @@ router.delete('/:id', deleteUser);
  *           schema:
  *             type: object
  *             properties:
+ *               UserID:
+ *                 type: string
  *               Nombre:
  *                 type: string
  *               Apellido:
@@ -53,6 +121,12 @@ router.delete('/:id', deleteUser);
  *               FechaRegistro:
  *                 type: string
  *                 format: date-time
+ *             required:
+ *               - UserID
+ *               - Nombre
+ *               - Apellido
+ *               - Correo
+ *               - Password
  *     responses:
  *       201:
  *         description: Usuario creado exitosamente
@@ -92,9 +166,14 @@ router.post('/', validateCreateUser, createUser);
  *                 message:
  *                   type: string
  *                   example: "Login exitoso"
- *                 token:
+ *                 email:
  *                   type: string
- *                   description: Token JWT del usuario
+ *                 nickname:
+ *                   type: string
+ *                 name_user:
+ *                   type: string
+ *                 id:
+ *                   type: string
  *       400:
  *         description: Error en la solicitud
  *       401:
@@ -133,9 +212,6 @@ router.post('/login', loginUser); // Añade el endpoint de login
  *                 format: email
  *               Password:
  *                 type: string
- *               FechaRegistro:
- *                 type: string
- *                 format: date-time
  *     responses:
  *       200:
  *         description: Usuario actualizado exitosamente

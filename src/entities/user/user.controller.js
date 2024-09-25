@@ -4,7 +4,7 @@ const User = require('./user.model');
 const createUser = async (req, res) => {
   try {
     const user = new User(req.body);
-    user.Password = req.body.Password;
+    user.Password = req.body.Password; // Esto debería ser asegurado en la creación, pero considera usar hashing en producción
     await user.save();
     res.status(201).json(user);
   } catch (error) {
@@ -73,24 +73,33 @@ const deleteUser = async (req, res) => {
 // Login de usuario
 const loginUser = async (req, res) => {
   try {
-    const { Correo, Password } = req.body;
+    const { Correo, Password } = req.body; // Cambia a email y password si lo prefieres
 
     // Busca al usuario por correo
     const user = await User.findOne({ Correo });
+    console.log('Usuario encontrado:', user);
     if (!user) {
-      return res.status(401).json({ message: 'Credenciales inválidas' });
+      return res.status(404).json({ error: "Usuario no encontrado" });
     }
 
-    // Verificar la contraseña "sin hasheo"
+    // Verificar la contraseña directamente
+    console.log('Contraseña ingresada:', Password);
+    console.log('Contraseña almacenada:', user.Password);
     if (Password !== user.Password) {
-      return res.status(401).json({ message: 'Credenciales inválidas' });
+      return res.status(401).json({ error: "Contraseña incorrecta" });
     }
 
+    // Enviar la información del usuario (sin la contraseña) al cliente
     res.status(200).json({
+      email: user.Correo, // Asegúrate de que este campo sea correcto
+      nickname: user.Nombre, // Cambia 'Nombre' a 'nickname' si es necesario
+      name_user: user.Nombre, // Puedes ajustar según la estructura de tu modelo
+      id: user._id,
       message: 'Login exitoso',
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("Error al iniciar sesión:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 };
 
