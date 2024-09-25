@@ -15,7 +15,7 @@ const createWedding = async (req, res) => {
 // Obtener todos los Weddings
 const getAllWeddings = async (req, res) => {
   try {
-    const weddings = await Wedding.find().populate('UserID');
+    const weddings = await Wedding.find().populate('profileID');
     res.status(200).json(weddings);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -25,7 +25,7 @@ const getAllWeddings = async (req, res) => {
 // Obtener un Wedding por ID
 const getWeddingById = async (req, res) => {
   try {
-    const wedding = await Wedding.findById(req.params.id).populate('UserID');
+    const wedding = await Wedding.findById(req.params.id).populate('profileID');
     if (!wedding) return res.status(404).json({ message: 'Wedding not found' });
     res.status(200).json(wedding);
   } catch (error) {
@@ -34,9 +34,9 @@ const getWeddingById = async (req, res) => {
 };
 
 // Obtener un Wedding por el ID del usuario
-const getWeddingByUserId = async (req, res) => {
+const getWeddingByprofileID = async (req, res) => {
   try {
-    const wedding = await Wedding.findOne({ UserID: req.params.id }).populate('UserID');
+    const wedding = await Wedding.findOne({ profileID: req.params.id }).populate('profileID');
     if (!wedding) return res.status(404).json({ message: 'Wedding not found' });
     res.status(200).json(wedding);
   } catch (error) {
@@ -84,5 +84,5 @@ module.exports = {
   updateWedding,
   updateWeddingPartial, 
   deleteWedding,
-  getWeddingByUserId
+  getWeddingByprofileID
 };
