@@ -27,22 +27,23 @@ const router = express.Router();
  *             properties:
  *               ColorID:
  *                 type: string
+ *                 description: Identificador único del color
  *               colorPrimario:
  *                 type: string
+ *                 description: Color principal de la página (código hexadecimal)
  *               colorSecundario:
  *                 type: string
+ *                 description: Color secundario de la página (código hexadecimal)
  *               colorLetra:
  *                 type: string
+ *                 description: Color de la tipografía (código hexadecimal)
  *     responses:
  *       201:
  *         description: Color creado exitosamente
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 color:
- *                   $ref: '#/components/schemas/Color'
+ *               $ref: '#/components/schemas/Color'
  *       400:
  *         description: Error en la solicitud
  */
@@ -126,20 +127,20 @@ router.get('/:id', getColorById);
  *             properties:
  *               colorPrimario:
  *                 type: string
+ *                 description: Nuevo color principal (código hexadecimal)
  *               colorSecundario:
  *                 type: string
+ *                 description: Nuevo color secundario (código hexadecimal)
  *               colorLetra:
  *                 type: string
+ *                 description: Nuevo color de la tipografía (código hexadecimal)
  *     responses:
  *       200:
  *         description: Esquema de color actualizado
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 updatedColor:
- *                   $ref: '#/components/schemas/Color'
+ *               $ref: '#/components/schemas/Color'
  *       400:
  *         description: Error en la solicitud
  *       404:
@@ -174,7 +175,7 @@ router.put('/:id', updateColor);
  *               properties:
  *                 message:
  *                   type: string
- *                   description: Esquema de color eliminado exitosamente
+ *                   description: Mensaje de confirmación de eliminación
  *       404:
  *         description: Esquema de color no encontrado
  *       500:
