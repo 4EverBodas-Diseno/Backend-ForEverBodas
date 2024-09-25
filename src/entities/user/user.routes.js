@@ -10,11 +10,6 @@ const {
   loginUser // Importa la función controladora para login
 } = require('./user.controller');
 
-const {
-  validateCreateUser,
-  validateUpdateUser
-} = require('./user.middleware');
-
 const router = express.Router();
 
 // Obtener todos los usuarios
@@ -133,7 +128,7 @@ router.get('/:id', getUserById);
  *       400:
  *         description: Error en la solicitud
  */
-router.post('/', validateCreateUser, createUser);
+router.post('/', createUser);
 
 // Login de usuario
 /**
@@ -220,7 +215,7 @@ router.post('/login', loginUser); // Añade el endpoint de login
  *       404:
  *         description: Usuario no encontrado
  */
-router.put('/:id', validateUpdateUser, updateUser);
+router.put('/:id', updateUser);
 
 // Eliminar un usuario
 /**
