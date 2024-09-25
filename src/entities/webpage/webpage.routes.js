@@ -34,26 +34,14 @@ router.delete('/:id', deleteWebPage);
  *             properties:
  *               WebPageID:
  *                 type: string
- *               TemplateID:
- *                 type: string
  *               WeddingID:
  *                 type: string
  *               URLPage:
  *                 type: string
- *               colorPrimario:
+ *               TypographyID:
  *                 type: string
- *               colorSecundario:
+ *               ColorID:
  *                 type: string
- *               colorLetra:
- *                 type: string
- *               tipografia:
- *                 type: string
- *               FechaCreacion:
- *                 type: string
- *                 format: date-time
- *               FechaActualizacion:
- *                 type: string
- *                 format: date-time
  *     responses:
  *       201:
  *         description: Página web creada exitosamente
@@ -64,26 +52,14 @@ router.delete('/:id', deleteWebPage);
  *               properties:
  *                 WebPageID:
  *                   type: string
- *                 TemplateID:
- *                   type: string
  *                 WeddingID:
  *                   type: string
  *                 URLPage:
  *                   type: string
- *                 colorPrimario:
+ *                 TypographyID:
  *                   type: string
- *                 colorSecundario:
+ *                 ColorID:
  *                   type: string
- *                 colorLetra:
- *                   type: string
- *                 tipografia:
- *                   type: string
- *                 FechaCreacion:
- *                   type: string
- *                   format: date-time
- *                 FechaActualizacion:
- *                   type: string
- *                   format: date-time
  *       400:
  *         description: Error en la solicitud
  */
@@ -107,26 +83,14 @@ router.delete('/:id', deleteWebPage);
  *                 properties:
  *                   WebPageID:
  *                     type: string
- *                   TemplateID:
- *                     type: string
  *                   WeddingID:
  *                     type: string
  *                   URLPage:
  *                     type: string
- *                   colorPrimario:
+ *                   TypographyID:
  *                     type: string
- *                   colorSecundario:
+ *                   ColorID:
  *                     type: string
- *                   colorLetra:
- *                     type: string
- *                   tipografia:
- *                     type: string
- *                   FechaCreacion:
- *                     type: string
- *                     format: date-time
- *                   FechaActualizacion:
- *                     type: string
- *                     format: date-time
  *       500:
  *         description: Error del servidor
  */
@@ -155,26 +119,14 @@ router.delete('/:id', deleteWebPage);
  *               properties:
  *                 WebPageID:
  *                   type: string
- *                 TemplateID:
- *                   type: string
  *                 WeddingID:
  *                   type: string
  *                 URLPage:
  *                   type: string
- *                 colorPrimario:
+ *                 TypographyID:
  *                   type: string
- *                 colorSecundario:
+ *                 ColorID:
  *                   type: string
- *                 colorLetra:
- *                   type: string
- *                 tipografia:
- *                   type: string
- *                 FechaCreacion:
- *                   type: string
- *                   format: date-time
- *                 FechaActualizacion:
- *                   type: string
- *                   format: date-time
  *       404:
  *         description: Página web no encontrada
  *       500:
@@ -205,26 +157,14 @@ router.delete('/:id', deleteWebPage);
  *               properties:
  *                 WebPageID:
  *                   type: string
- *                 TemplateID:
- *                   type: string
  *                 WeddingID:
  *                   type: string
  *                 URLPage:
  *                   type: string
- *                 colorPrimario:
+ *                 TypographyID:
  *                   type: string
- *                 colorSecundario:
+ *                 ColorID:
  *                   type: string
- *                 colorLetra:
- *                   type: string
- *                 tipografia:
- *                   type: string
- *                 FechaCreacion:
- *                   type: string
- *                   format: date-time
- *                 FechaActualizacion:
- *                   type: string
- *                   format: date-time
  *       404:
  *         description: Página web no encontrada
  *       500:
@@ -252,26 +192,12 @@ router.delete('/:id', deleteWebPage);
  *           schema:
  *             type: object
  *             properties:
- *               TemplateID:
+ *               TypographyID:
  *                 type: string
- *               WeddingID:
+ *               ColorID:
  *                 type: string
  *               URLPage:
  *                 type: string
- *               colorPrimario:
- *                 type: string
- *               colorSecundario:
- *                 type: string
- *               colorLetra:
- *                 type: string
- *               tipografia:
- *                 type: string
- *               FechaCreacion:
- *                 type: string
- *                 format: date-time
- *               FechaActualizacion:
- *                 type: string
- *                 format: date-time
  *     responses:
  *       200:
  *         description: Página web actualizada
@@ -282,26 +208,14 @@ router.delete('/:id', deleteWebPage);
  *               properties:
  *                 WebPageID:
  *                   type: string
- *                 TemplateID:
- *                   type: string
  *                 WeddingID:
  *                   type: string
  *                 URLPage:
  *                   type: string
- *                 colorPrimario:
+ *                 TypographyID:
  *                   type: string
- *                 colorSecundario:
+ *                 ColorID:
  *                   type: string
- *                 colorLetra:
- *                   type: string
- *                 tipografia:
- *                   type: string
- *                 FechaCreacion:
- *                   type: string
- *                   format: date-time
- *                 FechaActualizacion:
- *                   type: string
- *                   format: date-time
  *       400:
  *         description: Error en la solicitud
  *       404:
