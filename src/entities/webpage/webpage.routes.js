@@ -287,11 +287,11 @@ router.delete('/:id', deleteWebPage); // Delete a web page by ID
 // New routes for obtaining all typographies and colors
 /**
  * @openapi
- * /typographies:
+ * /webpages/typographies:
  *   get:
  *     summary: Retrieves all typographies
  *     tags:
- *       - Typographies
+ *       - WebPages
  *     responses:
  *       200:
  *         description: List of typographies
@@ -302,9 +302,7 @@ router.delete('/:id', deleteWebPage); // Delete a web page by ID
  *               items:
  *                 type: object
  *                 properties:
- *                   TypographyID:
- *                     type: string
- *                   Name:
+ *                   Typography:
  *                     type: string
  *       500:
  *         description: Server error
@@ -313,11 +311,11 @@ router.get('/typographies', getAllTypographies); // Get all typographies
 
 /**
  * @openapi
- * /colors:
+ * /webpages/colors:
  *   get:
  *     summary: Retrieves all colors
  *     tags:
- *       - Colors
+ *       - WebPages
  *     responses:
  *       200:
  *         description: List of colors
@@ -328,9 +326,7 @@ router.get('/typographies', getAllTypographies); // Get all typographies
  *               items:
  *                 type: object
  *                 properties:
- *                   ColorID:
- *                     type: string
- *                   Name:
+ *                   Color:
  *                     type: string
  *       500:
  *         description: Server error
