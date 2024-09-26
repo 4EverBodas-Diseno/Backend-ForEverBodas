@@ -5,19 +5,11 @@ const {
   getWeddingById,
   updateWedding,
   deleteWedding,
-  getWeddingByUserID, // Agregada nueva función
+  getWeddingByUserID,
   updateWeddingPartial
 } = require('./wedding.controller');
 
 const router = express.Router();
-
-// Rutas
-
-
-
-
-
-
 
 /**
  * @openapi
@@ -33,8 +25,6 @@ const router = express.Router();
  *           schema:
  *             type: object
  *             properties:
- *               WeddingID:
- *                 type: string
  *               WeddingID:
  *                 type: string
  *               UserID:
@@ -58,8 +48,6 @@ const router = express.Router();
  *               properties:
  *                 WeddingID:
  *                   type: string
- *                 WeddingID:
- *                   type: string
  *                 UserID:
  *                   type: string
  *                 NombrePareja:
@@ -75,6 +63,7 @@ const router = express.Router();
  *         description: Error en la solicitud
  */
 router.post('/', createWedding);
+
 /**
  * @openapi
  * /weddings:
@@ -94,8 +83,6 @@ router.post('/', createWedding);
  *                 properties:
  *                   WeddingID:
  *                     type: string
- *                   WeddingID:
- *                     type: string
  *                   UserID:
  *                     type: string
  *                   NombrePareja:
@@ -111,6 +98,7 @@ router.post('/', createWedding);
  *         description: Error del servidor
  */
 router.get('/', getAllWeddings);
+
 /**
  * @openapi
  * /weddings/{id}:
@@ -135,8 +123,6 @@ router.get('/', getAllWeddings);
  *               properties:
  *                 WeddingID:
  *                   type: string
- *                 WeddingID:
- *                   type: string
  *                 UserID:
  *                   type: string
  *                 NombrePareja:
@@ -154,6 +140,7 @@ router.get('/', getAllWeddings);
  *         description: Error del servidor
  */
 router.get('/:id', getWeddingById);
+
 /**
  * @openapi
  * /weddings/user/{id}:
@@ -178,8 +165,6 @@ router.get('/:id', getWeddingById);
  *               properties:
  *                 WeddingID:
  *                   type: string
- *                 WeddingID:
- *                   type: string
  *                 UserID:
  *                   type: string
  *                 NombrePareja:
@@ -196,7 +181,8 @@ router.get('/:id', getWeddingById);
  *       500:
  *         description: Error del servidor
  */
-router.get('/user/:id', getWeddingByUserID); 
+router.get('/user/:id', getWeddingByUserID);
+
 /**
  * @openapi
  * /weddings/{id}:
@@ -241,8 +227,6 @@ router.get('/user/:id', getWeddingByUserID);
  *               properties:
  *                 WeddingID:
  *                   type: string
- *                 WeddingID:
- *                   type: string
  *                 UserID:
  *                   type: string
  *                 NombrePareja:
@@ -262,6 +246,7 @@ router.get('/user/:id', getWeddingByUserID);
  *         description: Error del servidor
  */
 router.put('/:id', updateWedding);
+
 /**
  * @openapi
  * /weddings/{id}:
@@ -304,8 +289,6 @@ router.put('/:id', updateWedding);
  *             schema:
  *               type: object
  *               properties:
- *                 WeddingID:
- *                   type: string
  *                 WeddingID:
  *                   type: string
  *                 UserID:
@@ -351,6 +334,5 @@ router.patch('/:id', updateWeddingPartial);
  *         description: Error del servidor
  */
 router.delete('/:id', deleteWedding);
-
 
 module.exports = router;
