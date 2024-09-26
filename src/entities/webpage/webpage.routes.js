@@ -1,4 +1,3 @@
-// src/entities/webpage/webpage.routes.js
 const express = require('express');
 const {
   createWebPage,
@@ -6,23 +5,20 @@ const {
   getWebPageById,
   updateWebPage,
   deleteWebPage,
-  getWebPageByWeddingID // Importar el nuevo controlador
+  getWebPageByWeddingID,
+  getAllTypographies,
+  getAllColors
 } = require('./webpage.controller');
 
 const router = express.Router();
 
-router.post('/', createWebPage);
-router.get('/', getAllWebPages);
-router.get('/:id', getWebPageById);
-router.get('/wedding/:id', getWebPageByWeddingID); // Ruta para obtener la página web por WeddingID
-router.put('/:id', updateWebPage);
-router.delete('/:id', deleteWebPage);
+// Routes
 
 /**
  * @openapi
  * /webpages:
  *   post:
- *     summary: Crea una nueva página web
+ *     summary: Creates a new web page
  *     tags:
  *       - WebPages
  *     requestBody:
@@ -38,13 +34,18 @@ router.delete('/:id', deleteWebPage);
  *                 type: string
  *               URLPage:
  *                 type: string
- *               TypographyID:
- *                 type: string
- *               ColorID:
- *                 type: string
+ *               Styles:
+ *                 type: object
+ *                 properties:
+ *                   primaryColor:
+ *                     type: string
+ *                   secondaryColor:
+ *                     type: string
+ *                   Typography:
+ *                     type: string
  *     responses:
  *       201:
- *         description: Página web creada exitosamente
+ *         description: Web page created successfully
  *         content:
  *           application/json:
  *             schema:
@@ -56,24 +57,30 @@ router.delete('/:id', deleteWebPage);
  *                   type: string
  *                 URLPage:
  *                   type: string
- *                 TypographyID:
- *                   type: string
- *                 ColorID:
- *                   type: string
+ *                 Styles:
+ *                   type: object
+ *                   properties:
+ *                     primaryColor:
+ *                       type: string
+ *                     secondaryColor:
+ *                       type: string
+ *                     Typography:
+ *                       type: string
  *       400:
- *         description: Error en la solicitud
+ *         description: Error in the request, possibly because a page for this wedding already exists
  */
+router.post('/', createWebPage); // Create a new web page
 
 /**
  * @openapi
  * /webpages:
  *   get:
- *     summary: Obtiene todas las páginas web
+ *     summary: Retrieves all web pages
  *     tags:
  *       - WebPages
  *     responses:
  *       200:
- *         description: Lista de páginas web
+ *         description: List of web pages
  *         content:
  *           application/json:
  *             schema:
@@ -87,31 +94,37 @@ router.delete('/:id', deleteWebPage);
  *                     type: string
  *                   URLPage:
  *                     type: string
- *                   TypographyID:
- *                     type: string
- *                   ColorID:
- *                     type: string
+ *                   Styles:
+ *                     type: object
+ *                     properties:
+ *                       primaryColor:
+ *                         type: string
+ *                       secondaryColor:
+ *                         type: string
+ *                       Typography:
+ *                         type: string
  *       500:
- *         description: Error del servidor
+ *         description: Server error
  */
+router.get('/', getAllWebPages); // Get all web pages
 
 /**
  * @openapi
  * /webpages/{id}:
  *   get:
- *     summary: Obtiene una página web por ID
+ *     summary: Retrieves a web page by ID
  *     tags:
  *       - WebPages
  *     parameters:
  *       - name: id
  *         in: path
  *         required: true
- *         description: ID de la página web
+ *         description: ID of the web page
  *         schema:
  *           type: string
  *     responses:
  *       200:
- *         description: Página web encontrada
+ *         description: Web page found
  *         content:
  *           application/json:
  *             schema:
@@ -123,33 +136,39 @@ router.delete('/:id', deleteWebPage);
  *                   type: string
  *                 URLPage:
  *                   type: string
- *                 TypographyID:
- *                   type: string
- *                 ColorID:
- *                   type: string
+ *                 Styles:
+ *                   type: object
+ *                   properties:
+ *                     primaryColor:
+ *                       type: string
+ *                     secondaryColor:
+ *                       type: string
+ *                     Typography:
+ *                       type: string
  *       404:
- *         description: Página web no encontrada
+ *         description: Web page not found
  *       500:
- *         description: Error del servidor
+ *         description: Server error
  */
+router.get('/:id', getWebPageById); // Get web page by ID
 
 /**
  * @openapi
  * /webpages/wedding/{id}:
  *   get:
- *     summary: Obtiene una página web por WeddingID
+ *     summary: Retrieves a web page by WeddingID
  *     tags:
  *       - WebPages
  *     parameters:
  *       - name: id
  *         in: path
  *         required: true
- *         description: ID de la boda (WeddingID)
+ *         description: WeddingID
  *         schema:
  *           type: string
  *     responses:
  *       200:
- *         description: Página web encontrada
+ *         description: Web page found
  *         content:
  *           application/json:
  *             schema:
@@ -161,28 +180,34 @@ router.delete('/:id', deleteWebPage);
  *                   type: string
  *                 URLPage:
  *                   type: string
- *                 TypographyID:
- *                   type: string
- *                 ColorID:
- *                   type: string
+ *                 Styles:
+ *                   type: object
+ *                   properties:
+ *                     primaryColor:
+ *                       type: string
+ *                     secondaryColor:
+ *                       type: string
+ *                     Typography:
+ *                       type: string
  *       404:
- *         description: Página web no encontrada
+ *         description: Web page not found
  *       500:
- *         description: Error del servidor
+ *         description: Server error
  */
+router.get('/wedding/:id', getWebPageByWeddingID); // Get web page by WeddingID
 
 /**
  * @openapi
  * /webpages/{id}:
  *   put:
- *     summary: Actualiza una página web
+ *     summary: Updates a web page
  *     tags:
  *       - WebPages
  *     parameters:
  *       - name: id
  *         in: path
  *         required: true
- *         description: ID de la página web
+ *         description: ID of the web page
  *         schema:
  *           type: string
  *     requestBody:
@@ -192,15 +217,20 @@ router.delete('/:id', deleteWebPage);
  *           schema:
  *             type: object
  *             properties:
- *               TypographyID:
- *                 type: string
- *               ColorID:
- *                 type: string
  *               URLPage:
  *                 type: string
+ *               Styles:
+ *                 type: object
+ *                 properties:
+ *                   primaryColor:
+ *                     type: string
+ *                   secondaryColor:
+ *                     type: string
+ *                   Typography:
+ *                     type: string
  *     responses:
  *       200:
- *         description: Página web actualizada
+ *         description: Web page updated
  *         content:
  *           application/json:
  *             schema:
@@ -212,39 +242,99 @@ router.delete('/:id', deleteWebPage);
  *                   type: string
  *                 URLPage:
  *                   type: string
- *                 TypographyID:
- *                   type: string
- *                 ColorID:
- *                   type: string
+ *                 Styles:
+ *                   type: object
+ *                   properties:
+ *                     primaryColor:
+ *                       type: string
+ *                     secondaryColor:
+ *                       type: string
+ *                     Typography:
+ *                       type: string
  *       400:
- *         description: Error en la solicitud
+ *         description: Error in the request
  *       404:
- *         description: Página web no encontrada
+ *         description: Web page not found
  *       500:
- *         description: Error del servidor
+ *         description: Server error
  */
+router.put('/:id', updateWebPage); // Update a web page by ID
 
 /**
  * @openapi
  * /webpages/{id}:
  *   delete:
- *     summary: Elimina una página web
+ *     summary: Deletes a web page
  *     tags:
  *       - WebPages
  *     parameters:
  *       - name: id
  *         in: path
  *         required: true
- *         description: ID de la página web
+ *         description: ID of the web page
  *         schema:
  *           type: string
  *     responses:
  *       200:
- *         description: Página web eliminada
+ *         description: Web page deleted
  *       404:
- *         description: Página web no encontrada
+ *         description: Web page not found
  *       500:
- *         description: Error del servidor
+ *         description: Server error
  */
+router.delete('/:id', deleteWebPage); // Delete a web page by ID
+
+// New routes for obtaining all typographies and colors
+/**
+ * @openapi
+ * /typographies:
+ *   get:
+ *     summary: Retrieves all typographies
+ *     tags:
+ *       - Typographies
+ *     responses:
+ *       200:
+ *         description: List of typographies
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   TypographyID:
+ *                     type: string
+ *                   Name:
+ *                     type: string
+ *       500:
+ *         description: Server error
+ */
+router.get('/typographies', getAllTypographies); // Get all typographies
+
+/**
+ * @openapi
+ * /colors:
+ *   get:
+ *     summary: Retrieves all colors
+ *     tags:
+ *       - Colors
+ *     responses:
+ *       200:
+ *         description: List of colors
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   ColorID:
+ *                     type: string
+ *                   Name:
+ *                     type: string
+ *       500:
+ *         description: Server error
+ */
+router.get('/colors', getAllColors); // Get all colors
 
 module.exports = router;
