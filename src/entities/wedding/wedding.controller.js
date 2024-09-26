@@ -4,11 +4,20 @@ const Wedding = require('./wedding.model');
 // Crear un nuevo Wedding
 const createWedding = async (req, res) => {
   try {
+    const { userID } = req.body;
+
+    // Validar si ya existe una boda asociada al userID
+    const existingWedding = await Wedding.findOne({ userID });
+    if (existingWedding) {
+      return res.status(400).json({ message: 'Este usuario ya tiene una boda asociada' });
+    }
+
+    // Si no existe, crear una nueva boda
     const wedding = new Wedding(req.body);
     await wedding.save();
     res.status(201).json(wedding);
   } catch (error) {
-    console.error(error); // Registro del error
+    console.error('Error creating wedding:', error); // Registro del error
     res.status(400).json({ message: 'Error creating wedding' });
   }
 };
@@ -16,15 +25,14 @@ const createWedding = async (req, res) => {
 // Obtener todos los Weddings
 const getAllWeddings = async (req, res) => {
   try {
-    console.log('Fetching all weddings');
     const weddings = await Wedding.find().populate('userID'); // Verifica que 'userID' sea correcto
-    console.log('Weddings fetched:', weddings);
     res.status(200).json(weddings);
   } catch (error) {
     console.error('Error fetching weddings:', error);
     res.status(500).json({ message: 'An error occurred while fetching weddings' });
   }
 };
+
 // Obtener un Wedding por ID
 const getWeddingById = async (req, res) => {
   try {
@@ -36,7 +44,6 @@ const getWeddingById = async (req, res) => {
     res.status(500).json({ message: 'An error occurred while fetching the wedding' });
   }
 };
-
 
 // Obtener un Wedding por el ID del usuario
 const getWeddingByUserID = async (req, res) => {
@@ -93,5 +100,5 @@ module.exports = {
   updateWedding,
   updateWeddingPartial,
   deleteWedding,
-  getWeddingByUserID
+  getWeddingByUserID,
 };
