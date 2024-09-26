@@ -12,13 +12,12 @@ const {
 const router = express.Router();
 
 // Rutas
-router.get('/', getAllWeddings);
-router.get('/:id', getWeddingById);
-router.post('/', createWedding);
-router.put('/:id', updateWedding);
-router.patch('/:id', updateWeddingPartial);
-router.delete('/:id', deleteWedding);
-router.get('/user/:id', getWeddingByUserID);
+
+
+
+
+
+
 
 /**
  * @openapi
@@ -75,7 +74,7 @@ router.get('/user/:id', getWeddingByUserID);
  *       400:
  *         description: Error en la solicitud
  */
-
+router.post('/', createWedding);
 /**
  * @openapi
  * /weddings:
@@ -111,7 +110,7 @@ router.get('/user/:id', getWeddingByUserID);
  *       500:
  *         description: Error del servidor
  */
-
+router.get('/', getAllWeddings);
 /**
  * @openapi
  * /weddings/{id}:
@@ -154,7 +153,7 @@ router.get('/user/:id', getWeddingByUserID);
  *       500:
  *         description: Error del servidor
  */
-
+router.get('/:id', getWeddingById);
 /**
  * @openapi
  * /weddings/user/{id}:
@@ -197,7 +196,7 @@ router.get('/user/:id', getWeddingByUserID);
  *       500:
  *         description: Error del servidor
  */
-
+router.get('/user/:id', getWeddingByUserID); 
 /**
  * @openapi
  * /weddings/{id}:
@@ -262,7 +261,7 @@ router.get('/user/:id', getWeddingByUserID);
  *       500:
  *         description: Error del servidor
  */
-
+router.put('/:id', updateWedding);
 /**
  * @openapi
  * /weddings/{id}:
@@ -327,7 +326,7 @@ router.get('/user/:id', getWeddingByUserID);
  *       500:
  *         description: Error del servidor
  */
-
+router.patch('/:id', updateWeddingPartial);
 
 /**
  * @openapi
@@ -351,5 +350,7 @@ router.get('/user/:id', getWeddingByUserID);
  *       500:
  *         description: Error del servidor
  */
+router.delete('/:id', deleteWedding);
+
 
 module.exports = router;
