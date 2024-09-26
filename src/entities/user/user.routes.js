@@ -6,8 +6,8 @@ const {
   getUserById,
   updateUser,
   deleteUser,
-  updateUserCompletedStatus, // Importa la función controladora para actualizar el estado de completado
-  loginUser // Importa la función controladora para login
+  updateUserCompletedStatus,
+  loginUser
 } = require('./user.controller');
 
 const router = express.Router();
@@ -161,14 +161,15 @@ router.post('/', createUser);
  *                 message:
  *                   type: string
  *                   example: "Login exitoso"
- *                 email:
+ *                 UserID:
  *                   type: string
- *                 nickname:
+ *                 Nombre:
  *                   type: string
- *                 name_user:
+ *                 Apellido:
  *                   type: string
- *                 id:
+ *                 FechaRegistro:
  *                   type: string
+ *                   format: date-time
  *       400:
  *         description: Error en la solicitud
  *       401:
@@ -246,7 +247,7 @@ router.delete('/:id', deleteUser);
 /**
  * @openapi
  * /users/{id}/completed:
- *   patch:
+ *   put:
  *     summary: Actualiza el estado de completado de un usuario
  *     tags:
  *       - Users
@@ -281,6 +282,6 @@ router.delete('/:id', deleteUser);
  *       500:
  *         description: Error del servidor
  */
-router.patch('/:id/completed', updateUserCompletedStatus); // Añade el nuevo endpoint PATCH
+router.put('/:id/completed', updateUserCompletedStatus); // Cambiado a PUT
 
 module.exports = router;
