@@ -25,7 +25,7 @@ const createWedding = async (req, res) => {
 // Obtener todos los Weddings
 const getAllWeddings = async (req, res) => {
   try {
-    const weddings = await Wedding.find().populate('userID'); // Verifica que 'userID' sea correcto
+    const weddings = await Wedding.find().populate('UserID');
     res.status(200).json(weddings);
   } catch (error) {
     console.error('Error fetching weddings:', error);
