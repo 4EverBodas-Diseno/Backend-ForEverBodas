@@ -3,6 +3,14 @@ const User = require('./user.model');
 // Crear un nuevo usuario
 const createUser = async (req, res) => {
   try {
+    const { Correo } = req.body;
+
+    // Validar si ya existe un usuario con el mismo correo
+    const existingUser = await User.findOne({ Correo });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Ya existe un usuario con este correo' });
+    }
+
     const user = new User(req.body);
     user.Password = req.body.Password; // Esto debería ser asegurado en la creación, pero considera usar hashing en producción
     await user.save();
@@ -44,13 +52,14 @@ const updateUser = async (req, res) => {
   }
 };
 
-// Actualizar el estado de completado de un usuario a true
+// Actualizar el estado de completado de un usuario (PUT)
 const updateUserCompletedStatus = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
-    user.Completado = true; // Actualiza el campo de completado a true
+    // Actualiza el estado de completado
+    user.Completado = true;
     await user.save();
 
     res.status(200).json({ message: 'User completed status updated', user });
@@ -73,28 +82,25 @@ const deleteUser = async (req, res) => {
 // Login de usuario
 const loginUser = async (req, res) => {
   try {
-    const { Correo, Password } = req.body; // Cambia a email y password si lo prefieres
+    const { Correo, Password } = req.body;
 
     // Busca al usuario por correo
     const user = await User.findOne({ Correo });
-    console.log('Usuario encontrado:', user);
     if (!user) {
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
 
-    // Verificar la contraseña directamente
-    console.log('Contraseña ingresada:', Password);
-    console.log('Contraseña almacenada:', user.Password);
+    // Verificar la contraseña
     if (Password !== user.Password) {
       return res.status(401).json({ error: "Contraseña incorrecta" });
     }
 
     // Enviar la información del usuario (sin la contraseña) al cliente
     res.status(200).json({
-      email: user.Correo, // Asegúrate de que este campo sea correcto
-      nickname: user.Nombre, // Cambia 'Nombre' a 'nickname' si es necesario
-      name_user: user.Nombre, // Puedes ajustar según la estructura de tu modelo
-      id: user._id,
+      UserID: user._id,
+      Nombre: user.Nombre,
+      Apellido: user.Apellido, // Asegúrate de que 'Apellido' exista en el esquema de User
+      FechaRegistro: user.FechaRegistro, // Asegúrate de que 'FechaRegistro' exista en el esquema
       message: 'Login exitoso',
     });
   } catch (error) {
@@ -109,6 +115,6 @@ module.exports = {
   getUserById,
   updateUser,
   deleteUser,
-  updateUserCompletedStatus,
+  updateUserCompletedStatus, // Esta ruta ahora usa PUT
   loginUser,
 };
