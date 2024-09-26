@@ -35,7 +35,7 @@ const router = express.Router();
  *             properties:
  *               WeddingID:
  *                 type: string
- *               EventID:
+ *               WeddingID:
  *                 type: string
  *               UserID:
  *                 type: string
@@ -58,7 +58,7 @@ const router = express.Router();
  *               properties:
  *                 WeddingID:
  *                   type: string
- *                 EventID:
+ *                 WeddingID:
  *                   type: string
  *                 UserID:
  *                   type: string
@@ -94,7 +94,7 @@ router.post('/', createWedding);
  *                 properties:
  *                   WeddingID:
  *                     type: string
- *                   EventID:
+ *                   WeddingID:
  *                     type: string
  *                   UserID:
  *                     type: string
@@ -135,7 +135,7 @@ router.get('/', getAllWeddings);
  *               properties:
  *                 WeddingID:
  *                   type: string
- *                 EventID:
+ *                 WeddingID:
  *                   type: string
  *                 UserID:
  *                   type: string
@@ -178,7 +178,7 @@ router.get('/:id', getWeddingById);
  *               properties:
  *                 WeddingID:
  *                   type: string
- *                 EventID:
+ *                 WeddingID:
  *                   type: string
  *                 UserID:
  *                   type: string
@@ -218,7 +218,7 @@ router.get('/user/:id', getWeddingByUserID);
  *           schema:
  *             type: object
  *             properties:
- *               EventID:
+ *               WeddingID:
  *                 type: string
  *               UserID:
  *                 type: string
@@ -241,7 +241,7 @@ router.get('/user/:id', getWeddingByUserID);
  *               properties:
  *                 WeddingID:
  *                   type: string
- *                 EventID:
+ *                 WeddingID:
  *                   type: string
  *                 UserID:
  *                   type: string
@@ -283,7 +283,7 @@ router.put('/:id', updateWedding);
  *           schema:
  *             type: object
  *             properties:
- *               EventID:
+ *               WeddingID:
  *                 type: string
  *               UserID:
  *                 type: string
@@ -306,7 +306,7 @@ router.put('/:id', updateWedding);
  *               properties:
  *                 WeddingID:
  *                   type: string
- *                 EventID:
+ *                 WeddingID:
  *                   type: string
  *                 UserID:
  *                   type: string
