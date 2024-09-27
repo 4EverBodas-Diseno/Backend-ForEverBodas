@@ -6,7 +6,7 @@ const {
   getTypographyById,
   updateTypography,
   deleteTypography
-} = require('./typography.controller');
+} = require('./tipografia.controller');
 
 const router = express.Router();
 
