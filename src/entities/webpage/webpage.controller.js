@@ -22,7 +22,7 @@ const createWebPage = async (req, res) => {
 // Obtener todas las WebPages
 const getAllWebPages = async (req, res) => {
   try {
-    const webpages = await WebPage.find().populate('WeddingID'); // Poblamos la referencia a Wedding
+    const webpages = await WebPage.find();
     res.status(200).json(webpages);
   } catch (error) {
     res.status(500).json({ message: 'Error al obtener las WebPages: ' + error.message });
@@ -32,7 +32,7 @@ const getAllWebPages = async (req, res) => {
 // Obtener una WebPage por WebPageID
 const getWebPageById = async (req, res) => {
   try {
-    const webpage = await WebPage.findOne({ WebPageID: req.params.id }).populate('WeddingID');
+    const webpage = await WebPage.findOne({ WebPageID: req.params.id });
     if (!webpage) return res.status(404).json({ message: 'WebPage no encontrada.' });
     res.status(200).json(webpage);
   } catch (error) {
@@ -43,7 +43,7 @@ const getWebPageById = async (req, res) => {
 // Obtener una WebPage por el ID de la boda
 const getWebPageByWeddingID = async (req, res) => {
   try {
-    const webpage = await WebPage.findOne({ WeddingID: req.params.id }).populate('WeddingID');
+    const webpage = await WebPage.findOne({ WeddingID: req.params.id });
     if (!webpage) return res.status(404).json({ message: 'WebPage no encontrada.' });
     res.status(200).json(webpage);
   } catch (error) {
