@@ -8,7 +8,8 @@ const webpageSchema = new mongoose.Schema({
   Styles: {
     primaryColor: { type: String, required: true },
     secondaryColor: { type: String, required: true },
-    Typography: { type: String, required: true } // Atributo para el tipo de tipografía
+    Typography: { type: String, required: true },
+    FrontURL: {type: String, required: true}
   }
 }, { _id: false }); // Deshabilitar el campo _id
 

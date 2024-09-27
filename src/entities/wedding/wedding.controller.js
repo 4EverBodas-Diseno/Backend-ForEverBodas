@@ -1,10 +1,9 @@
 // src/entities/wedding/wedding.controller.js
 const Wedding = require('./wedding.model');
 
-// Crear un nuevo Wedding
 const createWedding = async (req, res) => {
   try {
-    const { WeddingID, UserID } = req.body; // Cambiado a WeddingID
+    const { WeddingID, UserID } = req.body; 
 
     // Validar si ya existe una boda asociada al UserID
     const existingWedding = await Wedding.findOne({ UserID });
@@ -18,7 +17,7 @@ const createWedding = async (req, res) => {
     res.status(201).json(wedding);
   } catch (error) {
     console.error('Error creating wedding:', error); // Registro del error
-    res.status(400).json({ message: 'Error creating wedding' });
+    res.status(400).json({ message: `Error creating wedding: ${error.message}` }); // Mensaje de error más descriptivo
   }
 };
 
