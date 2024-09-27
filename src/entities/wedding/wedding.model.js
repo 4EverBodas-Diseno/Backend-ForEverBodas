@@ -10,6 +10,7 @@ const weddingSchema = new mongoose.Schema({
   Historia: { type: String }
 });
 
+
 const Wedding = mongoose.model('Wedding', weddingSchema);
 
 module.exports = Wedding;
