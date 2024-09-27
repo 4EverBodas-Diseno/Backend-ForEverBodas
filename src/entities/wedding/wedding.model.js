@@ -9,7 +9,7 @@ const weddingSchema = new mongoose.Schema({
   FechaEvento: { type: Date, required: true }, // Fecha del evento
   Lugar: { type: String, required: true }, // Lugar de la boda
   Historia: { type: String } // Historia de la pareja (opcional)
-}, { _id: false }); // Opción para no generar el campo _id
+}); // Opción para no generar el campo _id
 
 // Modelo de Mongoose para la boda
 const Wedding = mongoose.model('Wedding', weddingSchema);
