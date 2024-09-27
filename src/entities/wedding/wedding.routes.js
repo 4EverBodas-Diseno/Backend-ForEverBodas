@@ -1,26 +1,23 @@
 const express = require('express');
 const {
-  createWebPage,
-  getAllWebPages,
-  getWebPageById,
-  updateWebPage,
-  deleteWebPage,
-  getWebPageByWeddingID,
-  getAllTypographies,
-  getAllColors
-} = require('./webpage.controller');
+  createWedding,
+  getAllWeddings,
+  getWeddingById,
+  updateWedding,
+  deleteWedding,
+  getWeddingByUserID,
+  updateWeddingPartial
+} = require('./wedding.controller');
 
 const router = express.Router();
 
-// Routes
-
 /**
  * @openapi
- * /webpages:
+ * /weddings:
  *   post:
- *     summary: Creates a new web page
+ *     summary: Crea una nueva boda
  *     tags:
- *       - WebPages
+ *       - Weddings
  *     requestBody:
  *       required: true
  *       content:
@@ -28,63 +25,55 @@ const router = express.Router();
  *           schema:
  *             type: object
  *             properties:
- *               WebPageID:
- *                 type: string
  *               WeddingID:
  *                 type: string
- *               URLPage:
+ *               UserID:
  *                 type: string
- *               Styles:
- *                 type: object
- *                 properties:
- *                   primaryColor:
- *                     type: string
- *                   secondaryColor:
- *                     type: string
- *                   Typography:
- *                     type: string
- *                   FrontURL:
- *                     type: string
+ *               NombrePareja:
+ *                 type: string
+ *               FechaEvento:
+ *                 type: string
+ *                 format: date-time
+ *               Lugar:
+ *                 type: string
+ *               Historia:
+ *                 type: string
  *     responses:
  *       201:
- *         description: Web page created successfully
+ *         description: Boda creada exitosamente
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 WebPageID:
- *                   type: string
  *                 WeddingID:
  *                   type: string
- *                 URLPage:
+ *                 UserID:
  *                   type: string
- *                 Styles:
- *                   type: object
- *                   properties:
- *                     primaryColor:
- *                       type: string
- *                     secondaryColor:
- *                       type: string
- *                     Typography:
- *                       type: string
- *                     FrontURL:
- *                       type: string
+ *                 NombrePareja:
+ *                   type: string
+ *                 FechaEvento:
+ *                   type: string
+ *                   format: date-time
+ *                 Lugar:
+ *                   type: string
+ *                 Historia:
+ *                   type: string
  *       400:
- *         description: Error in the request, possibly because a page for this wedding already exists
+ *         description: Error en la solicitud
  */
-router.post('/', createWebPage); // Create a new web page
+router.post('/', createWedding);
 
 /**
  * @openapi
- * /webpages:
+ * /weddings:
  *   get:
- *     summary: Retrieves all web pages
+ *     summary: Obtiene todas las bodas
  *     tags:
- *       - WebPages
+ *       - Weddings
  *     responses:
  *       200:
- *         description: List of web pages
+ *         description: Lista de bodas
  *         content:
  *           application/json:
  *             schema:
@@ -92,132 +81,120 @@ router.post('/', createWebPage); // Create a new web page
  *               items:
  *                 type: object
  *                 properties:
- *                   WebPageID:
- *                     type: string
  *                   WeddingID:
  *                     type: string
- *                   URLPage:
+ *                   UserID:
  *                     type: string
- *                   Styles:
- *                     type: object
- *                     properties:
- *                       primaryColor:
- *                         type: string
- *                       secondaryColor:
- *                         type: string
- *                       Typography:
- *                         type: string
- *                       FrontURL:
- *                         type: string
+ *                   NombrePareja:
+ *                     type: string
+ *                   FechaEvento:
+ *                     type: string
+ *                     format: date-time
+ *                   Lugar:
+ *                     type: string
+ *                   Historia:
+ *                     type: string
  *       500:
- *         description: Server error
+ *         description: Error del servidor
  */
-router.get('/', getAllWebPages); // Get all web pages
+router.get('/', getAllWeddings);
 
 /**
  * @openapi
- * /webpages/{WebPageID}:
+ * /weddings/{WeddingID}:
  *   get:
- *     summary: Retrieves a web page by WebPageID
+ *     summary: Obtiene una boda por WeddingID
  *     tags:
- *       - WebPages
- *     parameters:
- *       - name: WebPageID
- *         in: path
- *         required: true
- *         description: WebPageID of the web page
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Web page found
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 WebPageID:
- *                   type: string
- *                 WeddingID:
- *                   type: string
- *                 URLPage:
- *                   type: string
- *                 Styles:
- *                   type: object
- *                   properties:
- *                     primaryColor:
- *                       type: string
- *                     secondaryColor:
- *                       type: string
- *                     Typography:
- *                       type: string
- *                     FrontURL:
- *                       type: string
- *       404:
- *         description: Web page not found
- *       500:
- *         description: Server error
- */
-router.get('/:WebPageID', getWebPageById); // Get web page by WebPageID
-
-/**
- * @openapi
- * /webpages/wedding/{WeddingID}:
- *   get:
- *     summary: Retrieves a web page by WeddingID
- *     tags:
- *       - WebPages
+ *       - Weddings
  *     parameters:
  *       - name: WeddingID
  *         in: path
  *         required: true
- *         description: WeddingID
+ *         description: WeddingID de la boda
  *         schema:
  *           type: string
  *     responses:
  *       200:
- *         description: Web page found
+ *         description: Boda encontrada
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 WebPageID:
- *                   type: string
  *                 WeddingID:
  *                   type: string
- *                 URLPage:
+ *                 UserID:
  *                   type: string
- *                 Styles:
- *                   type: object
- *                   properties:
- *                     primaryColor:
- *                       type: string
- *                     secondaryColor:
- *                       type: string
- *                     Typography:
- *                       type: string
- *                     FrontURL:
- *                       type: string
+ *                 NombrePareja:
+ *                   type: string
+ *                 FechaEvento:
+ *                   type: string
+ *                   format: date-time
+ *                 Lugar:
+ *                   type: string
+ *                 Historia:
+ *                   type: string
  *       404:
- *         description: Web page not found
+ *         description: Boda no encontrada
  *       500:
- *         description: Server error
+ *         description: Error del servidor
  */
-router.get('/wedding/:WeddingID', getWebPageByWeddingID); // Get web page by WeddingID
+router.get('/:WeddingID', getWeddingById);
 
 /**
  * @openapi
- * /webpages/{WebPageID}:
- *   put:
- *     summary: Updates a web page
+ * /weddings/user/{UserID}:
+ *   get:
+ *     summary: Obtiene una boda por el ID del usuario
  *     tags:
- *       - WebPages
+ *       - Weddings
  *     parameters:
- *       - name: WebPageID
+ *       - name: UserID
  *         in: path
  *         required: true
- *         description: WebPageID of the web page
+ *         description: ID del usuario
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Boda encontrada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 WeddingID:
+ *                   type: string
+ *                 UserID:
+ *                   type: string
+ *                 NombrePareja:
+ *                   type: string
+ *                 FechaEvento:
+ *                   type: string
+ *                   format: date-time
+ *                 Lugar:
+ *                   type: string
+ *                 Historia:
+ *                   type: string
+ *       404:
+ *         description: Boda no encontrada
+ *       500:
+ *         description: Error del servidor
+ */
+router.get('/user/:UserID', getWeddingByUserID);
+
+/**
+ * @openapi
+ * /weddings/{WeddingID}:
+ *   put:
+ *     summary: Actualiza una boda
+ *     tags:
+ *       - Weddings
+ *     parameters:
+ *       - name: WeddingID
+ *         in: path
+ *         required: true
+ *         description: WeddingID de la boda
  *         schema:
  *           type: string
  *     requestBody:
@@ -227,124 +204,135 @@ router.get('/wedding/:WeddingID', getWebPageByWeddingID); // Get web page by Wed
  *           schema:
  *             type: object
  *             properties:
- *               URLPage:
+ *               WeddingID:
  *                 type: string
- *               Styles:
- *                 type: object
- *                 properties:
- *                   primaryColor:
- *                     type: string
- *                   secondaryColor:
- *                     type: string
- *                   Typography:
- *                     type: string
- *                   FrontURL:
- *                     type: string
+ *               UserID:
+ *                 type: string
+ *               NombrePareja:
+ *                 type: string
+ *               FechaEvento:
+ *                 type: string
+ *                 format: date-time
+ *               Lugar:
+ *                 type: string
+ *               Historia:
+ *                 type: string
  *     responses:
  *       200:
- *         description: Web page updated
+ *         description: Boda actualizada
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 WebPageID:
- *                   type: string
  *                 WeddingID:
  *                   type: string
- *                 URLPage:
+ *                 UserID:
  *                   type: string
- *                 Styles:
- *                   type: object
- *                   properties:
- *                     primaryColor:
- *                       type: string
- *                     secondaryColor:
- *                       type: string
- *                     Typography:
- *                       type: string
- *                     FrontURL:
- *                       type: string
+ *                 NombrePareja:
+ *                   type: string
+ *                 FechaEvento:
+ *                   type: string
+ *                   format: date-time
+ *                 Lugar:
+ *                   type: string
+ *                 Historia:
+ *                   type: string
  *       400:
- *         description: Error in the request
+ *         description: Error en la solicitud
  *       404:
- *         description: Web page not found
+ *         description: Boda no encontrada
  *       500:
- *         description: Server error
+ *         description: Error del servidor
  */
-router.put('/:WebPageID', updateWebPage); // Update a web page by WebPageID
+router.put('/:WeddingID', updateWedding);
 
 /**
  * @openapi
- * /webpages/{WebPageID}:
- *   delete:
- *     summary: Deletes a web page
+ * /weddings/{WeddingID}:
+ *   patch:
+ *     summary: Actualiza parcialmente una boda
  *     tags:
- *       - WebPages
+ *       - Weddings
  *     parameters:
- *       - name: WebPageID
+ *       - name: WeddingID
  *         in: path
  *         required: true
- *         description: WebPageID of the web page
+ *         description: WeddingID de la boda
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               WeddingID:
+ *                 type: string
+ *               UserID:
+ *                 type: string
+ *               NombrePareja:
+ *                 type: string
+ *               FechaEvento:
+ *                 type: string
+ *                 format: date-time
+ *               Lugar:
+ *                 type: string
+ *               Historia:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Boda actualizada parcialmente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 WeddingID:
+ *                   type: string
+ *                 UserID:
+ *                   type: string
+ *                 NombrePareja:
+ *                   type: string
+ *                 FechaEvento:
+ *                   type: string
+ *                   format: date-time
+ *                 Lugar:
+ *                   type: string
+ *                 Historia:
+ *                   type: string
+ *       400:
+ *         description: Error en la solicitud
+ *       404:
+ *         description: Boda no encontrada
+ *       500:
+ *         description: Error del servidor
+ */
+router.patch('/:WeddingID', updateWeddingPartial);
+
+/**
+ * @openapi
+ * /weddings/{WeddingID}:
+ *   delete:
+ *     summary: Elimina una boda
+ *     tags:
+ *       - Weddings
+ *     parameters:
+ *       - name: WeddingID
+ *         in: path
+ *         required: true
+ *         description: WeddingID de la boda
  *         schema:
  *           type: string
  *     responses:
  *       200:
- *         description: Web page deleted
+ *         description: Boda eliminada
  *       404:
- *         description: Web page not found
+ *         description: Boda no encontrada
  *       500:
- *         description: Server error
+ *         description: Error del servidor
  */
-router.delete('/:WebPageID', deleteWebPage); // Delete a web page by WebPageID
-
-// New routes for obtaining all typographies and colors
-/**
- * @openapi
- * /webpages/typographies:
- *   get:
- *     summary: Retrieves all typographies
- *     tags:
- *       - WebPages
- *     responses:
- *       200:
- *         description: List of typographies
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   Typography:
- *                     type: string
- *       500:
- *         description: Server error
- */
-router.get('/typographies', getAllTypographies); // Get all typographies
-
-/**
- * @openapi
- * /webpages/colors:
- *   get:
- *     summary: Retrieves all colors
- *     tags:
- *       - WebPages
- *     responses:
- *       200:
- *         description: List of colors
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   Color:
- *                     type: string
- *       500:
- *         description: Server error
- */
-router.get('/colors', getAllColors); // Get all colors
+router.delete('/:WeddingID', deleteWedding);
 
 module.exports = router;

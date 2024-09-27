@@ -43,6 +43,8 @@ const router = express.Router();
  *                     type: string
  *                   Typography:
  *                     type: string
+ *                   FrontURL:
+ *                     type: string
  *     responses:
  *       201:
  *         description: Web page created successfully
@@ -65,6 +67,8 @@ const router = express.Router();
  *                     secondaryColor:
  *                       type: string
  *                     Typography:
+ *                       type: string
+ *                     FrontURL:
  *                       type: string
  *       400:
  *         description: Error in the request, possibly because a page for this wedding already exists
@@ -102,6 +106,8 @@ router.post('/', createWebPage); // Create a new web page
  *                       secondaryColor:
  *                         type: string
  *                       Typography:
+ *                         type: string
+ *                       FrontURL:
  *                         type: string
  *       500:
  *         description: Server error
@@ -144,6 +150,8 @@ router.get('/', getAllWebPages); // Get all web pages
  *                     secondaryColor:
  *                       type: string
  *                     Typography:
+ *                       type: string
+ *                     FrontURL:
  *                       type: string
  *       404:
  *         description: Web page not found
@@ -189,6 +197,8 @@ router.get('/:WebPageID', getWebPageById); // Get web page by WebPageID
  *                       type: string
  *                     Typography:
  *                       type: string
+ *                     FrontURL:
+ *                       type: string
  *       404:
  *         description: Web page not found
  *       500:
@@ -228,6 +238,8 @@ router.get('/wedding/:WeddingID', getWebPageByWeddingID); // Get web page by Wed
  *                     type: string
  *                   Typography:
  *                     type: string
+ *                   FrontURL:
+ *                     type: string
  *     responses:
  *       200:
  *         description: Web page updated
@@ -250,6 +262,8 @@ router.get('/wedding/:WeddingID', getWebPageByWeddingID); // Get web page by Wed
  *                     secondaryColor:
  *                       type: string
  *                     Typography:
+ *                       type: string
+ *                     FrontURL:
  *                       type: string
  *       400:
  *         description: Error in the request
