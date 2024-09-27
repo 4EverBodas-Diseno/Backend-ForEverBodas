@@ -4,14 +4,17 @@ const Profile = require('./profile.model');
 // Crear un nuevo perfil
 const createProfile = async (req, res) => {
   try {
-    const profile = new Profile(req.body);
+    const { UserID, ...rest } = req.body;
+    if (!UserID) {
+      return res.status(400).json({ message: 'UserID is required' });
+    }
+    const profile = new Profile({ UserID, ...rest });
     await profile.save();
     res.status(201).json(profile);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
-
 // Obtener todos los perfiles
 const getAllProfiles = async (req, res) => {
   try {
