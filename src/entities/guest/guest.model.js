@@ -28,8 +28,6 @@ guestSchema.virtual('totalConfirmados').get(function () {
 // Configuración para incluir las propiedades virtuales al convertir a JSON
 guestSchema.set('toJSON', { virtuals: true });
 
-// Eliminar el campo _id del modelo
-guestSchema.set('id', false); // Opcional si no quieres el id en el objeto devuelto
 
 const Guest = mongoose.model('Guest', guestSchema);
 

@@ -20,15 +20,6 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-// Opcionalmente, elimina el campo _id si no lo quieres
-userSchema.set('toJSON', {
-  virtuals: true,
-  transform: (doc, ret) => {
-    delete ret._id;
-    delete ret.__v;
-    return ret;
-  }
-});
 
 const User = mongoose.model('User', userSchema);
 

@@ -6,7 +6,7 @@ const asistenciaSchema = new mongoose.Schema({
   WeddingID: { type: String, ref: 'Wedding', required: true },
   Confirmacion: { type: Boolean, required: true },
   Cant_Invitado: { type: Number, required: true }
-}, { _id: false }); // Aquí se elimina el campo _id
+}); // Aquí se elimina el campo _id
 
 const Asistencia = mongoose.model('Asistencia', asistenciaSchema);
 

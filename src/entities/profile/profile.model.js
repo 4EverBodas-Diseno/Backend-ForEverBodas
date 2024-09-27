@@ -8,9 +8,7 @@ const profileSchema = new mongoose.Schema(
     Telefono: { type: String },
     Direccion: { type: String },
     FechaNacimiento: { type: Date },
-  },
-  { _id: false } // Eliminar el atributo _id
-);
+  });
 
 const Profile = mongoose.model('Profile', profileSchema);
 
