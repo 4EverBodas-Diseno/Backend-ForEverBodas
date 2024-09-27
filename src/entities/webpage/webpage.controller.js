@@ -43,8 +43,8 @@ const getWebPageById = async (req, res) => {
 // Obtener una WebPage por el ID de la boda
 const getWebPageByWeddingID = async (req, res) => {
   try {
-    const webpage = await WebPage.findOne({ WeddingID: req.params.id });
-    if (!webpage) return res.status(404).json({ message: 'WebPage no encontrada.' + error.message });
+    const webpage = await WebPage.findOne({ WeddingID: req.params.WeddingID }); // Cambia 'id' a 'WeddingID'
+    if (!webpage) return res.status(404).json({ message: 'WebPage no encontrada.' });
     res.status(200).json(webpage);
   } catch (error) {
     res.status(500).json({ message: 'Error al obtener la WebPage por WeddingID: ' + error.message });
