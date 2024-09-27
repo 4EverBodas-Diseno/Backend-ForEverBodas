@@ -110,16 +110,16 @@ router.get('/', getAllWebPages); // Get all web pages
 
 /**
  * @openapi
- * /webpages/{id}:
+ * /webpages/{WebPageID}:
  *   get:
- *     summary: Retrieves a web page by ID
+ *     summary: Retrieves a web page by WebPageID
  *     tags:
  *       - WebPages
  *     parameters:
- *       - name: id
+ *       - name: WebPageID
  *         in: path
  *         required: true
- *         description: ID of the web page
+ *         description: WebPageID of the web page
  *         schema:
  *           type: string
  *     responses:
@@ -150,17 +150,17 @@ router.get('/', getAllWebPages); // Get all web pages
  *       500:
  *         description: Server error
  */
-router.get('/:id', getWebPageById); // Get web page by ID
+router.get('/:WebPageID', getWebPageById); // Get web page by WebPageID
 
 /**
  * @openapi
- * /webpages/wedding/{id}:
+ * /webpages/wedding/{WeddingID}:
  *   get:
  *     summary: Retrieves a web page by WeddingID
  *     tags:
  *       - WebPages
  *     parameters:
- *       - name: id
+ *       - name: WeddingID
  *         in: path
  *         required: true
  *         description: WeddingID
@@ -194,20 +194,20 @@ router.get('/:id', getWebPageById); // Get web page by ID
  *       500:
  *         description: Server error
  */
-router.get('/wedding/:id', getWebPageByWeddingID); // Get web page by WeddingID
+router.get('/wedding/:WeddingID', getWebPageByWeddingID); // Get web page by WeddingID
 
 /**
  * @openapi
- * /webpages/{id}:
+ * /webpages/{WebPageID}:
  *   put:
  *     summary: Updates a web page
  *     tags:
  *       - WebPages
  *     parameters:
- *       - name: id
+ *       - name: WebPageID
  *         in: path
  *         required: true
- *         description: ID of the web page
+ *         description: WebPageID of the web page
  *         schema:
  *           type: string
  *     requestBody:
@@ -258,20 +258,20 @@ router.get('/wedding/:id', getWebPageByWeddingID); // Get web page by WeddingID
  *       500:
  *         description: Server error
  */
-router.put('/:id', updateWebPage); // Update a web page by ID
+router.put('/:WebPageID', updateWebPage); // Update a web page by WebPageID
 
 /**
  * @openapi
- * /webpages/{id}:
+ * /webpages/{WebPageID}:
  *   delete:
  *     summary: Deletes a web page
  *     tags:
  *       - WebPages
  *     parameters:
- *       - name: id
+ *       - name: WebPageID
  *         in: path
  *         required: true
- *         description: ID of the web page
+ *         description: WebPageID of the web page
  *         schema:
  *           type: string
  *     responses:
@@ -282,7 +282,7 @@ router.put('/:id', updateWebPage); // Update a web page by ID
  *       500:
  *         description: Server error
  */
-router.delete('/:id', deleteWebPage); // Delete a web page by ID
+router.delete('/:WebPageID', deleteWebPage); // Delete a web page by WebPageID
 
 // New routes for obtaining all typographies and colors
 /**

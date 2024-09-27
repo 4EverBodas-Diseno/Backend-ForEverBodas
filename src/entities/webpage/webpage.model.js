@@ -10,7 +10,7 @@ const webpageSchema = new mongoose.Schema({
     secondaryColor: { type: String, required: true },
     Typography: { type: String, required: true } // Atributo para el tipo de tipografía
   }
-});
+}, { _id: false }); // Deshabilitar el campo _id
 
 const WebPage = mongoose.model('WebPage', webpageSchema);
 
