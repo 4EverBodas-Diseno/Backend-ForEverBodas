@@ -181,7 +181,7 @@ router.get('/:id', getWeddingById);
  *       500:
  *         description: Error del servidor
  */
-router.get('/user/:id', getWeddingByUserID);
+router.get('/user/:UserID', getWeddingByUserID);
 
 /**
  * @openapi

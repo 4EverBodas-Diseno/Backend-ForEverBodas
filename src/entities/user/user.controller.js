@@ -3,16 +3,18 @@ const User = require('./user.model');
 // Crear un nuevo usuario
 const createUser = async (req, res) => {
   try {
-    const { Correo } = req.body;
+    const { Correo, UserID } = req.body;
 
-    // Validar si ya existe un usuario con el mismo correo
+    // Validar si ya existe un usuario con el mismo correo o UserID
     const existingUser = await User.findOne({ Correo });
-    if (existingUser) {
-      return res.status(400).json({ message: 'Ya existe un usuario con este correo' });
+    const existingUserID = await User.findOne({ UserID });
+
+    if (existingUser || existingUserID) {
+      return res.status(400).json({ message: 'Ya existe un usuario con este correo o UserID' });
     }
 
     const user = new User(req.body);
-    user.Password = req.body.Password; // Esto debería ser asegurado en la creación, pero considera usar hashing en producción
+    user.Password = req.body.Password; // En producción, usa hashing para asegurar las contraseñas
     await user.save();
     res.status(201).json(user);
   } catch (error) {
@@ -30,50 +32,51 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-// Obtener un usuario por ID
+// Obtener un usuario por UserID
 const getUserById = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
-    if (!user) return res.status(404).json({ message: 'User not found' });
+    // Busca por UserID, no por _id
+    const user = await User.findOne({ UserID: req.params.UserID });
+    if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-// Actualizar un usuario
+// Actualizar un usuario por UserID
 const updateUser = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!user) return res.status(404).json({ message: 'User not found' });
+    const user = await User.findOneAndUpdate({ UserID: req.params.UserID }, req.body, { new: true });
+    if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
     res.status(200).json(user);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
-// Actualizar el estado de completado de un usuario (PUT)
+// Actualizar el estado de completado
 const updateUserCompletedStatus = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
-    if (!user) return res.status(404).json({ message: 'User not found' });
+    const user = await User.findOne({ UserID: req.params.UserID });
+    if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
 
     // Actualiza el estado de completado
     user.Completado = true;
     await user.save();
 
-    res.status(200).json({ message: 'User completed status updated', user });
+    res.status(200).json({ message: 'Estado de completado actualizado', user });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-// Eliminar un usuario
+// Eliminar un usuario por UserID
 const deleteUser = async (req, res) => {
   try {
-    const user = await User.findByIdAndDelete(req.params.id);
-    if (!user) return res.status(404).json({ message: 'User not found' });
-    res.status(200).json({ message: 'User deleted' });
+    const user = await User.findOneAndDelete({ UserID: req.params.UserID });
+    if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
+    res.status(200).json({ message: 'Usuario eliminado' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -87,25 +90,24 @@ const loginUser = async (req, res) => {
     // Busca al usuario por correo
     const user = await User.findOne({ Correo });
     if (!user) {
-      return res.status(404).json({ error: "Usuario no encontrado" });
+      return res.status(404).json({ error: 'Usuario no encontrado' });
     }
 
     // Verificar la contraseña
     if (Password !== user.Password) {
-      return res.status(401).json({ error: "Contraseña incorrecta" });
+      return res.status(401).json({ error: 'Contraseña incorrecta' });
     }
 
     // Enviar la información del usuario (sin la contraseña) al cliente
     res.status(200).json({
-      UserID: user._id,
+      UserID: user.UserID,
       Nombre: user.Nombre,
-      Apellido: user.Apellido, // Asegúrate de que 'Apellido' exista en el esquema de User
-      FechaRegistro: user.FechaRegistro, // Asegúrate de que 'FechaRegistro' exista en el esquema
+      Apellido: user.Apellido,
+      FechaRegistro: user.FechaRegistro,
       message: 'Login exitoso',
     });
   } catch (error) {
-    console.error("Error al iniciar sesión:", error);
-    res.status(500).json({ error: "Error interno del servidor" });
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
 
@@ -115,6 +117,6 @@ module.exports = {
   getUserById,
   updateUser,
   deleteUser,
-  updateUserCompletedStatus, // Esta ruta ahora usa PUT
+  updateUserCompletedStatus,
   loginUser,
 };

@@ -1,4 +1,3 @@
-// src/entities/user/user.routes.js
 const express = require('express');
 const {
   createUser,
@@ -46,19 +45,19 @@ const router = express.Router();
  */
 router.get('/', getAllUsers);
 
-// Obtener un usuario por ID
+// Obtener un usuario por UserID
 /**
  * @openapi
- * /users/{id}:
+ * /users/{UserID}:
  *   get:
- *     summary: Obtiene un usuario por ID
+ *     summary: Obtiene un usuario por UserID
  *     tags:
  *       - Users
  *     parameters:
- *       - name: id
+ *       - name: UserID
  *         in: path
  *         required: true
- *         description: ID del usuario
+ *         description: UserID del usuario
  *         schema:
  *           type: string
  *     responses:
@@ -85,7 +84,7 @@ router.get('/', getAllUsers);
  *       404:
  *         description: Usuario no encontrado
  */
-router.get('/:id', getUserById);
+router.get('/:UserID', getUserById);
 
 // Crear un nuevo usuario
 /**
@@ -175,21 +174,21 @@ router.post('/', createUser);
  *       401:
  *         description: Credenciales inválidas
  */
-router.post('/login', loginUser); // Añade el endpoint de login
+router.post('/login', loginUser);
 
 // Actualizar un usuario
 /**
  * @openapi
- * /users/{id}:
+ * /users/{UserID}:
  *   put:
  *     summary: Actualiza un usuario
  *     tags:
  *       - Users
  *     parameters:
- *       - name: id
+ *       - name: UserID
  *         in: path
  *         required: true
- *         description: ID del usuario
+ *         description: UserID del usuario
  *         schema:
  *           type: string
  *     requestBody:
@@ -216,21 +215,21 @@ router.post('/login', loginUser); // Añade el endpoint de login
  *       404:
  *         description: Usuario no encontrado
  */
-router.put('/:id', updateUser);
+router.put('/:UserID', updateUser);
 
 // Eliminar un usuario
 /**
  * @openapi
- * /users/{id}:
+ * /users/{UserID}:
  *   delete:
  *     summary: Elimina un usuario
  *     tags:
  *       - Users
  *     parameters:
- *       - name: id
+ *       - name: UserID
  *         in: path
  *         required: true
- *         description: ID del usuario
+ *         description: UserID del usuario
  *         schema:
  *           type: string
  *     responses:
@@ -241,21 +240,21 @@ router.put('/:id', updateUser);
  *       500:
  *         description: Error del servidor
  */
-router.delete('/:id', deleteUser);
+router.delete('/:UserID', deleteUser);
 
 // Actualizar el estado de "Completado" de un usuario
 /**
  * @openapi
- * /users/{id}/completed:
+ * /users/{UserID}/completed:
  *   put:
  *     summary: Actualiza el estado de completado de un usuario
  *     tags:
  *       - Users
  *     parameters:
- *       - name: id
+ *       - name: UserID
  *         in: path
  *         required: true
- *         description: ID del usuario
+ *         description: UserID del usuario
  *         schema:
  *           type: string
  *     responses:
@@ -282,6 +281,6 @@ router.delete('/:id', deleteUser);
  *       500:
  *         description: Error del servidor
  */
-router.put('/:id/completed', updateUserCompletedStatus); // Cambiado a PUT
+router.put('/:UserID/completed', updateUserCompletedStatus); // Cambiado a PUT
 
 module.exports = router;

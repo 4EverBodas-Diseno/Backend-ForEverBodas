@@ -25,7 +25,7 @@ const createWedding = async (req, res) => {
 // Obtener todos los Weddings
 const getAllWeddings = async (req, res) => {
   try {
-    const weddings = await Wedding.find();
+    const weddings = await Wedding.find().populate('UserID');
     res.status(200).json(weddings);
   } catch (error) {
     console.error('Error fetching weddings:', error);
@@ -36,7 +36,7 @@ const getAllWeddings = async (req, res) => {
 // Obtener un Wedding por ID
 const getWeddingById = async (req, res) => {
   try {
-    const wedding = await Wedding.findById(req.params.id); // Verifica que 'userID' sea correcto
+    const wedding = await Wedding.findById(req.params.id).populate('userID'); // Verifica que 'userID' sea correcto
     if (!wedding) return res.status(404).json({ message: 'Wedding not found' });
     res.status(200).json(wedding);
   } catch (error) {
@@ -48,7 +48,7 @@ const getWeddingById = async (req, res) => {
 // Obtener un Wedding por el ID del usuario
 const getWeddingByUserID = async (req, res) => {
   try {
-    const wedding = await Wedding.findOne({ userID: req.params.id }); 
+    const wedding = await Wedding.findOne({ userID: req.params.id }).populate('userID'); // Consistencia en el nombre
     if (!wedding) return res.status(404).json({ message: 'Wedding not found' });
     res.status(200).json(wedding);
   } catch (error) {
