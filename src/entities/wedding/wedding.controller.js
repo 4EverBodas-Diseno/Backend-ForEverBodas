@@ -1,13 +1,12 @@
-// src/entities/wedding/wedding.controller.js
 const Wedding = require('./wedding.model');
 
 // Crear un nuevo Wedding
 const createWedding = async (req, res) => {
   try {
-    const { userID } = req.body;
+    const { WeddingID, UserID } = req.body; // Cambiado a WeddingID
 
-    // Validar si ya existe una boda asociada al userID
-    const existingWedding = await Wedding.findOne({ userID });
+    // Validar si ya existe una boda asociada al UserID
+    const existingWedding = await Wedding.findOne({ UserID });
     if (existingWedding) {
       return res.status(400).json({ message: 'Este usuario ya tiene una boda asociada' });
     }
@@ -33,10 +32,10 @@ const getAllWeddings = async (req, res) => {
   }
 };
 
-// Obtener un Wedding por ID
+// Obtener un Wedding por WeddingID
 const getWeddingById = async (req, res) => {
   try {
-    const wedding = await Wedding.findById(req.params.id).populate('userID'); // Verifica que 'userID' sea correcto
+    const wedding = await Wedding.findOne({ WeddingID: req.params.WeddingID }).populate('UserID'); // Cambiado a WeddingID
     if (!wedding) return res.status(404).json({ message: 'Wedding not found' });
     res.status(200).json(wedding);
   } catch (error) {
@@ -48,7 +47,7 @@ const getWeddingById = async (req, res) => {
 // Obtener un Wedding por el ID del usuario
 const getWeddingByUserID = async (req, res) => {
   try {
-    const wedding = await Wedding.findOne({ userID: req.params.id }).populate('userID'); // Consistencia en el nombre
+    const wedding = await Wedding.findOne({ UserID: req.params.UserID }).populate('UserID'); // Consistencia en el nombre
     if (!wedding) return res.status(404).json({ message: 'Wedding not found' });
     res.status(200).json(wedding);
   } catch (error) {
@@ -60,7 +59,7 @@ const getWeddingByUserID = async (req, res) => {
 // Actualizar un Wedding (PUT - actualización completa)
 const updateWedding = async (req, res) => {
   try {
-    const wedding = await Wedding.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const wedding = await Wedding.findOneAndUpdate({ WeddingID: req.params.WeddingID }, req.body, { new: true }); // Cambiado a WeddingID
     if (!wedding) return res.status(404).json({ message: 'Wedding not found' });
     res.status(200).json(wedding);
   } catch (error) {
@@ -72,7 +71,7 @@ const updateWedding = async (req, res) => {
 // Actualizar parcialmente un Wedding (PATCH - actualización parcial)
 const updateWeddingPartial = async (req, res) => {
   try {
-    const wedding = await Wedding.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
+    const wedding = await Wedding.findOneAndUpdate({ WeddingID: req.params.WeddingID }, { $set: req.body }, { new: true }); // Cambiado a WeddingID
     if (!wedding) return res.status(404).json({ message: 'Wedding not found' });
     res.status(200).json(wedding);
   } catch (error) {
@@ -84,7 +83,7 @@ const updateWeddingPartial = async (req, res) => {
 // Eliminar un Wedding
 const deleteWedding = async (req, res) => {
   try {
-    const wedding = await Wedding.findByIdAndDelete(req.params.id);
+    const wedding = await Wedding.findOneAndDelete({ WeddingID: req.params.WeddingID }); // Cambiado a WeddingID
     if (!wedding) return res.status(404).json({ message: 'Wedding not found' });
     res.status(200).json({ message: 'Wedding deleted' });
   } catch (error) {
