@@ -24,7 +24,7 @@ const createGuest = async (req, res) => {
 // Obtener todos los Guests
 const getAllGuests = async (req, res) => {
   try {
-    const guests = await Guest.find().populate('WebPageID').populate('UserID');
+    const guests = await Guest.find();
 
     // Obtener el total de invitados y confirmados
     const totalInvitados = await Guest.countDocuments();
@@ -40,10 +40,10 @@ const getAllGuests = async (req, res) => {
   }
 };
 
-// Obtener un Guest por ID
+// Obtener un Guest por GuestID
 const getGuestById = async (req, res) => {
   try {
-    const guest = await Guest.findById(req.params.id).populate('WebPageID').populate('UserID');
+    const guest = await Guest.findOne({ GuestID: req.params.id }); // Busca por GuestID
     if (!guest) return res.status(404).json({ message: 'Guest not found' });
 
     res.status(200).json(guest);
@@ -55,7 +55,7 @@ const getGuestById = async (req, res) => {
 // Actualizar un Guest
 const updateGuest = async (req, res) => {
   try {
-    const updatedGuest = await Guest.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updatedGuest = await Guest.findOneAndUpdate({ GuestID: req.params.id }, req.body, { new: true }); // Busca por GuestID
     if (!updatedGuest) return res.status(404).json({ message: 'Guest not found' });
 
     // Recalcular totales solo si se cambió el estado de confirmación
@@ -76,7 +76,7 @@ const updateGuest = async (req, res) => {
 // Eliminar un Guest
 const deleteGuest = async (req, res) => {
   try {
-    const guest = await Guest.findByIdAndDelete(req.params.id);
+    const guest = await Guest.findOneAndDelete({ GuestID: req.params.id }); // Busca por GuestID
     if (!guest) return res.status(404).json({ message: 'Guest not found' });
 
     // Obtener el total de invitados y confirmados después de eliminar

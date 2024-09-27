@@ -102,19 +102,19 @@ router.post('/', createGuest);
  */
 router.get('/', getAllGuests);
 
-// Obtener un Guest por ID
+// Obtener un Guest por GuestID
 /**
  * @openapi
- * /guests/{id}:
+ * /guests/{GuestID}:
  *   get:
- *     summary: Obtiene un invitado por ID
+ *     summary: Obtiene un invitado por GuestID
  *     tags:
  *       - Guests
  *     parameters:
- *       - name: id
+ *       - name: GuestID
  *         in: path
  *         required: true
- *         description: ID del invitado
+ *         description: GuestID del invitado
  *         schema:
  *           type: string
  *     responses:
@@ -129,21 +129,21 @@ router.get('/', getAllGuests);
  *       500:
  *         description: Error del servidor
  */
-router.get('/:id', getGuestById);
+router.get('/:GuestID', getGuestById);
 
-// Actualizar un Guest
+// Actualizar un Guest por GuestID
 /**
  * @openapi
- * /guests/{id}:
+ * /guests/{GuestID}:
  *   put:
  *     summary: Actualiza un invitado
  *     tags:
  *       - Guests
  *     parameters:
- *       - name: id
+ *       - name: GuestID
  *         in: path
  *         required: true
- *         description: ID del invitado
+ *         description: GuestID del invitado
  *         schema:
  *           type: string
  *     requestBody:
@@ -193,21 +193,21 @@ router.get('/:id', getGuestById);
  *       500:
  *         description: Error del servidor
  */
-router.put('/:id', updateGuest);
+router.put('/:GuestID', updateGuest);
 
-// Eliminar un Guest
+// Eliminar un Guest por GuestID
 /**
  * @openapi
- * /guests/{id}:
+ * /guests/{GuestID}:
  *   delete:
  *     summary: Elimina un invitado
  *     tags:
  *       - Guests
  *     parameters:
- *       - name: id
+ *       - name: GuestID
  *         in: path
  *         required: true
- *         description: ID del invitado
+ *         description: GuestID del invitado
  *         schema:
  *           type: string
  *     responses:
@@ -232,6 +232,6 @@ router.put('/:id', updateGuest);
  *       500:
  *         description: Error del servidor
  */
-router.delete('/:id', deleteGuest);
+router.delete('/:GuestID', deleteGuest);
 
 module.exports = router;
