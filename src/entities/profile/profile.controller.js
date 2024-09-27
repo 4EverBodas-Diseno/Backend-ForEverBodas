@@ -1,9 +1,9 @@
 // src/entities/profile/profile.controller.js
 const Profile = require('./profile.model');
 
-// Crear un nuevo perfil
 const createProfile = async (req, res) => {
   try {
+    console.log(req.body);  // Verifica lo que está en el cuerpo de la solicitud
     const { UserID, ...rest } = req.body;
     if (!UserID) {
       return res.status(400).json({ message: 'UserID is required' });
@@ -15,6 +15,7 @@ const createProfile = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
 // Obtener todos los perfiles
 const getAllProfiles = async (req, res) => {
   try {

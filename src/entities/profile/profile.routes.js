@@ -35,7 +35,7 @@ router.delete('/:profileID', deleteProfile);
  *             properties:
  *               profileID:
  *                 type: string
- *               userID:
+ *               UserID:
  *                 type: string
  *               Telefono:
  *                 type: string
@@ -54,7 +54,7 @@ router.delete('/:profileID', deleteProfile);
  *               properties:
  *                 profileID:
  *                   type: string
- *                 userID:
+ *                 UserID:
  *                   type: string
  *                 Telefono:
  *                   type: string
@@ -86,7 +86,7 @@ router.delete('/:profileID', deleteProfile);
  *                 properties:
  *                   profileID:
  *                     type: string
- *                   userID:
+ *                   UserID:
  *                     type: string
  *                   Telefono:
  *                     type: string
@@ -123,7 +123,7 @@ router.delete('/:profileID', deleteProfile);
  *               properties:
  *                 profileID:
  *                   type: string
- *                 userID:
+ *                 UserID:
  *                   type: string
  *                 Telefono:
  *                   type: string
@@ -176,7 +176,7 @@ router.delete('/:profileID', deleteProfile);
  *               properties:
  *                 profileID:
  *                   type: string
- *                 userID:
+ *                 UserID:
  *                   type: string
  *                 Telefono:
  *                   type: string
@@ -214,7 +214,7 @@ router.delete('/:profileID', deleteProfile);
  *           schema:
  *             type: object
  *             properties:
- *               userID:
+ *               UserID:
  *                 type: string
  *               Telefono:
  *                 type: string
@@ -233,7 +233,7 @@ router.delete('/:profileID', deleteProfile);
  *               properties:
  *                 profileID:
  *                   type: string
- *                 userID:
+ *                 UserID:
  *                   type: string
  *                 Telefono:
  *                   type: string
