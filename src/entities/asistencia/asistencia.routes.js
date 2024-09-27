@@ -13,17 +13,22 @@ const {
   validateUpdateAsistencia
 } = require('./asistencia.middleware');
 
-
 const router = express.Router();
 
+// Crear una nueva asistencia
+router.post('/', validateCreateAsistencia, createAsistencia);
 
-router.post('/', createAsistencia);
+// Obtener todas las asistencias
 router.get('/', getAllAsistencias);
-router.get('/:id', getAsistenciaById);
-router.put('/:id', updateAsistencia);
-router.delete('/:id', deleteAsistencia);
 
+// Obtener una asistencia por GuestID (en lugar de ID)
+router.get('/guest/:guestId', getAsistenciaById); // Modificado para buscar por GuestID
 
+// Actualizar una asistencia por GuestID
+router.put('/guest/:guestId', validateUpdateAsistencia, updateAsistencia); // Modificado para buscar por GuestID
+
+// Eliminar una asistencia por GuestID
+router.delete('/guest/:guestId', deleteAsistencia); // Modificado para buscar por GuestID
 
 /**
  * @openapi
@@ -41,7 +46,7 @@ router.delete('/:id', deleteAsistencia);
  *             properties:
  *               GuestID:
  *                 type: string
- *               EventID:
+ *               WeddingID:
  *                 type: string
  *               Confirmacion:
  *                 type: boolean
@@ -57,7 +62,7 @@ router.delete('/:id', deleteAsistencia);
  *               properties:
  *                 GuestID:
  *                   type: string
- *                 EventID:
+ *                 WeddingID:
  *                   type: string
  *                 Confirmacion:
  *                   type: boolean
@@ -66,9 +71,6 @@ router.delete('/:id', deleteAsistencia);
  *       400:
  *         description: Error en la solicitud
  */
-
-router.post('/', validateCreateAsistencia, createAsistencia);
-
 
 /**
  * @openapi
@@ -89,7 +91,7 @@ router.post('/', validateCreateAsistencia, createAsistencia);
  *                 properties:
  *                   GuestID:
  *                     type: string
- *                   EventID:
+ *                   WeddingID:
  *                     type: string
  *                   Confirmacion:
  *                     type: boolean
@@ -101,16 +103,16 @@ router.post('/', validateCreateAsistencia, createAsistencia);
 
 /**
  * @openapi
- * /asistencias/{id}:
+ * /asistencias/guest/{guestId}:
  *   get:
- *     summary: Obtiene una asistencia por ID
+ *     summary: Obtiene una asistencia por GuestID
  *     tags:
  *       - Asistencias
  *     parameters:
- *       - name: id
+ *       - name: guestId
  *         in: path
  *         required: true
- *         description: ID de la asistencia
+ *         description: GuestID de la asistencia
  *         schema:
  *           type: string
  *     responses:
@@ -123,7 +125,7 @@ router.post('/', validateCreateAsistencia, createAsistencia);
  *               properties:
  *                 GuestID:
  *                   type: string
- *                 EventID:
+ *                 WeddingID:
  *                   type: string
  *                 Confirmacion:
  *                   type: boolean
@@ -137,16 +139,16 @@ router.post('/', validateCreateAsistencia, createAsistencia);
 
 /**
  * @openapi
- * /asistencias/{id}:
+ * /asistencias/guest/{guestId}:
  *   put:
  *     summary: Actualiza una asistencia
  *     tags:
  *       - Asistencias
  *     parameters:
- *       - name: id
+ *       - name: guestId
  *         in: path
  *         required: true
- *         description: ID de la asistencia
+ *         description: GuestID de la asistencia
  *         schema:
  *           type: string
  *     requestBody:
@@ -158,7 +160,7 @@ router.post('/', validateCreateAsistencia, createAsistencia);
  *             properties:
  *               GuestID:
  *                 type: string
- *               EventID:
+ *               WeddingID:
  *                 type: string
  *               Confirmacion:
  *                 type: boolean
@@ -174,7 +176,7 @@ router.post('/', validateCreateAsistencia, createAsistencia);
  *               properties:
  *                 GuestID:
  *                   type: string
- *                 EventID:
+ *                 WeddingID:
  *                   type: string
  *                 Confirmacion:
  *                   type: boolean
@@ -188,20 +190,18 @@ router.post('/', validateCreateAsistencia, createAsistencia);
  *         description: Error del servidor
  */
 
-router.put('/:id', validateUpdateAsistencia, updateAsistencia);
-
 /**
  * @openapi
- * /asistencias/{id}:
+ * /asistencias/guest/{guestId}:
  *   delete:
  *     summary: Elimina una asistencia
  *     tags:
  *       - Asistencias
  *     parameters:
- *       - name: id
+ *       - name: guestId
  *         in: path
  *         required: true
- *         description: ID de la asistencia
+ *         description: GuestID de la asistencia
  *         schema:
  *           type: string
  *     responses:

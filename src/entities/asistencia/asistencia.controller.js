@@ -25,7 +25,7 @@ const getAllAsistencias = async (req, res) => {
 // Obtener una Asistencia por ID
 const getAsistenciaById = async (req, res) => {
   try {
-    const asistencia = await Asistencia.findById(req.params.id).populate('GuestID EventID');
+    const asistencia = await Asistencia.findOne({ GuestID: req.params.id }).populate('GuestID EventID');
     if (!asistencia) return res.status(404).json({ message: 'Asistencia not found' });
     res.status(200).json(asistencia);
   } catch (error) {
@@ -36,7 +36,7 @@ const getAsistenciaById = async (req, res) => {
 // Actualizar una Asistencia
 const updateAsistencia = async (req, res) => {
   try {
-    const asistencia = await Asistencia.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const asistencia = await Asistencia.findOneAndUpdate({ GuestID: req.params.id }, req.body, { new: true });
     if (!asistencia) return res.status(404).json({ message: 'Asistencia not found' });
     res.status(200).json(asistencia);
   } catch (error) {
@@ -47,7 +47,7 @@ const updateAsistencia = async (req, res) => {
 // Eliminar una Asistencia
 const deleteAsistencia = async (req, res) => {
   try {
-    const asistencia = await Asistencia.findByIdAndDelete(req.params.id);
+    const asistencia = await Asistencia.findOneAndDelete({ GuestID: req.params.id });
     if (!asistencia) return res.status(404).json({ message: 'Asistencia not found' });
     res.status(200).json({ message: 'Asistencia deleted' });
   } catch (error) {
