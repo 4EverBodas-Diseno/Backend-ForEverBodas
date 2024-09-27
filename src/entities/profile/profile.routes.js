@@ -4,6 +4,7 @@ const {
   createProfile,
   getAllProfiles,
   getProfileById,
+  getProfileByUserId,  // Importamos la nueva función
   updateProfile,
   deleteProfile,
   updateProfilePartial
@@ -14,10 +15,10 @@ const router = express.Router();
 router.post('/', createProfile);
 router.get('/', getAllProfiles);
 router.get('/:profileID', getProfileById);
+router.get('/user/:userID', getProfileByUserId); // Nueva ruta para obtener perfil por UserID
 router.put('/:profileID', updateProfile);
 router.patch('/:profileID', updateProfilePartial);
 router.delete('/:profileID', deleteProfile);
-
 
 /**
  * @openapi
@@ -132,6 +133,48 @@ router.delete('/:profileID', deleteProfile);
  *                 FechaNacimiento:
  *                   type: string
  *                   format: date
+ *       404:
+ *         description: Perfil no encontrado
+ *       500:
+ *         description: Error del servidor
+ */
+
+/**
+ * @openapi
+ * /profiles/user/{UserID}:
+ *   get:
+ *     summary: Obtiene un perfil por UserID
+ *     tags:
+ *       - Profiles
+ *     parameters:
+ *       - name: userID
+ *         in: path
+ *         required: true
+ *         description: ID del usuario
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Perfil encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 profileID:
+ *                   type: string
+ *                 UserID:
+ *                   type: string
+ *                 Telefono:
+ *                   type: string
+ *                 Direccion:
+ *                   type: string
+ *                 FechaNacimiento:
+ *                   type: string
+ *                   format: date
+ *                 completado:
+ *                   type: boolean
+ *                   description: Estado de si el perfil está completado
  *       404:
  *         description: Perfil no encontrado
  *       500:
