@@ -101,16 +101,16 @@ router.get('/', getAllWeddings);
 
 /**
  * @openapi
- * /weddings/{id}:
+ * /weddings/{WeddingID}:
  *   get:
- *     summary: Obtiene una boda por ID
+ *     summary: Obtiene una boda por WeddingID
  *     tags:
  *       - Weddings
  *     parameters:
- *       - name: id
+ *       - name: WeddingID
  *         in: path
  *         required: true
- *         description: ID de la boda
+ *         description: WeddingID de la boda
  *         schema:
  *           type: string
  *     responses:
@@ -139,17 +139,17 @@ router.get('/', getAllWeddings);
  *       500:
  *         description: Error del servidor
  */
-router.get('/:id', getWeddingById);
+router.get('/:WeddingID', getWeddingById);
 
 /**
  * @openapi
- * /weddings/user/{id}:
+ * /weddings/user/{UserID}:
  *   get:
  *     summary: Obtiene una boda por el ID del usuario
  *     tags:
  *       - Weddings
  *     parameters:
- *       - name: id
+ *       - name: UserID
  *         in: path
  *         required: true
  *         description: ID del usuario
@@ -185,16 +185,16 @@ router.get('/user/:UserID', getWeddingByUserID);
 
 /**
  * @openapi
- * /weddings/{id}:
+ * /weddings/{WeddingID}:
  *   put:
  *     summary: Actualiza una boda
  *     tags:
  *       - Weddings
  *     parameters:
- *       - name: id
+ *       - name: WeddingID
  *         in: path
  *         required: true
- *         description: ID de la boda
+ *         description: WeddingID de la boda
  *         schema:
  *           type: string
  *     requestBody:
@@ -245,20 +245,20 @@ router.get('/user/:UserID', getWeddingByUserID);
  *       500:
  *         description: Error del servidor
  */
-router.put('/:id', updateWedding);
+router.put('/:WeddingID', updateWedding);
 
 /**
  * @openapi
- * /weddings/{id}:
+ * /weddings/{WeddingID}:
  *   patch:
  *     summary: Actualiza parcialmente una boda
  *     tags:
  *       - Weddings
  *     parameters:
- *       - name: id
+ *       - name: WeddingID
  *         in: path
  *         required: true
- *         description: ID de la boda
+ *         description: WeddingID de la boda
  *         schema:
  *           type: string
  *     requestBody:
@@ -309,20 +309,20 @@ router.put('/:id', updateWedding);
  *       500:
  *         description: Error del servidor
  */
-router.patch('/:id', updateWeddingPartial);
+router.patch('/:WeddingID', updateWeddingPartial);
 
 /**
  * @openapi
- * /weddings/{id}:
+ * /weddings/{WeddingID}:
  *   delete:
  *     summary: Elimina una boda
  *     tags:
  *       - Weddings
  *     parameters:
- *       - name: id
+ *       - name: WeddingID
  *         in: path
  *         required: true
- *         description: ID de la boda
+ *         description: WeddingID de la boda
  *         schema:
  *           type: string
  *     responses:
@@ -333,6 +333,6 @@ router.patch('/:id', updateWeddingPartial);
  *       500:
  *         description: Error del servidor
  */
-router.delete('/:id', deleteWedding);
+router.delete('/:WeddingID', deleteWedding);
 
 module.exports = router;
