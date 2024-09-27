@@ -11,13 +11,12 @@ const {
 
 const router = express.Router();
 
-
 router.post('/', createProfile);
 router.get('/', getAllProfiles);
-router.get('/:id', getProfileById);
-router.put('/:id', updateProfile);
-router.patch('/:id', updateProfilePartial);
-router.delete('/:id', deleteProfile);
+router.get('/:profileID', getProfileById);
+router.put('/:profileID', updateProfile);
+router.patch('/:profileID', updateProfilePartial);
+router.delete('/:profileID', deleteProfile);
 
 
 /**
@@ -102,13 +101,13 @@ router.delete('/:id', deleteProfile);
 
 /**
  * @openapi
- * /profiles/{id}:
+ * /profiles/{profileID}:
  *   get:
- *     summary: Obtiene un perfil por ID
+ *     summary: Obtiene un perfil por profileID
  *     tags:
  *       - Profiles
  *     parameters:
- *       - name: id
+ *       - name: profileID
  *         in: path
  *         required: true
  *         description: ID del perfil
@@ -141,13 +140,13 @@ router.delete('/:id', deleteProfile);
 
 /**
  * @openapi
- * /profiles/{id}:
+ * /profiles/{profileID}:
  *   put:
  *     summary: Actualiza un perfil
  *     tags:
  *       - Profiles
  *     parameters:
- *       - name: id
+ *       - name: profileID
  *         in: path
  *         required: true
  *         description: ID del perfil
@@ -196,13 +195,13 @@ router.delete('/:id', deleteProfile);
 
 /**
  * @openapi
- * /profiles/{id}:
+ * /profiles/{profileID}:
  *   patch:
  *     summary: Actualiza parcialmente un perfil
  *     tags:
  *       - Profiles
  *     parameters:
- *       - name: id
+ *       - name: profileID
  *         in: path
  *         required: true
  *         description: ID del perfil
@@ -215,7 +214,7 @@ router.delete('/:id', deleteProfile);
  *           schema:
  *             type: object
  *             properties:
- *               UserID:
+ *               userID:
  *                 type: string
  *               Telefono:
  *                 type: string
@@ -234,7 +233,7 @@ router.delete('/:id', deleteProfile);
  *               properties:
  *                 profileID:
  *                   type: string
- *                 UserID:
+ *                 userID:
  *                   type: string
  *                 Telefono:
  *                   type: string
@@ -251,16 +250,15 @@ router.delete('/:id', deleteProfile);
  *         description: Error del servidor
  */
 
-
 /**
  * @openapi
- * /profiles/{id}:
+ * /profiles/{profileID}:
  *   delete:
  *     summary: Elimina un perfil
  *     tags:
  *       - Profiles
  *     parameters:
- *       - name: id
+ *       - name: profileID
  *         in: path
  *         required: true
  *         description: ID del perfil

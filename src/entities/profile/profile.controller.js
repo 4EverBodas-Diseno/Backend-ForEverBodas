@@ -15,17 +15,17 @@ const createProfile = async (req, res) => {
 // Obtener todos los perfiles
 const getAllProfiles = async (req, res) => {
   try {
-    const profiles = await Profile.find().populate('userID');
+    const profiles = await Profile.find(); // Eliminando populate a menos que sea necesario
     res.status(200).json(profiles);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-// Obtener un perfil por ID
+// Obtener un perfil por profileID
 const getProfileById = async (req, res) => {
   try {
-    const profile = await Profile.findById(req.params.id).populate('userID');
+    const profile = await Profile.findOne({ profileID: req.params.id }); // Cambiado a buscar por profileID
     if (!profile) return res.status(404).json({ message: 'Profile not found' });
     res.status(200).json(profile);
   } catch (error) {
@@ -36,7 +36,11 @@ const getProfileById = async (req, res) => {
 // Actualizar un perfil
 const updateProfile = async (req, res) => {
   try {
-    const profile = await Profile.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const profile = await Profile.findOneAndUpdate(
+      { profileID: req.params.id }, // Cambiado a buscar por profileID
+      req.body,
+      { new: true }
+    );
     if (!profile) return res.status(404).json({ message: 'Profile not found' });
     res.status(200).json(profile);
   } catch (error) {
@@ -44,10 +48,14 @@ const updateProfile = async (req, res) => {
   }
 };
 
-//actualizar un perfill parcialmente
+// Actualizar un perfil parcialmente
 const updateProfilePartial = async (req, res) => {
   try {
-    const profile = await Profile.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const profile = await Profile.findOneAndUpdate(
+      { profileID: req.params.id }, // Cambiado a buscar por profileID
+      req.body,
+      { new: true }
+    );
     if (!profile) return res.status(404).json({ message: 'Profile not found' });
     res.status(200).json(profile);
   } catch (error) {
@@ -58,7 +66,7 @@ const updateProfilePartial = async (req, res) => {
 // Eliminar un perfil
 const deleteProfile = async (req, res) => {
   try {
-    const profile = await Profile.findByIdAndDelete(req.params.id);
+    const profile = await Profile.findOneAndDelete({ profileID: req.params.id }); // Cambiado a buscar por profileID
     if (!profile) return res.status(404).json({ message: 'Profile not found' });
     res.status(200).json({ message: 'Profile deleted' });
   } catch (error) {
