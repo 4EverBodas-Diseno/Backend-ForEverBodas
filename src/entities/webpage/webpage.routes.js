@@ -204,7 +204,8 @@ router.get('/:WebPageID', getWebPageById); // Get web page by WebPageID
  *       500:
  *         description: Server error
  */
-router.get('/wedding/:WeddingID', getWebPageByWeddingID); // Get web page by WeddingID
+router.get('/wedding/:WeddingID', getWebPageByWeddingID); 
+
 
 /**
  * @openapi
