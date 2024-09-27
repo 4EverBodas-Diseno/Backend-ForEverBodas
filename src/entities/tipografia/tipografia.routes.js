@@ -27,10 +27,13 @@ const router = express.Router();
  *             properties:
  *               TypographyID:
  *                 type: string
- *               Nombre:
+ *                 description: ID único de la tipografía
+ *               Front:
  *                 type: string
- *               URL:
+ *                 description: Typography principal de la página
+ *               FrontURL:
  *                 type: string
+ *                 description: Typography secundaria de la página
  *     responses:
  *       201:
  *         description: Tipografía creada con éxito
@@ -77,13 +80,13 @@ router.get('/', getAllTypographies);
 // Obtener una tipografía por ID
 /**
  * @openapi
- * /typographies/{id}:
+ * /typographies/{TypographyID}:
  *   get:
  *     summary: Obtiene una tipografía por ID
  *     tags:
  *       - Typographies
  *     parameters:
- *       - name: id
+ *       - name: TypographyID
  *         in: path
  *         required: true
  *         description: ID de la tipografía
@@ -101,18 +104,18 @@ router.get('/', getAllTypographies);
  *       500:
  *         description: Error del servidor
  */
-router.get('/:id', getTypographyById);
+router.get('/:TypographyID', getTypographyById);
 
 // Actualizar una tipografía
 /**
  * @openapi
- * /typographies/{id}:
+ * /typographies/{TypographyID}:
  *   put:
  *     summary: Actualiza una tipografía
  *     tags:
  *       - Typographies
  *     parameters:
- *       - name: id
+ *       - name: TypographyID
  *         in: path
  *         required: true
  *         description: ID de la tipografía
@@ -125,10 +128,12 @@ router.get('/:id', getTypographyById);
  *           schema:
  *             type: object
  *             properties:
- *               Nombre:
+ *               Front:
  *                 type: string
- *               URL:
+ *                 description: Typography principal de la página
+ *               FrontURL:
  *                 type: string
+ *                 description: Typography secundaria de la página
  *     responses:
  *       200:
  *         description: Tipografía actualizada con éxito
@@ -148,18 +153,18 @@ router.get('/:id', getTypographyById);
  *       500:
  *         description: Error del servidor
  */
-router.put('/:id', updateTypography);
+router.put('/:TypographyID', updateTypography);
 
 // Eliminar una tipografía
 /**
  * @openapi
- * /typographies/{id}:
+ * /typographies/{TypographyID}:
  *   delete:
  *     summary: Elimina una tipografía
  *     tags:
  *       - Typographies
  *     parameters:
- *       - name: id
+ *       - name: TypographyID
  *         in: path
  *         required: true
  *         description: ID de la tipografía
@@ -181,6 +186,6 @@ router.put('/:id', updateTypography);
  *       500:
  *         description: Error del servidor
  */
-router.delete('/:id', deleteTypography);
+router.delete('/:TypographyID', deleteTypography);
 
 module.exports = router;

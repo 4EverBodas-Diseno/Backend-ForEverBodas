@@ -24,7 +24,7 @@ const swaggerOptions = {
         './src/entities/asistencia/asistencia.routes.js',
         './src/entities/notification/notification.routes.js',
         './src/entities/color/color.routes.js',
-        './src/entities/typography/typography.routes.js',
+        './src/entities/tipografia/tipografia.routes.js',
         './src/entities/webpage/webpage.routes.js',
         './src/entities/wedding/wedding.routes.js',
         './src/entities/wellwish/wellwish.routes.js'

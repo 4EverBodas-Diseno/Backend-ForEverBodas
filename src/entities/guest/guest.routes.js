@@ -5,10 +5,40 @@ const {
   getAllGuests,
   getGuestById,
   updateGuest,
-  deleteGuest
+  deleteGuest,
+  getGuestsByUserID
 } = require('./guest.controller');
 
 const router = express.Router();
+
+// Obtener todos los Guests relacionados a un UserID
+/**
+ * @openapi
+ * /guests/user/{UserID}:
+ *   get:
+ *     summary: Obtiene todos los invitados relacionados a un UserID
+ *     tags:
+ *       - Guests
+ *     parameters:
+ *       - name: UserID
+ *         in: path
+ *         required: true
+ *         description: ID del usuario relacionado con los invitados
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Lista de invitados relacionados a un usuario
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Guest'
+ *       500:
+ *         description: Error al obtener los invitados
+ */
+router.get('/guests/user/:UserID', getGuestsByUserID);
 
 // Crear un nuevo Guest
 /**

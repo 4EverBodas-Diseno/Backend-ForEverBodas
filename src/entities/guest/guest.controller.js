@@ -7,9 +7,9 @@ const createGuest = async (req, res) => {
     const guest = new Guest(req.body);
     await guest.save();
 
-    // Obtener el total de invitados y confirmados
+    // Calcular totalInvitados y totalConfirmados
     const totalInvitados = await Guest.countDocuments();
-    const totalConfirmados = await Guest.countDocuments({ Confirmado: true });
+    const totalConfirmados = await Guest.countDocuments({ confirmed: true });
 
     res.status(201).json({
       guest,
@@ -19,6 +19,10 @@ const createGuest = async (req, res) => {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
+};
+
+module.exports = {
+  createGuest,
 };
 
 // Obtener todos los Guests
@@ -73,6 +77,22 @@ const updateGuest = async (req, res) => {
   }
 };
 
+// Obtener todos los Guests relacionados a un UserID
+const getGuestsByUserID = async (req, res) => {
+  const { userID } = req.params;
+  try {
+    const guests = await Guest.find({ userID });
+    res.status(200).json(guests);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener los Guests: ' + error.message });
+  }
+};
+
+module.exports = {
+  getGuestsByUserID,
+};
+
+
 // Eliminar un Guest
 const deleteGuest = async (req, res) => {
   try {
@@ -98,5 +118,6 @@ module.exports = {
   getAllGuests,
   getGuestById,
   updateGuest,
+  getGuestsByUserID,
   deleteGuest,
 };

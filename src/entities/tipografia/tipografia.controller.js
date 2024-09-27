@@ -4,10 +4,10 @@ const Typography = require('../entities/typography/typography.model');
 // Crear una nueva tipografía
 exports.createTypography = async (req, res) => {
   try {
-    const { TypographyID, Nombre, URL } = req.body;
+    const { TypographyID, Front, FrontURL } = req.body;
 
     // Crear un nuevo documento de Typography en la base de datos
-    const newTypography = new Typography({ TypographyID, Nombre, URL });
+    const newTypography = new Typography({ TypographyID, Front, FrontURL });
     await newTypography.save();
 
     res.status(201).json({ message: 'Tipografía creada con éxito', data: newTypography });
@@ -26,11 +26,11 @@ exports.getAllTypographies = async (req, res) => {
   }
 };
 
-// Obtener una tipografía por ID
+// Obtener una tipografía por TypographyID
 exports.getTypographyById = async (req, res) => {
   try {
-    const { id } = req.params;
-    const typography = await Typography.findOne({ TypographyID: id });
+    const { TypographyID } = req.params;
+    const typography = await Typography.findOne({ TypographyID });
 
     if (!typography) {
       return res.status(404).json({ message: 'Tipografía no encontrada' });
@@ -45,12 +45,12 @@ exports.getTypographyById = async (req, res) => {
 // Actualizar una tipografía
 exports.updateTypography = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { Nombre, URL } = req.body;
+    const { TypographyID } = req.params;
+    const { Front, FrontURL } = req.body;
 
     const updatedTypography = await Typography.findOneAndUpdate(
-      { TypographyID: id },
-      { Nombre, URL },
+      { TypographyID },
+      { Front, FrontURL },
       { new: true }
     );
 
@@ -67,8 +67,8 @@ exports.updateTypography = async (req, res) => {
 // Eliminar una tipografía
 exports.deleteTypography = async (req, res) => {
   try {
-    const { id } = req.params;
-    const deletedTypography = await Typography.findOneAndDelete({ TypographyID: id });
+    const { TypographyID } = req.params;
+    const deletedTypography = await Typography.findOneAndDelete({ TypographyID });
 
     if (!deletedTypography) {
       return res.status(404).json({ message: 'Tipografía no encontrada' });

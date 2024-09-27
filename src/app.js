@@ -6,6 +6,7 @@ const profileRoutes = require('./entities/profile/profile.routes'); // Agregado
 const wellwishRoutes = require('./entities/wellWish/wellwish.routes'); // Agregado
 const colorRoutes = require('./entities/color/color.routes'); // Agregado
 const guestRoutes = require('./entities/guest/guest.routes'); // Agregado
+const tipografíaRoutes = require('./entities/tipografia/tipografia.routes'); // Agregado
 const weddingRoutes = require('./entities/wedding/wedding.routes'); // Agregado
 const webpageRoutes = require('./entities/webpage/webpage.routes'); // Agregado
 const notificationRoutes = require('./entities/notification/notification.routes'); // Agregado
@@ -21,6 +22,7 @@ app.use(express.json());
 
 // Rutas
 app.use('/api/users', userRoutes);
+app.use('/api/typographies', tipografíaRoutes); // Agregado
 app.use('/api/colors', colorRoutes);
 app.use('/api/profiles', profileRoutes); // Agregado
 app.use('/api/wellwishes', wellwishRoutes); // Agregado
