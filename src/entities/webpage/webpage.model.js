@@ -11,7 +11,7 @@ const webpageSchema = new mongoose.Schema({
     Typography: { type: String, required: true },
     FrontURL: {type: String, required: true}
   }
-}, { _id: false }); // Deshabilitar el campo _id
+}); // Deshabilitar el campo _id
 
 const WebPage = mongoose.model('WebPage', webpageSchema);
 
