@@ -1,4 +1,3 @@
-// src/entities/wellwish/wellwish.routes.js
 const express = require('express');
 const {
   createWellWish,
@@ -12,10 +11,9 @@ const router = express.Router();
 
 router.post('/', createWellWish);
 router.get('/', getAllWellWishes);
-router.get('/:id', getWellWishById);
-router.put('/:id', updateWellWish);
-router.delete('/:id', deleteWellWish);
-
+router.get('/:WellWishID', getWellWishById);
+router.put('/:WellWishID', updateWellWish);
+router.delete('/:WellWishID', deleteWellWish);
 
 /**
  * @openapi
@@ -99,16 +97,16 @@ router.delete('/:id', deleteWellWish);
 
 /**
  * @openapi
- * /wellwishes/{id}:
+ * /wellwishes/{WellWishID}:
  *   get:
- *     summary: Obtiene un mensaje de buenos deseos por ID
+ *     summary: Obtiene un mensaje de buenos deseos por WellWishID
  *     tags:
  *       - WellWishes
  *     parameters:
- *       - name: id
+ *       - name: WellWishID
  *         in: path
  *         required: true
- *         description: ID del mensaje de buenos deseos
+ *         description: WellWishID del mensaje de buenos deseos
  *         schema:
  *           type: string
  *     responses:
@@ -138,16 +136,16 @@ router.delete('/:id', deleteWellWish);
 
 /**
  * @openapi
- * /wellwishes/{id}:
+ * /wellwishes/{WellWishID}:
  *   put:
  *     summary: Actualiza un mensaje de buenos deseos
  *     tags:
  *       - WellWishes
  *     parameters:
- *       - name: id
+ *       - name: WellWishID
  *         in: path
  *         required: true
- *         description: ID del mensaje de buenos deseos
+ *         description: WellWishID del mensaje de buenos deseos
  *         schema:
  *           type: string
  *     requestBody:
@@ -195,16 +193,16 @@ router.delete('/:id', deleteWellWish);
 
 /**
  * @openapi
- * /wellwishes/{id}:
+ * /wellwishes/{WellWishID}:
  *   delete:
  *     summary: Elimina un mensaje de buenos deseos
  *     tags:
  *       - WellWishes
  *     parameters:
- *       - name: id
+ *       - name: WellWishID
  *         in: path
  *         required: true
- *         description: ID del mensaje de buenos deseos
+ *         description: WellWishID del mensaje de buenos deseos
  *         schema:
  *           type: string
  *     responses:
