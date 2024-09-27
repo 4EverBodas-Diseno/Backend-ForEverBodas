@@ -1,76 +1,76 @@
-// src/controllers/typography.controller.js
-const Typography = require('../entities/typography/typography.model');
+// src/controllers/tipografia.controller.js
+const Tipografia = require('./tipografia.model');
 
 // Crear una nueva tipografía
-exports.createTypography = async (req, res) => {
+exports.createTipografia = async (req, res) => {
   try {
-    const { TypographyID, Front, FrontURL } = req.body;
+    const { TipografiaID, Front, FrontURL } = req.body;
 
-    // Crear un nuevo documento de Typography en la base de datos
-    const newTypography = new Typography({ TypographyID, Front, FrontURL });
-    await newTypography.save();
+    // Crear un nuevo documento de Tipografia en la base de datos
+    const newTipografia = new Tipografia({ TipografiaID, Front, FrontURL });
+    await newTipografia.save();
 
-    res.status(201).json({ message: 'Tipografía creada con éxito', data: newTypography });
+    res.status(201).json({ message: 'Tipografía creada con éxito', data: newTipografia });
   } catch (error) {
     res.status(500).json({ message: 'Error al crear la tipografía', error: error.message });
   }
 };
 
 // Obtener todas las tipografías
-exports.getAllTypographies = async (req, res) => {
+exports.getAllTipografias = async (req, res) => {
   try {
-    const typographies = await Typography.find();
-    res.status(200).json({ data: typographies });
+    const tipografias = await Tipografia.find();
+    res.status(200).json({ data: tipografias });
   } catch (error) {
     res.status(500).json({ message: 'Error al obtener las tipografías', error: error.message });
   }
 };
 
-// Obtener una tipografía por TypographyID
-exports.getTypographyById = async (req, res) => {
+// Obtener una tipografía por TipografiaID
+exports.getTipografiaById = async (req, res) => {
   try {
-    const { TypographyID } = req.params;
-    const typography = await Typography.findOne({ TypographyID });
+    const { TipografiaID } = req.params;
+    const tipografia = await Tipografia.findOne({ TipografiaID });
 
-    if (!typography) {
+    if (!tipografia) {
       return res.status(404).json({ message: 'Tipografía no encontrada' });
     }
 
-    res.status(200).json({ data: typography });
+    res.status(200).json({ data: tipografia });
   } catch (error) {
     res.status(500).json({ message: 'Error al obtener la tipografía', error: error.message });
   }
 };
 
 // Actualizar una tipografía
-exports.updateTypography = async (req, res) => {
+exports.updateTipografia = async (req, res) => {
   try {
-    const { TypographyID } = req.params;
+    const { TipografiaID } = req.params;
     const { Front, FrontURL } = req.body;
 
-    const updatedTypography = await Typography.findOneAndUpdate(
-      { TypographyID },
+    const updatedTipografia = await Tipografia.findOneAndUpdate(
+      { TipografiaID },
       { Front, FrontURL },
       { new: true }
     );
 
-    if (!updatedTypography) {
+    if (!updatedTipografia) {
       return res.status(404).json({ message: 'Tipografía no encontrada' });
     }
 
-    res.status(200).json({ message: 'Tipografía actualizada con éxito', data: updatedTypography });
+    res.status(200).json({ message: 'Tipografía actualizada con éxito', data: updatedTipografia });
   } catch (error) {
     res.status(500).json({ message: 'Error al actualizar la tipografía', error: error.message });
   }
 };
 
 // Eliminar una tipografía
-exports.deleteTypography = async (req, res) => {
+exports.deleteTipografia = async (req, res) => {
   try {
-    const { TypographyID } = req.params;
-    const deletedTypography = await Typography.findOneAndDelete({ TypographyID });
+    const { TipografiaID } = req.params;
+    const deletedTipografia = await Tipografia.findOneAndDelete({ TipografiaID });
 
-    if (!deletedTypography) {
+    if (!deletedTipografia) {
       return res.status(404).json({ message: 'Tipografía no encontrada' });
     }
 

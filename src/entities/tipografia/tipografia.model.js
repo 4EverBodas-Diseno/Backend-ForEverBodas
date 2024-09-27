@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-const TypographySchema = new mongoose.Schema({
-  TypographyID: { type: String, required: true, unique: true },
-  Front: { type: String, required: true },     // Typography principal de la página
-  FrontURL: { type: String, required: true },   // Typography secundario de la página             
+const TipografiaSchema = new mongoose.Schema({
+  TipografiaID: { type: String, required: true, unique: true },
+  Front: { type: String, required: true },     // Tipografía principal de la página
+  FrontURL: { type: String, required: true },   // Tipografía secundaria de la página             
 });
 
-const Typography = mongoose.model('Typography', TypographySchema);
+const Tipografia = mongoose.model('Tipografia', TipografiaSchema);
 
-module.exports = Typography;
+module.exports = Tipografia;

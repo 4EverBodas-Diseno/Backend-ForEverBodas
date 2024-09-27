@@ -1,11 +1,11 @@
-// src/entities/typography/typography.routes.js
+// src/entities/tipografia/tipografia.routes.js
 const express = require('express');
 const {
-  createTypography,
-  getAllTypographies,
-  getTypographyById,
-  updateTypography,
-  deleteTypography
+  createTipografia,
+  getAllTipografias,
+  getTipografiaById,
+  updateTipografia,
+  deleteTipografia
 } = require('./tipografia.controller');
 
 const router = express.Router();
@@ -13,11 +13,11 @@ const router = express.Router();
 // Crear una nueva tipografía
 /**
  * @openapi
- * /typographies:
+ * /tipografias:
  *   post:
  *     summary: Crea una nueva tipografía
  *     tags:
- *       - Typographies
+ *       - Tipografías
  *     requestBody:
  *       required: true
  *       content:
@@ -25,15 +25,15 @@ const router = express.Router();
  *           schema:
  *             type: object
  *             properties:
- *               TypographyID:
+ *               TipografiaID:
  *                 type: string
  *                 description: ID único de la tipografía
  *               Front:
  *                 type: string
- *                 description: Typography principal de la página
+ *                 description: Tipografía principal de la página
  *               FrontURL:
  *                 type: string
- *                 description: Typography secundaria de la página
+ *                 description: Tipografía secundaria de la página
  *     responses:
  *       201:
  *         description: Tipografía creada con éxito
@@ -46,20 +46,20 @@ const router = express.Router();
  *                   type: string
  *                   description: Mensaje de éxito
  *                 data:
- *                   $ref: '#/components/schemas/Typography'
+ *                   $ref: '#/components/schemas/Tipografia'
  *       400:
  *         description: Error en la solicitud
  */
-router.post('/', createTypography);
+router.post('/', createTipografia);
 
 // Obtener todas las tipografías
 /**
  * @openapi
- * /typographies:
+ * /tipografias:
  *   get:
  *     summary: Obtiene todas las tipografías
  *     tags:
- *       - Typographies
+ *       - Tipografías
  *     responses:
  *       200:
  *         description: Lista de tipografías
@@ -71,22 +71,22 @@ router.post('/', createTypography);
  *                 data:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/Typography'
+ *                     $ref: '#/components/schemas/Tipografia'
  *       500:
  *         description: Error del servidor
  */
-router.get('/', getAllTypographies);
+router.get('/', getAllTipografias);
 
 // Obtener una tipografía por ID
 /**
  * @openapi
- * /typographies/{TypographyID}:
+ * /tipografias/{TipografiaID}:
  *   get:
  *     summary: Obtiene una tipografía por ID
  *     tags:
- *       - Typographies
+ *       - Tipografías
  *     parameters:
- *       - name: TypographyID
+ *       - name: TipografiaID
  *         in: path
  *         required: true
  *         description: ID de la tipografía
@@ -98,24 +98,24 @@ router.get('/', getAllTypographies);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Typography'
+ *               $ref: '#/components/schemas/Tipografia'
  *       404:
  *         description: Tipografía no encontrada
  *       500:
  *         description: Error del servidor
  */
-router.get('/:TypographyID', getTypographyById);
+router.get('/:TipografiaID', getTipografiaById);
 
 // Actualizar una tipografía
 /**
  * @openapi
- * /typographies/{TypographyID}:
+ * /tipografias/{TipografiaID}:
  *   put:
  *     summary: Actualiza una tipografía
  *     tags:
- *       - Typographies
+ *       - Tipografías
  *     parameters:
- *       - name: TypographyID
+ *       - name: TipografiaID
  *         in: path
  *         required: true
  *         description: ID de la tipografía
@@ -130,10 +130,10 @@ router.get('/:TypographyID', getTypographyById);
  *             properties:
  *               Front:
  *                 type: string
- *                 description: Typography principal de la página
+ *                 description: Tipografía principal de la página
  *               FrontURL:
  *                 type: string
- *                 description: Typography secundaria de la página
+ *                 description: Tipografía secundaria de la página
  *     responses:
  *       200:
  *         description: Tipografía actualizada con éxito
@@ -145,7 +145,7 @@ router.get('/:TypographyID', getTypographyById);
  *                 message:
  *                   type: string
  *                 data:
- *                   $ref: '#/components/schemas/Typography'
+ *                   $ref: '#/components/schemas/Tipografia'
  *       400:
  *         description: Error en la solicitud
  *       404:
@@ -153,18 +153,18 @@ router.get('/:TypographyID', getTypographyById);
  *       500:
  *         description: Error del servidor
  */
-router.put('/:TypographyID', updateTypography);
+router.put('/:TipografiaID', updateTipografia);
 
 // Eliminar una tipografía
 /**
  * @openapi
- * /typographies/{TypographyID}:
+ * /tipografias/{TipografiaID}:
  *   delete:
  *     summary: Elimina una tipografía
  *     tags:
- *       - Typographies
+ *       - Tipografías
  *     parameters:
- *       - name: TypographyID
+ *       - name: TipografiaID
  *         in: path
  *         required: true
  *         description: ID de la tipografía
@@ -186,6 +186,6 @@ router.put('/:TypographyID', updateTypography);
  *       500:
  *         description: Error del servidor
  */
-router.delete('/:TypographyID', deleteTypography);
+router.delete('/:TipografiaID', deleteTipografia);
 
 module.exports = router;

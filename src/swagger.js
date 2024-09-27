@@ -18,18 +18,17 @@ const swaggerOptions = {
       }
     ]
   },
-  apis: ['./src/entities/user/user.routes.js',
-        './src/entities/profile/profile.routes.js', 
-        './src/entities/guest/guest.routes.js', 
-        './src/entities/asistencia/asistencia.routes.js',
-        './src/entities/notification/notification.routes.js',
-        './src/entities/color/color.routes.js',
-        './src/entities/tipografia/tipografia.routes.js',
-        './src/entities/webpage/webpage.routes.js',
-        './src/entities/wedding/wedding.routes.js',
-        './src/entities/wellwish/wellwish.routes.js'
-        
-
+  apis: [
+    './src/entities/user/user.routes.js',
+    './src/entities/profile/profile.routes.js', 
+    './src/entities/guest/guest.routes.js', 
+    './src/entities/asistencia/asistencia.routes.js',
+    './src/entities/notification/notification.routes.js',
+    './src/entities/color/color.routes.js',
+    './src/entities/tipografia/tipografia.routes.js', // Usando 'tipografia' aquí
+    './src/entities/webpage/webpage.routes.js',
+    './src/entities/wedding/wedding.routes.js',
+    './src/entities/wellwish/wellwish.routes.js'
   ] // Apunta al archivo correcto de las rutas
 };
 
