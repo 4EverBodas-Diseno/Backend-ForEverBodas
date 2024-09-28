@@ -47,7 +47,7 @@ const getAllGuests = async (req, res) => {
 // Obtener un Guest por GuestID
 const getGuestById = async (req, res) => {
   try {
-    const guest = await Guest.findOne({ GuestID: req.params.id }); // Busca por GuestID
+    const guest = await Guest.findOne({ GuestID: req.params.GuestID }); // Busca por GuestID
     if (!guest) return res.status(404).json({ message: 'Guest not found' });
 
     res.status(200).json(guest);
@@ -59,7 +59,7 @@ const getGuestById = async (req, res) => {
 // Actualizar un Guest
 const updateGuest = async (req, res) => {
   try {
-    const updatedGuest = await Guest.findOneAndUpdate({ GuestID: req.params.id }, req.body, { new: true }); // Busca por GuestID
+    const updatedGuest = await Guest.findOneAndUpdate({ GuestID: req.params.GuestID }, req.body, { new: true }); // Busca por GuestID
     if (!updatedGuest) return res.status(404).json({ message: 'Guest not found' });
 
     // Recalcular totales solo si se cambió el estado de confirmación
@@ -79,9 +79,9 @@ const updateGuest = async (req, res) => {
 
 // Obtener todos los Guests relacionados a un UserID
 const getGuestsByUserID = async (req, res) => {
-  const { userID } = req.params;
+  const { UserID } = req.params;
   try {
-    const guests = await Guest.find({ userID });
+    const guests = await Guest.find({ UserID });
     res.status(200).json(guests);
   } catch (error) {
     res.status(500).json({ message: 'Error al obtener los Guests: ' + error.message });
@@ -96,7 +96,7 @@ module.exports = {
 // Eliminar un Guest
 const deleteGuest = async (req, res) => {
   try {
-    const guest = await Guest.findOneAndDelete({ GuestID: req.params.id }); // Busca por GuestID
+    const guest = await Guest.findOneAndDelete({ GuestID: req.params.GuestID }); // Busca por GuestID
     if (!guest) return res.status(404).json({ message: 'Guest not found' });
 
     // Obtener el total de invitados y confirmados después de eliminar
