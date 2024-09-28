@@ -8,6 +8,7 @@ const profileSchema = new mongoose.Schema(
     Telefono: { type: String },
     Direccion: { type: String },
     FechaNacimiento: { type: Date },
+    completado : { type: Boolean, default: false }
   });
 
 const Profile = mongoose.model('Profile', profileSchema);

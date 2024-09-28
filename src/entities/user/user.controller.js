@@ -104,6 +104,7 @@ const loginUser = async (req, res) => {
       Nombre: user.Nombre,
       Apellido: user.Apellido,
       FechaRegistro: user.FechaRegistro,
+      Completado: user.Completado, // Asegúrate de incluir el atributo Completado
       message: 'Login exitoso',
     });
   } catch (error) {
