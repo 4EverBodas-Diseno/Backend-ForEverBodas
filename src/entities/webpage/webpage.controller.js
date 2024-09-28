@@ -32,7 +32,7 @@ const getAllWebPages = async (req, res) => {
 // Obtener una WebPage por WebPageID
 const getWebPageById = async (req, res) => {
   try {
-    const webpage = await WebPage.findOne({ WebPageID: req.params.id });
+    const webpage = await WebPage.findOne({ WebPageID: req.params.WebPageID });
     if (!webpage) return res.status(404).json({ message: 'WebPage no encontrada.' });
     res.status(200).json(webpage);
   } catch (error) {
@@ -73,10 +73,14 @@ const getAllTypographies = async (req, res) => {
   }
 };
 
-// Actualizar una WebPage
+// Actualizar una WebPage parcialmente por WebPageID
 const updateWebPage = async (req, res) => {
   try {
-    const webpage = await WebPage.findOneAndUpdate({ WebPageID: req.params.id }, req.body, { new: true });
+    const webpage = await WebPage.findOneAndUpdate(
+      { WebPageID: req.params.WebPageID }, // Búsqueda por WebPageID
+      { $set: req.body }, // Usar $set para actualizar solo los campos proporcionados
+      { new: true, runValidators: true } // Retorna el documento actualizado y valida los cambios
+    );
     if (!webpage) return res.status(404).json({ message: 'WebPage no encontrada.' });
     res.status(200).json(webpage);
   } catch (error) {
@@ -84,10 +88,11 @@ const updateWebPage = async (req, res) => {
   }
 };
 
+
 // Eliminar una WebPage
 const deleteWebPage = async (req, res) => {
   try {
-    const webpage = await WebPage.findOneAndDelete({ WebPageID: req.params.id });
+    const webpage = await WebPage.findOneAndDelete({ WebPageID: req.params.WebPageID });
     if (!webpage) return res.status(404).json({ message: 'WebPage no encontrada.' });
     res.status(200).json({ message: 'WebPage eliminada correctamente.' });
   } catch (error) {

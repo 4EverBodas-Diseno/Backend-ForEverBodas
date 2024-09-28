@@ -210,8 +210,8 @@ router.get('/wedding/:WeddingID', getWebPageByWeddingID);
 /**
  * @openapi
  * /webpages/{WebPageID}:
- *   put:
- *     summary: Updates a web page
+ *   patch:
+ *     summary: Updates a web page partially
  *     tags:
  *       - WebPages
  *     parameters:
@@ -243,7 +243,7 @@ router.get('/wedding/:WeddingID', getWebPageByWeddingID);
  *                     type: string
  *     responses:
  *       200:
- *         description: Web page updated
+ *         description: Web page updated successfully
  *         content:
  *           application/json:
  *             schema:
@@ -273,7 +273,8 @@ router.get('/wedding/:WeddingID', getWebPageByWeddingID);
  *       500:
  *         description: Server error
  */
-router.put('/:WebPageID', updateWebPage); // Update a web page by WebPageID
+router.patch('/:WebPageID', updateWebPage); // Update a web page partially by WebPageID
+
 
 /**
  * @openapi

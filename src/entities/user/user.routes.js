@@ -169,11 +169,15 @@ router.post('/', createUser);
  *                 FechaRegistro:
  *                   type: string
  *                   format: date-time
+ *                 Completado:
+ *                   type: boolean
+ *                   description: Estado de si el perfil está completado
  *       400:
  *         description: Error en la solicitud
  *       401:
  *         description: Credenciales inválidas
  */
+
 router.post('/login', loginUser);
 
 // Actualizar un usuario
