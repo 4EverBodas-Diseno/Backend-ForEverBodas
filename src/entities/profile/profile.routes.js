@@ -15,7 +15,7 @@ const router = express.Router();
 router.post('/', createProfile);
 router.get('/', getAllProfiles);
 router.get('/:profileID', getProfileById);
-router.get('/user/:userID', getProfileByUserId); // Nueva ruta para obtener perfil por UserID
+router.get('/user/:UserID', getProfileByUserId); // Nueva ruta para obtener perfil por UserID
 router.put('/:profileID', updateProfile);
 router.patch('/:profileID', updateProfilePartial);
 router.delete('/:profileID', deleteProfile);
@@ -147,7 +147,7 @@ router.delete('/:profileID', deleteProfile);
  *     tags:
  *       - Profiles
  *     parameters:
- *       - name: userID
+ *       - name: UserID
  *         in: path
  *         required: true
  *         description: ID del usuario
