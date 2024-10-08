@@ -16,7 +16,7 @@ const guestSchema = new mongoose.Schema({
 
 // Definir el esquema de usuario con el arreglo de invitados
 const userSchema = new mongoose.Schema({
-  UserID: { type: String, required: true, unique: true },
+  UserID: { type: String, ref: 'User',required: true },
   Guests: [guestSchema] // Arreglo de objetos invitados
 });
 
