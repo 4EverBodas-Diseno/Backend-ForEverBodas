@@ -1,9 +1,5 @@
 // src/entities/guest/guest.controller.js
 const Guest = require('./guest.model');
-// Importar el modelo User
-const User = require('../user/user.model'); // Ajusta la ruta según sea necesario
-
-
 
 // Crear un nuevo Guest
 const createGuest = async (req, res) => {
@@ -29,29 +25,24 @@ module.exports = {
   createGuest,
 };
 
-
-// Obtener todos los Guests agrupados por UserID
+// Obtener todos los Guests
 const getAllGuests = async (req, res) => {
   try {
-    const usersWithGuests = await User.find().select('UserID');
+    const guests = await Guest.find();
 
-    // Calcular el total de invitados y confirmados en todos los usuarios
-    let totalInvitados = 0;
-    let totalConfirmados = 0;
-
-    usersWithGuests.forEach(user => {
-      totalInvitados += user.Guests.length;
-      totalConfirmados += user.Guests.filter(guest => guest.Confirmado).length;
-    });
+    // Obtener el total de invitados y confirmados
+    const totalInvitados = await Guest.countDocuments();
+    const totalConfirmados = await Guest.countDocuments({ Confirmado: true });
 
     res.status(200).json({
-      usersWithGuests,
+      guests,
+      totalInvitados,
+      totalConfirmados,
     });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
-
 
 // Obtener un Guest por GuestID
 const getGuestById = async (req, res) => {
