@@ -61,7 +61,7 @@ const updateProfile = async (req, res) => {
       req.body,
       { new: true }
     );
-    if (!profile) return res.status(404).json({ message: 'Profile not found' });
+    if (!profile) return res.status(404).json({ message: error.message });
     res.status(200).json(profile);
   } catch (error) {
     res.status(400).json({ message: error.message });
