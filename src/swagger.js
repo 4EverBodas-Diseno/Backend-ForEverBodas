@@ -15,6 +15,10 @@ const swaggerOptions = {
       {
         url: 'https://backend-foreverbodas.onrender.com/api',  
         description: 'Servidor en producción'
+      },
+      {
+        url: 'http://localhost:5000/api',  // Agrega esta línea para localhost
+        description: 'Servidor en desarrollo (localhost)'
       }
     ]
   },

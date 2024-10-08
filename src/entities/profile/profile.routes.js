@@ -236,6 +236,7 @@ router.delete('/:profileID', deleteProfile);
  *         description: Error del servidor
  */
 
+
 /**
  * @openapi
  * /profiles/{profileID}:
@@ -296,6 +297,7 @@ router.delete('/:profileID', deleteProfile);
  *       500:
  *         description: Error del servidor
  */
+
 
 
 /**

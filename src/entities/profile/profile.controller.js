@@ -61,7 +61,7 @@ const updateProfile = async (req, res) => {
       req.body,
       { new: true }
     );
-    if (!profile) return res.status(404).json({ message: "Profile not found" });
+    if (!profile) return res.status(404).json({ message: error.message });
     res.status(200).json(profile);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -72,7 +72,7 @@ const updateProfile = async (req, res) => {
 const updateProfilePartial = async (req, res) => {
   try {
     const profile = await Profile.findOneAndUpdate(
-      { profileID: req.params.id },
+      { profileID: req.params.profileID },
       req.body,
       { new: true }
     );
@@ -86,7 +86,7 @@ const updateProfilePartial = async (req, res) => {
 // Eliminar un perfil
 const deleteProfile = async (req, res) => {
   try {
-    const profile = await Profile.findOneAndDelete({ profileID: req.params.id });
+    const profile = await Profile.findOneAndDelete({ profileID: req.params.profileID });
     if (!profile) return res.status(404).json({ message: 'Profile not found' });
     res.status(200).json({ message: 'Profile deleted' });
   } catch (error) {
