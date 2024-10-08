@@ -101,36 +101,42 @@ router.get('/guests/user/:UserID', getGuestsByUserID);
  */
 router.post('/', createGuest);
 
-// Obtener todos los Guests
+// Obtener todos los Guests agrupados por UserID
 /**
  * @openapi
  * /guests:
  *   get:
- *     summary: Obtiene todos los invitados
+ *     summary: Obtiene todos los invitados agrupados por UserID
  *     tags:
  *       - Guests
  *     responses:
  *       200:
- *         description: Lista de invitados con el total de invitados y confirmados
+ *         description: Lista de invitados agrupados por UserID con el total de invitados y confirmados
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 guests:
- *                   type: array
- *                   items:
- *                     $ref: '#/components/schemas/Guest'
- *                 totalInvitados:
- *                   type: number
- *                   description: Total de invitados
- *                 totalConfirmados:
- *                   type: number
- *                   description: Total de invitados confirmados
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   _id:
+ *                     type: string
+ *                     description: El UserID al que pertenecen los invitados
+ *                   guests:
+ *                     type: array
+ *                     items:
+ *                       $ref: '#/components/schemas/Guest'
+ *                   totalInvitados:
+ *                     type: number
+ *                     description: Total de invitados por UserID
+ *                   totalConfirmados:
+ *                     type: number
+ *                     description: Total de invitados confirmados por UserID
  *       500:
  *         description: Error del servidor
  */
 router.get('/', getAllGuests);
+
 
 
 // Obtener un Guest por GuestID

@@ -25,24 +25,29 @@ module.exports = {
   createGuest,
 };
 
-// Obtener todos los Guests
+// Obtener todos los Guests agrupados por UserID
 const getAllGuests = async (req, res) => {
   try {
-    const guests = await Guest.find();
+    // Agrupar los guests por UserID
+    const guests = await Guest.aggregate([
+      {
+        $group: {
+          _id: "$UserID", // Agrupar por UserID (cadena de texto)
+          guests: { $push: "$$ROOT" }, // Agrupar los datos de invitados por UserID
+          totalInvitados: { $sum: 1 }, // Contar el total de invitados por UserID
+          totalConfirmados: {
+            $sum: { $cond: [{ $eq: ["$Confirmado", true] }, 1, 0] }, // Contar confirmados por UserID
+          },
+        },
+      },
+    ]);
 
-    // Obtener el total de invitados y confirmados
-    const totalInvitados = await Guest.countDocuments();
-    const totalConfirmados = await Guest.countDocuments({ Confirmado: true });
-
-    res.status(200).json({
-      guests,
-      totalInvitados,
-      totalConfirmados,
-    });
+    res.status(200).json(guests);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 // Obtener un Guest por GuestID
 const getGuestById = async (req, res) => {
