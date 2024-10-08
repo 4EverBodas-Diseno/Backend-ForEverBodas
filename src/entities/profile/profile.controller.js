@@ -57,11 +57,11 @@ const getProfileByUserId = async (req, res) => {
 const updateProfile = async (req, res) => {
   try {
     const profile = await Profile.findOneAndUpdate(
-      { profileID: req.params.id },
+      { profileID: req.params.profileID },  // Cambié req.params.id por req.params.profileID
       req.body,
       { new: true }
     );
-    if (!profile) return res.status(404).json({ message: error.message });
+    if (!profile) return res.status(404).json({ message: "Profile not found" });
     res.status(200).json(profile);
   } catch (error) {
     res.status(400).json({ message: error.message });
