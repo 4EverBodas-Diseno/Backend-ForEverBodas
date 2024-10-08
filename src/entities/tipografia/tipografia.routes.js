@@ -46,7 +46,17 @@ const router = express.Router();
  *                   type: string
  *                   description: Mensaje de éxito
  *                 data:
- *                   $ref: '#/components/schemas/Tipografia'
+ *                   type: object
+ *                   properties:
+ *                     TipografiaID:
+ *                       type: string
+ *                       description: ID único de la tipografía
+ *                     Front:
+ *                       type: string
+ *                       description: Tipografía principal de la página
+ *                     FrontURL:
+ *                       type: string
+ *                       description: Tipografía secundaria de la página
  *       400:
  *         description: Error en la solicitud
  */
@@ -71,7 +81,17 @@ router.post('/', createTipografia);
  *                 data:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/Tipografia'
+ *                     type: object
+ *                     properties:
+ *                       TipografiaID:
+ *                         type: string
+ *                         description: ID único de la tipografía
+ *                       Front:
+ *                         type: string
+ *                         description: Tipografía principal de la página
+ *                       FrontURL:
+ *                         type: string
+ *                         description: Tipografía secundaria de la página
  *       500:
  *         description: Error del servidor
  */
@@ -98,7 +118,17 @@ router.get('/', getAllTipografias);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Tipografia'
+ *               type: object
+ *               properties:
+ *                 TipografiaID:
+ *                   type: string
+ *                   description: ID único de la tipografía
+ *                 Front:
+ *                   type: string
+ *                   description: Tipografía principal de la página
+ *                 FrontURL:
+ *                   type: string
+ *                   description: Tipografía secundaria de la página
  *       404:
  *         description: Tipografía no encontrada
  *       500:
@@ -145,7 +175,17 @@ router.get('/:TipografiaID', getTipografiaById);
  *                 message:
  *                   type: string
  *                 data:
- *                   $ref: '#/components/schemas/Tipografia'
+ *                   type: object
+ *                   properties:
+ *                     TipografiaID:
+ *                       type: string
+ *                       description: ID único de la tipografía
+ *                     Front:
+ *                       type: string
+ *                       description: Tipografía principal de la página
+ *                     FrontURL:
+ *                       type: string
+ *                       description: Tipografía secundaria de la página
  *       400:
  *         description: Error en la solicitud
  *       404:

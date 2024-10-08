@@ -20,11 +20,13 @@ exports.createTipografia = async (req, res) => {
 exports.getAllTipografias = async (req, res) => {
   try {
     const tipografias = await Tipografia.find();
-    res.status(200).json({ data: tipografias });
+    res.status(200).json({tipografias});
   } catch (error) {
     res.status(500).json({ message: 'Error al obtener las tipografías', error: error.message });
   }
 };
+
+
 
 // Obtener una tipografía por TipografiaID
 exports.getTipografiaById = async (req, res) => {

@@ -20,7 +20,7 @@ exports.createColor = async (req, res) => {
 exports.getAllColors = async (req, res) => {
   try {
     const colors = await Color.find();
-    res.status(200).json({ data: colors });
+    res.status(200).json({colors});
   } catch (error) {
     res.status(500).json({ message: 'Error al obtener los colores', error: error.message });
   }

@@ -43,7 +43,20 @@ const router = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Color'
+ *               type: object
+ *               properties:
+ *                 ColorID:
+ *                   type: string
+ *                   description: Identificador único del esquema de color
+ *                 colorPrimario:
+ *                   type: string
+ *                   description: Color principal de la página
+ *                 colorSecundario:
+ *                   type: string
+ *                   description: Color secundario de la página
+ *                 colorLetra:
+ *                   type: string
+ *                   description: Color de la tipografía
  *       400:
  *         description: Error en la solicitud
  */
@@ -68,7 +81,20 @@ router.post('/', createColor);
  *                 colors:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/Color'
+ *                     type: object
+ *                     properties:
+ *                       ColorID:
+ *                         type: string
+ *                         description: Identificador único del esquema de color
+ *                       colorPrimario:
+ *                         type: string
+ *                         description: Color principal de la página
+ *                       colorSecundario:
+ *                         type: string
+ *                         description: Color secundario de la página
+ *                       colorLetra:
+ *                         type: string
+ *                         description: Color de la tipografía
  *       500:
  *         description: Error del servidor
  */
@@ -95,7 +121,20 @@ router.get('/', getAllColors);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Color'
+ *               type: object
+ *               properties:
+ *                 ColorID:
+ *                   type: string
+ *                   description: Identificador único del esquema de color
+ *                 colorPrimario:
+ *                   type: string
+ *                   description: Color principal de la página
+ *                 colorSecundario:
+ *                   type: string
+ *                   description: Color secundario de la página
+ *                 colorLetra:
+ *                   type: string
+ *                   description: Color de la tipografía
  *       404:
  *         description: Esquema de color no encontrado
  *       500:
@@ -140,7 +179,20 @@ router.get('/:id', getColorById);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Color'
+ *               type: object
+ *               properties:
+ *                 ColorID:
+ *                   type: string
+ *                   description: Identificador único del esquema de color
+ *                 colorPrimario:
+ *                   type: string
+ *                   description: Color principal de la página
+ *                 colorSecundario:
+ *                   type: string
+ *                   description: Color secundario de la página
+ *                 colorLetra:
+ *                   type: string
+ *                   description: Color de la tipografía
  *       400:
  *         description: Error en la solicitud
  *       404:
