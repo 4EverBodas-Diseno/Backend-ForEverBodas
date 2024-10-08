@@ -76,26 +76,24 @@ router.post('/', createTipografia);
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 data:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       TipografiaID:
- *                         type: string
- *                         description: ID único de la tipografía
- *                       Front:
- *                         type: string
- *                         description: Tipografía principal de la página
- *                       FrontURL:
- *                         type: string
- *                         description: Tipografía secundaria de la página
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   TipografiaID:
+ *                     type: string
+ *                     description: ID único de la tipografía
+ *                   Front:
+ *                     type: string
+ *                     description: Tipografía principal de la página
+ *                   FrontURL:
+ *                     type: string
+ *                     description: Tipografía secundaria de la página
  *       500:
  *         description: Error del servidor
  */
 router.get('/', getAllTipografias);
+
 
 // Obtener una tipografía por ID
 /**

@@ -76,29 +76,27 @@ router.post('/', createColor);
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 colors:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       ColorID:
- *                         type: string
- *                         description: Identificador único del esquema de color
- *                       colorPrimario:
- *                         type: string
- *                         description: Color principal de la página
- *                       colorSecundario:
- *                         type: string
- *                         description: Color secundario de la página
- *                       colorLetra:
- *                         type: string
- *                         description: Color de la tipografía
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   ColorID:
+ *                     type: string
+ *                     description: Identificador único del esquema de color
+ *                   colorPrimario:
+ *                     type: string
+ *                     description: Color principal de la página
+ *                   colorSecundario:
+ *                     type: string
+ *                     description: Color secundario de la página
+ *                   colorLetra:
+ *                     type: string
+ *                     description: Color de la tipografía
  *       500:
  *         description: Error del servidor
  */
 router.get('/', getAllColors);
+
 
 // Obtener un Color por ID
 /**
