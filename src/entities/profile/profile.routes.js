@@ -266,6 +266,8 @@ router.delete('/:profileID', deleteProfile);
  *               FechaNacimiento:
  *                 type: string
  *                 format: date
+ *               completado:
+ *                 type: boolean
  *     responses:
  *       200:
  *         description: Perfil actualizado parcialmente
@@ -285,6 +287,8 @@ router.delete('/:profileID', deleteProfile);
  *                 FechaNacimiento:
  *                   type: string
  *                   format: date
+ *                 completado:
+ *                   type: boolean
  *       400:
  *         description: Error en la solicitud
  *       404:
@@ -292,6 +296,7 @@ router.delete('/:profileID', deleteProfile);
  *       500:
  *         description: Error del servidor
  */
+
 
 /**
  * @openapi

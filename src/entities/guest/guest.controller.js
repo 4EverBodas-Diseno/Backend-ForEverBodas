@@ -25,17 +25,22 @@ module.exports = {
   createGuest,
 };
 
-// Obtener todos los Guests
+// Obtener todos los Guests agrupados por UserID
 const getAllGuests = async (req, res) => {
   try {
-    const guests = await Guest.find();
+    const usersWithGuests = await User.find().select('UserID Guests');
 
-    // Obtener el total de invitados y confirmados
-    const totalInvitados = await Guest.countDocuments();
-    const totalConfirmados = await Guest.countDocuments({ Confirmado: true });
+    // Calcular el total de invitados y confirmados en todos los usuarios
+    let totalInvitados = 0;
+    let totalConfirmados = 0;
+
+    usersWithGuests.forEach(user => {
+      totalInvitados += user.Guests.length;
+      totalConfirmados += user.Guests.filter(guest => guest.Confirmado).length;
+    });
 
     res.status(200).json({
-      guests,
+      usersWithGuests,
       totalInvitados,
       totalConfirmados,
     });
@@ -43,6 +48,7 @@ const getAllGuests = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 // Obtener un Guest por GuestID
 const getGuestById = async (req, res) => {
