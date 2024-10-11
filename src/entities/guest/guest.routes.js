@@ -89,7 +89,28 @@ router.get('/guests/user/:UserID', getGuestsByUserID);
  *               type: object
  *               properties:
  *                 guest:
- *                   $ref: '#/components/schemas/Guest'
+ *                   type: object
+ *                   properties:
+ *                     GuestID:
+ *                       type: string
+ *                     UserID:
+ *                       type: string
+ *                     Nombre:
+ *                       type: string
+ *                     Correo:
+ *                       type: string
+ *                     EstadoInvitacion:
+ *                       type: string
+ *                     Confirmado:
+ *                       type: boolean
+ *                     numMaxAcompanantes:
+ *                       type: number
+ *                     numAcompanantes:
+ *                       type: number
+ *                     Telefono:
+ *                       type: string
+ *                     URL:
+ *                       type: string
  *                 totalInvitados:
  *                   type: number
  *                   description: Total de invitados
@@ -99,9 +120,63 @@ router.get('/guests/user/:UserID', getGuestsByUserID);
  *       400:
  *         description: Error en la solicitud
  */
+
+
+
 router.post('/', createGuest);
 
-// Obtener todos los Guests agrupados por UserID
+/**
+ * @openapi
+ * /guests/user/{UserID}:
+ *   get:
+ *     summary: Obtiene todos los invitados relacionados a un UserID
+ *     tags:
+ *       - Guests
+ *     parameters:
+ *       - name: UserID
+ *         in: path
+ *         required: true
+ *         description: ID del usuario relacionado con los invitados
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Lista de invitados relacionados a un usuario
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   GuestID:
+ *                     type: string
+ *                   UserID:
+ *                     type: string
+ *                   Nombre:
+ *                     type: string
+ *                   Correo:
+ *                     type: string
+ *                   EstadoInvitacion:
+ *                     type: string
+ *                   Confirmado:
+ *                     type: boolean
+ *                   numMaxAcompanantes:
+ *                     type: number
+ *                   numAcompanantes:
+ *                     type: number
+ *                   Telefono:
+ *                     type: string
+ *                   URL:
+ *                     type: string
+ *       500:
+ *         description: Error al obtener los invitados
+ */
+
+router.get('/', getAllGuests);
+
+
+
 /**
  * @openapi
  * /guests:
@@ -125,7 +200,28 @@ router.post('/', createGuest);
  *                   guests:
  *                     type: array
  *                     items:
- *                       $ref: '#/components/schemas/Guest'
+ *                       type: object
+ *                       properties:
+ *                         GuestID:
+ *                           type: string
+ *                         UserID:
+ *                           type: string
+ *                         Nombre:
+ *                           type: string
+ *                         Correo:
+ *                           type: string
+ *                         EstadoInvitacion:
+ *                           type: string
+ *                         Confirmado:
+ *                           type: boolean
+ *                         numMaxAcompanantes:
+ *                           type: number
+ *                         numAcompanantes:
+ *                           type: number
+ *                         Telefono:
+ *                           type: string
+ *                         URL:
+ *                           type: string
  *                   totalInvitados:
  *                     type: number
  *                     description: Total de invitados por UserID
@@ -135,37 +231,7 @@ router.post('/', createGuest);
  *       500:
  *         description: Error del servidor
  */
-router.get('/', getAllGuests);
 
-
-
-// Obtener un Guest por GuestID
-/**
- * @openapi
- * /guests/{GuestID}:
- *   get:
- *     summary: Obtiene un invitado por GuestID
- *     tags:
- *       - Guests
- *     parameters:
- *       - name: GuestID
- *         in: path
- *         required: true
- *         description: GuestID del invitado
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Invitado encontrado
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Guest'
- *       404:
- *         description: Invitado no encontrado
- *       500:
- *         description: Error del servidor
- */
 router.get('/:GuestID', getGuestById);
 
 // Actualizar un Guest por GuestID
