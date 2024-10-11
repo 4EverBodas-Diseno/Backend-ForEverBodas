@@ -34,7 +34,28 @@ const router = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Guest'
+ *                 type: object
+ *                 properties:
+ *                   GuestID:
+ *                     type: string
+ *                   UserID:
+ *                     type: string
+ *                   Nombre:
+ *                     type: string
+ *                   Correo:
+ *                     type: string
+ *                   EstadoInvitacion:
+ *                     type: string
+ *                   Confirmado:
+ *                     type: boolean
+ *                   numMaxAcompanantes:
+ *                     type: number
+ *                   numAcompanantes:
+ *                     type: number
+ *                   Telefono:
+ *                     type: string
+ *                   URL:
+ *                     type: string
  *       500:
  *         description: Error al obtener los invitados
  */
@@ -127,58 +148,6 @@ router.post('/', createGuest);
 
 /**
  * @openapi
- * /guests/user/{UserID}:
- *   get:
- *     summary: Obtiene todos los invitados relacionados a un UserID
- *     tags:
- *       - Guests
- *     parameters:
- *       - name: UserID
- *         in: path
- *         required: true
- *         description: ID del usuario relacionado con los invitados
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Lista de invitados relacionados a un usuario
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   GuestID:
- *                     type: string
- *                   UserID:
- *                     type: string
- *                   Nombre:
- *                     type: string
- *                   Correo:
- *                     type: string
- *                   EstadoInvitacion:
- *                     type: string
- *                   Confirmado:
- *                     type: boolean
- *                   numMaxAcompanantes:
- *                     type: number
- *                   numAcompanantes:
- *                     type: number
- *                   Telefono:
- *                     type: string
- *                   URL:
- *                     type: string
- *       500:
- *         description: Error al obtener los invitados
- */
-
-router.get('/', getAllGuests);
-
-
-
-/**
- * @openapi
  * /guests:
  *   get:
  *     summary: Obtiene todos los invitados agrupados por UserID
@@ -231,6 +200,60 @@ router.get('/', getAllGuests);
  *       500:
  *         description: Error del servidor
  */
+
+router.get('/', getAllGuests);
+
+
+/**
+ * @openapi
+ * /guests/{GuestID}:
+ *   get:
+ *     summary: Obtiene un invitado por GuestID
+ *     tags:
+ *       - Guests
+ *     parameters:
+ *       - name: GuestID
+ *         in: path
+ *         required: true
+ *         description: GuestID del invitado
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Invitado encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 GuestID:
+ *                   type: string
+ *                 WebPageID:
+ *                   type: string
+ *                 UserID:
+ *                   type: string
+ *                 Nombre:
+ *                   type: string
+ *                 Correo:
+ *                   type: string
+ *                 EstadoInvitacion:
+ *                   type: string
+ *                 Confirmado:
+ *                   type: boolean
+ *                 numMaxAcompanantes:
+ *                   type: number
+ *                 numAcompanantes:
+ *                   type: number
+ *                 Telefono:
+ *                   type: string
+ *                 URL:
+ *                   type: string
+ *       404:
+ *         description: Invitado no encontrado
+ *       500:
+ *         description: Error del servidor
+ */
+
 
 router.get('/:GuestID', getGuestById);
 
