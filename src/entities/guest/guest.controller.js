@@ -21,10 +21,6 @@ const createGuest = async (req, res) => {
   }
 };
 
-module.exports = {
-  createGuest,
-};
-
 // Obtener todos los Guests agrupados por UserID
 const getAllGuests = async (req, res) => {
   try {
@@ -93,9 +89,6 @@ const getGuestsByUserID = async (req, res) => {
   }
 };
 
-module.exports = {
-  getGuestsByUserID,
-};
 
 
 // Eliminar un Guest
