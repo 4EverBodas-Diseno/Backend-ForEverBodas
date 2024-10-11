@@ -59,7 +59,7 @@ const router = express.Router();
  *       500:
  *         description: Error al obtener los invitados
  */
-router.get('/guests/user/:UserID', getGuestsByUserID);
+router.get('/user/:UserID', getGuestsByUserID);
 
 // Crear un nuevo Guest
 /**
@@ -141,11 +141,9 @@ router.get('/guests/user/:UserID', getGuestsByUserID);
  *       400:
  *         description: Error en la solicitud
  */
-
-
-
 router.post('/', createGuest);
 
+// Obtener todos los invitados agrupados por UserID
 /**
  * @openapi
  * /guests:
@@ -200,10 +198,9 @@ router.post('/', createGuest);
  *       500:
  *         description: Error del servidor
  */
-
 router.get('/', getAllGuests);
 
-
+// Obtener un invitado por GuestID
 /**
  * @openapi
  * /guests/{GuestID}:
@@ -253,8 +250,6 @@ router.get('/', getAllGuests);
  *       500:
  *         description: Error del servidor
  */
-
-
 router.get('/:GuestID', getGuestById);
 
 // Actualizar un Guest por GuestID
@@ -308,7 +303,28 @@ router.get('/:GuestID', getGuestById);
  *               type: object
  *               properties:
  *                 updatedGuest:
- *                   $ref: '#/components/schemas/Guest'
+ *                   type: object
+ *                   properties:
+ *                     GuestID:
+ *                       type: string
+ *                     UserID:
+ *                       type: string
+ *                     Nombre:
+ *                       type: string
+ *                     Correo:
+ *                       type: string
+ *                     EstadoInvitacion:
+ *                       type: string
+ *                     Confirmado:
+ *                       type: boolean
+ *                     numMaxAcompanantes:
+ *                       type: number
+ *                     numAcompanantes:
+ *                       type: number
+ *                     Telefono:
+ *                       type: string
+ *                     URL:
+ *                       type: string
  *                 totalConfirmados:
  *                   type: number
  *                   description: Total de confirmados tras la actualización
