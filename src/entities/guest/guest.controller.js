@@ -4,12 +4,25 @@ const Guest = require('./guest.model');
 // Crear un nuevo Guest
 const createGuest = async (req, res) => {
   try {
+    const { UserID } = req.body;
+
+    // Verificar si el UserID está presente en la solicitud
+    if (!UserID) {
+      return res.status(400).json({ message: 'UserID es requerido.' });
+    }
+
+    // Verificar si el UserID existe en la base de datos
+    const user = await User.findOne({ UserID });
+    if (!user) {
+      return res.status(404).json({ message: 'Usuario no encontrado.' });
+    }
+
     const guest = new Guest(req.body);
     await guest.save();
 
     // Calcular totalInvitados y totalConfirmados
     const totalInvitados = await Guest.countDocuments();
-    const totalConfirmados = await Guest.countDocuments({ confirmed: true });
+    const totalConfirmados = await Guest.countDocuments({ Confirmado: true });
 
     res.status(201).json({
       guest,

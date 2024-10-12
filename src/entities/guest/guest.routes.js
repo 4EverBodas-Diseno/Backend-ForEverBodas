@@ -61,7 +61,7 @@ const router = express.Router();
  */
 router.get('/user/:UserID', getGuestsByUserID);
 
-// Crear un nuevo Guest
+
 /**
  * @openapi
  * /guests:
@@ -75,10 +75,13 @@ router.get('/user/:UserID', getGuestsByUserID);
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - GuestID
+ *               - UserID  # Añadir UserID como requerido
+ *               - Nombre
+ *               - Correo
  *             properties:
  *               GuestID:
- *                 type: string
- *               WebPageID:
  *                 type: string
  *               UserID:
  *                 type: string
@@ -93,10 +96,8 @@ router.get('/user/:UserID', getGuestsByUserID);
  *                 description: Indica si el invitado ha confirmado su asistencia
  *               numMaxAcompanantes:
  *                 type: number
- *                 description: Número máximo de acompañantes permitidos
  *               numAcompanantes:
  *                 type: number
- *                 description: Número de acompañantes confirmados
  *               Telefono:
  *                 type: string
  *               URL:
@@ -141,6 +142,7 @@ router.get('/user/:UserID', getGuestsByUserID);
  *       400:
  *         description: Error en la solicitud
  */
+
 router.post('/', createGuest);
 
 // Obtener todos los invitados agrupados por UserID
