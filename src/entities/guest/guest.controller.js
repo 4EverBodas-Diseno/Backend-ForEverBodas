@@ -4,18 +4,43 @@ const Guest = require('./guest.model');
 // Crear un nuevo Guest
 const createGuest = async (req, res) => {
   try {
-    const guest = new Guest(req.body);
-    await guest.save();
+    const { UserID, GuestID, Nombre, Correo, EstadoInvitacion, Telefono, URL, Confirmado, numMaxAcompanantes, numAcompanantes } = req.body;
 
-    // Calcular totalInvitados y totalConfirmados
+    // Buscar si ya existe un UserID con invitados asociados
+    const existingGuests = await Guest.find({ UserID });
+
+    if (!existingGuests.length) {
+      return res.status(404).json({ message: `No se encontró ningún invitado relacionado con el UserID: ${UserID}` });
+    }
+
+    // Crear un nuevo invitado con los datos proporcionados
+    const newGuest = new Guest({
+      GuestID,
+      UserID,
+      Nombre,
+      Correo,
+      EstadoInvitacion,
+      Telefono,
+      URL,
+      Confirmado,
+      numMaxAcompanantes,
+      numAcompanantes,
+    });
+
+    // Guardar el nuevo invitado
+    await newGuest.save();
+
+    // Recalcular los totales después de la creación
     const totalInvitados = await Guest.countDocuments();
-    const totalConfirmados = await Guest.countDocuments({ confirmed: true });
+    const totalConfirmados = await Guest.countDocuments({ Confirmado: true });
 
     res.status(201).json({
-      guest,
+      message: "Nuevo invitado creado exitosamente",
+      guest: newGuest,
       totalInvitados,
       totalConfirmados,
     });
+
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
