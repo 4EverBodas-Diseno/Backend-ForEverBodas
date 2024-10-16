@@ -223,8 +223,6 @@ router.get('/', getAllGuests);
  *               properties:
  *                 GuestID:
  *                   type: string
- *                 WebPageID:
- *                   type: string
  *                 UserID:
  *                   type: string
  *                 Nombre:
@@ -272,8 +270,6 @@ router.get('/:GuestID', getGuestById);
  *           schema:
  *             type: object
  *             properties:
- *               WebPageID:
- *                 type: string
  *               UserID:
  *                 type: string
  *               Nombre:
