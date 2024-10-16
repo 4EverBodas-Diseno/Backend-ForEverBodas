@@ -5,21 +5,17 @@ const Guest = require('./guest.model');
 const createGuest = async (req, res) => {
   try {
     const guest = new Guest(req.body);
-
-    // Guardar el nuevo invitado
     await guest.save();
 
-    // Recalcular los totales después de la creación
+    // Calcular totalInvitados y totalConfirmados
     const totalInvitados = await Guest.countDocuments();
-    const totalConfirmados = await Guest.countDocuments({ Confirmado: true });
+    const totalConfirmados = await Guest.countDocuments({ confirmed: true });
 
     res.status(201).json({
-      message: "Nuevo invitado creado exitosamente",
-      guest: newGuest,
+      guest,
       totalInvitados,
       totalConfirmados,
     });
-
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
