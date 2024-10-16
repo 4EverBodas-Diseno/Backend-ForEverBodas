@@ -78,8 +78,6 @@ router.get('/user/:UserID', getGuestsByUserID);
  *             properties:
  *               GuestID:
  *                 type: string
- *               WebPageID:
- *                 type: string
  *               UserID:
  *                 type: string
  *               Nombre:
