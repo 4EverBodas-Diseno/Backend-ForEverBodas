@@ -30,6 +30,22 @@ app.use('/api/weddings', weddingRoutes); // Agregado
 app.use('/api/webpages', webpageRoutes); // Agregado
 app.use('/api/notifications', notificationRoutes); // Agregado
 
+
+//endpoint para la mensajeria por whatsapp por el api de twilio
+/*app.post('/api/sendwhatsapp', (req, res) => {
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const authToken = process.env.TWILIO_AUTH_TOKEN;
+  const client = require('twilio')(accountSid, authToken);
+
+  client.messages
+    .create({
+      from: 'whatsapp:+14155238886',
+      body: req.body.message,
+      to: 'whatsapp:+573204269290'
+    })
+    .then(message => res.send(message.sid));
+});*/
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 module.exports = app;

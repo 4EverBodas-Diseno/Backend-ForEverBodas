@@ -6,6 +6,7 @@ const guestSchema = new mongoose.Schema({
   GuestID: { type: String, required: true, unique: true },
   UserID: { type: String, ref: 'User', required: true },
   Nombre: { type: String, required: true },
+  Apellido: { type: String, required: true },
   Correo: { type: String, required: true },
   EstadoInvitacion: { type: String }, 
   Telefono: { type: String },
