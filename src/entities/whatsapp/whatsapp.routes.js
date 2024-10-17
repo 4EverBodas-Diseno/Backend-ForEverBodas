@@ -1,11 +1,12 @@
 // src/entities/whatsapp/whatsapp.routes.js
+require('dotenv').config();
 const express = require('express');
 const twilio = require('twilio');
 const router = express.Router();
 
-// Configura las credenciales de Twilio
-const accountSid = 'TU_ACCOUNT_SID';
-const authToken = 'TU_AUTH_TOKEN';
+// Configura las credenciales de Twilio desde variables de entorno
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = new twilio(accountSid, authToken);
 
 // Endpoint para manejar mensajes entrantes de WhatsApp (ya configurado)

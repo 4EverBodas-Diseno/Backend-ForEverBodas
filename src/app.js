@@ -36,4 +36,10 @@ app.use('/api/whatsapp', whatsappRoutes); // Ruta para WhatsApp
 // Documentación de la API
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
+// Agrega este código para que la aplicación escuche en el puerto 3000
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en el puerto ${PORT}`);
+});
+
 module.exports = app;
