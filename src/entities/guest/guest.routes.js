@@ -248,12 +248,12 @@ router.get('/', getAllGuests);
  */
 router.get('/:GuestID', getGuestById);
 
-// Actualizar un Guest por GuestID
+// Actualizar parcialmente un Guest por GuestID
 /**
  * @openapi
  * /guests/{GuestID}:
- *   put:
- *     summary: Actualiza un invitado
+ *   patch:
+ *     summary: Actualiza parcialmente un invitado
  *     tags:
  *       - Guests
  *     parameters:
@@ -329,7 +329,7 @@ router.get('/:GuestID', getGuestById);
  *       500:
  *         description: Error del servidor
  */
-router.put('/:GuestID', updateGuest);
+router.patch('/:GuestID', updateGuest);
 
 // Eliminar un Guest por GuestID
 /**

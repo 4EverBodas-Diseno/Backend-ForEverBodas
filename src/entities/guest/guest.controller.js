@@ -62,6 +62,7 @@ const getGuestById = async (req, res) => {
 // Actualizar un Guest
 const updateGuest = async (req, res) => {
   try {
+    //mostrar errores
     const updatedGuest = await Guest.findOneAndUpdate({ GuestID: req.params.GuestID }, req.body, { new: true }); // Busca por GuestID
     if (!updatedGuest) return res.status(404).json({ message: 'Guest not found' });
 
