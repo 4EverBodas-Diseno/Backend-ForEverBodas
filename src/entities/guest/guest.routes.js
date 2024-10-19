@@ -42,7 +42,7 @@ const router = express.Router();
  *                     type: string
  *                   Nombre:
  *                     type: string
- *                  Apellido:
+ *                   Apellido:
  *                     type: string
  *                   Correo:
  *                     type: string
@@ -84,8 +84,8 @@ router.get('/user/:UserID', getGuestsByUserID);
  *                 type: string
  *               Nombre:
  *                 type: string
- *              Apellido:
- *                type: string
+ *               Apellido:
+ *                 type: string
  *               Correo:
  *                 type: string
  *               EstadoInvitacion:
@@ -120,8 +120,8 @@ router.get('/user/:UserID', getGuestsByUserID);
  *                       type: string
  *                     Nombre:
  *                       type: string
- *                    Apellido:
- *                      type: string
+ *                     Apellido:
+ *                       type: string
  *                     Correo:
  *                       type: string
  *                     EstadoInvitacion:
@@ -179,8 +179,8 @@ router.post('/', createGuest);
  *                           type: string
  *                         Nombre:
  *                           type: string
- *                        Apellido:
- *                          type: string
+ *                         Apellido:
+ *                           type: string
  *                         Correo:
  *                           type: string
  *                         EstadoInvitacion:
@@ -235,8 +235,8 @@ router.get('/', getAllGuests);
  *                   type: string
  *                 Nombre:
  *                   type: string
- *                Apellido:
- *                 type: string
+ *                 Apellido:
+ *                   type: string
  *                 Correo:
  *                   type: string
  *                 EstadoInvitacion:
@@ -284,8 +284,8 @@ router.get('/:GuestID', getGuestById);
  *                 type: string
  *               Nombre:
  *                 type: string
- *              Apellido:
- *                type: string
+ *               Apellido:
+ *                 type: string
  *               Correo:
  *                 type: string
  *               EstadoInvitacion:
@@ -317,8 +317,8 @@ router.get('/:GuestID', getGuestById);
  *                       type: string
  *                     Nombre:
  *                       type: string
- *                   Apellido:
- *                    type: string
+ *                     Apellido:
+ *                      type: string
  *                     Correo:
  *                       type: string
  *                     EstadoInvitacion:
