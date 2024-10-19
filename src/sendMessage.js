@@ -1,5 +1,5 @@
-// src/sendMessage.js
 require('dotenv').config();
+// src/sendMessage.js
 const twilio = require('twilio');
 
 // Configura las credenciales de Twilio desde variables de entorno
@@ -8,7 +8,7 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = twilio(accountSid, authToken);
 
 // Define el mensaje y el número de destino
-const numeroDestino = 'whatsapp:+51987654321'; // Reemplaza con el número al que quieres enviar el mensaje
+const numeroDestino = 'whatsapp:+51923642122'; // Reemplaza con el número al que quieres enviar el mensaje
 const mensaje = 'Este es tu link de confirmación: http://tulinkdeconfirmacion.com';
 
 // Enviar el mensaje

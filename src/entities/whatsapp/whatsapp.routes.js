@@ -10,11 +10,11 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = new twilio(accountSid, authToken);
 
 // Endpoint para manejar mensajes entrantes de WhatsApp (ya configurado)
-router.post('/inbound', (req, res) => {
-    const mensajeEntrante = req.body.Body; // Mensaje recibido
-    const numeroDeOrigen = req.body.From;  // Número del remitente
+    router.post('/inbound', (req, res) => {
+        const mensajeEntrante = req.body.Body; // Mensaje recibido
+        const numeroDeOrigen = req.body.From;  // Número del remitente
 
-    console.log(`Mensaje recibido de ${numeroDeOrigen}: ${mensajeEntrante}`);
+        console.log(`Mensaje recibido de ${numeroDeOrigen}: ${mensajeEntrante}`);
 
     // Respuesta automática personalizada
     const respuesta = 'Gracias por tu mensaje. ¿Cómo puedo ayudarte?';
