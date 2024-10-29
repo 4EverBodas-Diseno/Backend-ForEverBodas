@@ -6,6 +6,7 @@ const {
   getGuestById,
   updateGuest,
   deleteGuest,
+  deleteGuests,
   getGuestsByUserID
 } = require('./guest.controller');
 
@@ -383,5 +384,48 @@ router.patch('/:GuestID', updateGuest);
  *         description: Error del servidor
  */
 router.delete('/:GuestID', deleteGuest);
+
+
+// Eliminar múltiples Guests
+/**
+ * @openapi
+ * /guests/delete:
+ *   post:
+ *     summary: Elimina múltiples invitados por sus GuestIDs
+ *     tags:
+ *       - Guests
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               ids:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *     responses:
+ *       200:
+ *         description: Mensaje de éxito y total de invitados restantes
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 totalInvitados:
+ *                   type: number
+ *                 totalConfirmados:
+ *                   type: number
+ *       400:
+ *         description: Error de entrada, se requiere un array de GuestIDs
+ *       500:
+ *         description: Error al eliminar los invitados
+ */
+router.post('/delete', deleteGuests); // Nueva ruta para eliminar múltiples invitados
+
+
 
 module.exports = router;

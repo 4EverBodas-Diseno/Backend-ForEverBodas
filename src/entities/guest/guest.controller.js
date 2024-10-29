@@ -114,6 +114,37 @@ const deleteGuest = async (req, res) => {
   }
 };
 
+
+// Eliminar múltiples Guests
+const deleteGuests = async (req, res) => {
+  const { ids } = req.body; // Array de GuestIDs enviado desde el cliente
+
+  // Validación de la entrada
+  if (!Array.isArray(ids) || ids.length === 0) {
+    return res.status(400).json({ error: 'Se requiere un array de GuestIDs' });
+  }
+
+  try {
+    // Eliminar los documentos correspondientes a los GuestIDs proporcionados
+    const resultado = await Guest.deleteMany({
+      GuestID: { $in: ids },
+    });
+
+    // Obtener el total de invitados y confirmados después de eliminar
+    const totalInvitados = await Guest.countDocuments();
+    const totalConfirmados = await Guest.countDocuments({ Confirmado: true });
+
+    res.status(200).json({
+      message: `Documentos eliminados: ${resultado.deletedCount}`,
+      totalInvitados,
+      totalConfirmados,
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Error al eliminar documentos', detalles: error.message });
+  }
+};
+
+
 module.exports = {
   createGuest,
   getAllGuests,
@@ -121,4 +152,5 @@ module.exports = {
   updateGuest,
   getGuestsByUserID,
   deleteGuest,
+  deleteGuests,
 };
